@@ -10,7 +10,8 @@ export const homePageQuery = groq`
       headline,
       subheadline,
       primaryCta,
-      image
+      image,
+      isHome
     },
     _type == "sectionServices" => {
       title,

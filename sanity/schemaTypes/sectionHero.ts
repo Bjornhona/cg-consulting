@@ -30,6 +30,12 @@ export const sectionHero = defineType({
       title: 'Hero image',
       type: 'image',
       options: { hotspot: true }
+    }),
+    defineField({
+      name: 'isHome',
+      title: 'Is home',
+      type: 'boolean',
+      initialValue: false
     })
   ]
 })
