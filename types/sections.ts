@@ -1,5 +1,5 @@
 import { ImageProps } from "next/image"
-import { Service, Testimonial, BlogPost } from "./sanity"
+import { Service, Testimonial, BlogPost, Card, ListItem } from "./sanity"
 
 export interface SectionHero {
   _type: 'sectionHero'
@@ -29,6 +29,21 @@ export interface SectionCTA {
   headline: string
   text: string
   primaryCta: { label: string; href: string }
+  secondaryCta: { label: string; href: string }
+}
+
+export interface SectionCards {
+  _type: 'sectionCards'
+  title: string
+  description: string
+  cards: Card[]
+}
+
+export interface SectionList {
+  _type: 'sectionList'
+  title: string
+  description: string
+  items: ListItem[]
 }
 
 export interface SectionBlogPosts {

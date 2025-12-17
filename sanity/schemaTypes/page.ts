@@ -21,11 +21,7 @@ export const page = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'object',
-      fields: [
-        { name: 'metaTitle', type: 'string', title: 'Meta title' },
-        { name: 'metaDescription', type: 'text', title: 'Meta description' }
-      ]
+      type: 'seo'
     }),
     defineField({
       name: 'sections',
@@ -35,7 +31,10 @@ export const page = defineType({
         { type: 'sectionHero' },
         { type: 'sectionServices' },
         { type: 'sectionTestimonials' },
-        { type: 'sectionCTA' }
+        { type: 'sectionCTA' },
+        { type: 'sectionCards' },
+        { type: 'sectionList' },
+        { type: 'sectionBlogPosts' },
       ]
     })
   ]

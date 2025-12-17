@@ -14,7 +14,7 @@ export default function Hero({ variant = 'secondary', headline, subheadline, pri
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
         <Heading level={1}>{headline}</Heading>
         <p>{subheadline}</p>
-        <a href={primaryCta.href} className="btn-primary">{primaryCta.label}</a>
+        {primaryCta && <a href={primaryCta.href} className="btn-primary">{primaryCta.label}</a>}
         {imageUrl && (
           <Image
             src={imageUrl}

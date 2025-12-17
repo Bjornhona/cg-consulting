@@ -23,6 +23,15 @@ export const sectionCTA = defineType({
         { name: 'label', type: 'string', title: 'Label' },
         { name: 'href', type: 'string', title: 'Link' }
       ]
+    }),
+    defineField({
+      name: 'secondaryCta',
+      title: 'Secondary CTA',
+      type: 'object',
+      fields: [
+        { name: 'label', type: 'string', title: 'Label' },
+        { name: 'href', type: 'string', title: 'Link' }
+      ]
     })
   ]
 })

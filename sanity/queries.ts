@@ -5,7 +5,12 @@ export const pageQuery = groq`
 *[_type == "page" && slug.current == $slug][0]{
   title,
   slug,
-  seo,
+  seo{
+    metaTitle,
+    metaDescription,
+    ogImage,
+    noIndex
+  },
   sections[]{
     ...,
     _type == "sectionHero" => {
@@ -25,7 +30,18 @@ export const pageQuery = groq`
     _type == "sectionCTA" => {
       headline,
       text,
-      cta
+      primaryCta,
+      secondaryCta
+    },
+    _type == "sectionCards" => {
+      title,
+      description,
+      cards
+    },
+    _type == "sectionList" => {
+      title,
+      description,
+      items
     },
     _type == "sectionBlogPosts" => {
       title,
@@ -33,10 +49,36 @@ export const pageQuery = groq`
       blogPosts
     }
   }
-}
-`
+}`
 
 export const getPageBySlug = async (slug: string) => {
   const page = await client.fetch(pageQuery, { slug })
   return page
+}
+
+export const navigationQuery = groq`
+*[_type == "navigation"][0]{
+  title,
+  items[]{
+    label,
+    href,
+    isPrimary
+  }
+}`
+
+export const getNavigation = async () => {
+  const navigation = await client.fetch(navigationQuery)
+  return navigation
+}
+
+export const settingsQuery = groq`
+*[_type == "settings"][0]{
+  siteTitle,
+  siteDescription,
+  defaultOgImage
+}`
+
+export const getSettings = async () => {
+  const settings = await client.fetch(settingsQuery)
+  return settings
 }
