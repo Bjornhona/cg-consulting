@@ -1,8 +1,10 @@
+import { client } from './lib/client'
 import { groq } from 'next-sanity'
 
-export const homePageQuery = groq`
-*[_type == "page" && slug.current == "/"][0]{
+export const pageQuery = groq`
+*[_type == "page" && slug.current == $slug][0]{
   title,
+  slug,
   seo,
   sections[]{
     ...,
@@ -10,8 +12,7 @@ export const homePageQuery = groq`
       headline,
       subheadline,
       primaryCta,
-      image,
-      isHome
+      image
     },
     _type == "sectionServices" => {
       title,
@@ -25,7 +26,17 @@ export const homePageQuery = groq`
       headline,
       text,
       cta
+    },
+    _type == "sectionBlogPosts" => {
+      title,
+      description,
+      blogPosts
     }
   }
 }
 `
+
+export const getPageBySlug = async (slug: string) => {
+  const page = await client.fetch(pageQuery, { slug })
+  return page
+}

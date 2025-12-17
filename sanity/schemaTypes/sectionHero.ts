@@ -6,6 +6,15 @@ export const sectionHero = defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'variant',
+      title: 'Variant',
+      type: 'string',
+      initialValue: 'secondary',
+      options: {
+        list: ['primary', 'secondary']
+      }
+    }),
+    defineField({
       name: 'headline',
       title: 'Headline',
       type: 'string',
@@ -30,12 +39,6 @@ export const sectionHero = defineType({
       title: 'Hero image',
       type: 'image',
       options: { hotspot: true }
-    }),
-    defineField({
-      name: 'isHome',
-      title: 'Is home',
-      type: 'boolean',
-      initialValue: false
     })
   ]
 })

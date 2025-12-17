@@ -2,13 +2,12 @@
 import { SectionHero } from '@/types/sections'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Heading } from '@/components/ui/heading/Heading'
+import { Heading } from '@/components/ui/Heading'
 import { urlFor } from '@/sanity/lib/image'
 
-export default function Hero({ headline, subheadline, primaryCta, image, isHome = false }: SectionHero) {
-  // const imageUrl = urlFor(image).url();
+export default function Hero({ variant = 'secondary', headline, subheadline, primaryCta, image }: SectionHero) {
+  const isPrimary = variant === 'primary'
   const imageUrl = image ? urlFor(image).width(1200).url() : null
-
 
   return (
     <section className="hero">
@@ -21,8 +20,8 @@ export default function Hero({ headline, subheadline, primaryCta, image, isHome 
             src={imageUrl}
             alt={headline}
             width={1200}
-            height={isHome ? 1200 : 800}
-            priority={isHome}
+            height={isPrimary ? 900 : 500}
+            priority={isPrimary}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
         )}

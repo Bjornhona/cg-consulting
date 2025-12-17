@@ -1,13 +1,13 @@
 import { ImageProps } from "next/image"
-import { Service, Testimonial } from "./sanity"
+import { Service, Testimonial, BlogPost } from "./sanity"
 
 export interface SectionHero {
   _type: 'sectionHero'
+  variant: 'primary' | 'secondary'
   headline: string
   subheadline: string
   primaryCta: { label: string; href: string }
   image: ImageProps
-  isHome?: boolean
 }
 
 export interface SectionServices {
@@ -30,3 +30,11 @@ export interface SectionCTA {
   text: string
   primaryCta: { label: string; href: string }
 }
+
+export interface SectionBlogPosts {
+  _type: 'sectionBlogPosts'
+  title: string
+  description: string
+  blogPosts: BlogPost[]
+}
+
