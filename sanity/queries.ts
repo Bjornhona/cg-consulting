@@ -17,6 +17,7 @@ export const pageQuery = groq`
       headline,
       subheadline,
       primaryCta,
+      secondaryCta,
       image
     },
     _type == "sectionServices" => {

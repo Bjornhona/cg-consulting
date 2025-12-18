@@ -9,7 +9,7 @@ import { Seo } from "./sanity";
 
 export interface Page {
   title: string;
-  slug: string;
+  slug: { current: string };
   seo: Seo;
   sections: (
     | SectionHero

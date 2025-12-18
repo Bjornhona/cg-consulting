@@ -1,4 +1,4 @@
-import Hero from "@/components/sections/Hero";
+import Hero from "@/components/sections/hero/Hero";
 import Services from "@/components/sections/Services";
 import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
@@ -30,7 +30,7 @@ export default function PageRenderer({ page }: { page: Page }) {
         ) => {
           switch (section._type) {
             case "sectionHero":
-              const isHome = page.slug === "home";
+              const isHome = page.slug.current === "home";
               const variant = isHome ? "primary" : "secondary";
               return <Hero key={index} {...section} variant={variant} />;
 

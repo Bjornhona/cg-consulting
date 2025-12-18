@@ -79,12 +79,22 @@ p, a {
 }
 
 .btn-primary {
-  color: var(--color-secondary);
+  color: var(--color-primary);
   font-weight: 600;
   cursor: pointer;
 }
 
 .btn-primary:hover {
+  color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  color: var(--color-secondary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
   color: var(--color-secondary-hover);
 }
 
