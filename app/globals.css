@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fffef4;
+  /* --background: #fffef4;
   --foreground: #323231;
   --real-white: #ffffff;
   --floral-white: #fffef4;
@@ -10,7 +10,20 @@
   --dark-brown: #65492d;
   --dark-gray: #323231;
   --light-gray: #e0e0e0;
-  --dark-gray: #323231;
+  --dark-gray: #323231; */
+
+  /* CG Consulting specific colors */
+  --primary: #52b5e7; /* main blue */
+  --primary-hover: #a3d4f7; /* light blue for hover states */
+  --secondary: #8d288f; /* accent magenta */
+  --secondary-hover: #b55fb2; /* light magenta for hover states */
+ 
+  --gray-black: #222221;
+  --gray-dark: #333437; /* text & dark elements */
+  --gray-medium: #737373; /* medium gray for subtle backgrounds */
+  --gray-light: #e0e0e0; /* borders, lines, subtle backgrounds */
+  --background: #ffffff; /* page background */
+
   --text-base: 16px;
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
@@ -25,18 +38,52 @@
   --text-sm: 0.875rem;
   --text-xs: 0.75rem;
   --text-xxs: 0.625rem;
+
+  /* UI semantics — LIGHT (default) */
+  --surface-bg: var(--background);
+  --surface-text: var(--gray-dark);
+
+  --nav-text: var(--gray-medium);
+  --nav-text-hover: var(--gray-dark);
+
+  --btn-primary-bg: var(--secondary);
+  --btn-primary-hover: var(--secondary-hover);
+  --btn-primary-text: #ffffff;
+}
+
+[data-theme='dark'] {
+  --surface-bg: var(--gray-black);
+  --surface-text: #ffffff;
+
+  --nav-text: #d4d4d4;
+  --nav-text-hover: #ffffff;
+
+  --btn-primary-bg: var(--primary);
+  --btn-primary-hover: var(--primary-hover);
+  --btn-primary-text: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--surface-bg);
+  --color-foreground: var(--surface-text);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+
+  --color-gray-black: var(--gray-black);
+  --color-gray-dark: var(--gray-dark);
+  --color-gray-medium: var(--gray-medium);
+  --color-gray-light: var(--gray-light);
+
   --font-inter: var(--font-inter);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  /* font-family: Arial, Helvetica, sans-serif; */
+  background: var(--surface-bg);
+  color: var(--surface-text);
   font-family: var(--font-inter);
   font-size: var(--text-base);
   line-height: var(--leading-normal);
@@ -59,7 +106,22 @@ h3 {
   font-weight: 600;
 }
 
-p {
+p, a {
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  padding: 10px 20px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  color: var(--btn-primary-text);
 }

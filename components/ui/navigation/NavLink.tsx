@@ -19,10 +19,11 @@ export default function NavLink({
       href={item.href}
       onClick={onClick}
       className={clsx(
-        'text-sm font-medium transition-colors',
-        isActive && 'text-black',
-        !isActive && 'text-neutral-500 hover:text-black',
-        item.isPrimary && 'btn-primary'
+        'transition-colors',
+        item.isPrimary
+          ? 'btn-primary'
+          : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',
+        isActive && !item.isPrimary && 'text-[color:var(--nav-text-hover)]'
       )}
     >
       {item.label}
