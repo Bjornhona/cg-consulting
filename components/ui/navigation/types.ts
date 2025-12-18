@@ -15,7 +15,7 @@ export type HeaderProps = {
 
 export type FooterProps = {
   navigation: NavItem[]
-  iconLogo?: SanityImageSource
+  logo?: SanityImageSource
   siteTitle?: string
 }
 

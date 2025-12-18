@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { getNavigation, getSettings } from '@/sanity/queries'
-import Header from '@/components/ui/navigation/header/Header'
-import Footer from '@/components/ui/navigation/footer/Footer'
+import { getNavigation, getSettings } from "@/sanity/queries";
+import Header from "@/components/ui/navigation/header/Header";
+import Footer from "@/components/ui/navigation/footer/Footer";
 
 const inter = Inter({
-  weight: ['400', '500', '600', '700'],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   subsets: ["latin"],
 });
@@ -24,14 +24,26 @@ export default async function RootLayout({
   const [navigation, settings] = await Promise.all([
     getNavigation(),
     getSettings(),
-  ])
+  ]);
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        {navigation && <Header navigation={navigation.items} logo={settings?.logo} siteTitle={settings?.siteTitle} />}
+        {navigation && (
+          <Header
+            navigation={navigation.items}
+            logo={settings?.logo}
+            siteTitle={settings?.siteTitle}
+          />
+        )}
         {children}
-        {navigation && <Footer navigation={navigation.items} logo={settings?.iconLogo} siteTitle={settings?.siteTitle} />}
+        {navigation && (
+          <Footer
+            navigation={navigation.items}
+            logo={settings?.iconLogo ?? settings?.logo}
+            siteTitle={settings?.siteTitle}
+          />
+        )}
       </body>
     </html>
   );

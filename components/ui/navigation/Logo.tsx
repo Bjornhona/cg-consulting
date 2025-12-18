@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { urlFor } from '@/sanity/lib/image'
-import { LogoProps } from '../types'
+import { LogoProps } from './types'
 
 export default function Logo({
   logo,
