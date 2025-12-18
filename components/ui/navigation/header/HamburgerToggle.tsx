@@ -1,13 +1,13 @@
 'use client'
 import { motion } from 'framer-motion'
+import { forwardRef } from 'react'
 
 type HamburgerToggleProps = {
-  ref: React.RefObject<HTMLButtonElement>
   isOpen: boolean
   toggle: () => void
 }
 
-const HamburgerToggle = ({ ref, isOpen, toggle }: HamburgerToggleProps) => {
+const HamburgerToggle = forwardRef<HTMLButtonElement | null, HamburgerToggleProps>(({ isOpen, toggle }, ref) => {
   return (
     <button
       ref={ref}
@@ -35,6 +35,7 @@ const HamburgerToggle = ({ ref, isOpen, toggle }: HamburgerToggleProps) => {
       />
     </button>
   )
-}
+})
 
+HamburgerToggle.displayName = 'HamburgerToggle'
 export default HamburgerToggle
