@@ -16,9 +16,23 @@ export const settings = defineType({
       type: 'text',
     }),
     defineField({
-      name: 'defaultOgImage',
-      title: 'Default OG image',
+      name: 'logo',
+      title: 'Logo',
       type: 'image',
+      options: { hotspot: true }
+    }),
+    defineField({
+      name: 'iconLogo',
+      title: 'Icon logo',
+      type: 'image',
+      options: { hotspot: true }
+    }),
+    defineField({
+      name: 'defaultOgImage',
+      title: 'Default Open Graph image',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Used when a page does not define its own Open Graph image',
     }),
   ],
 })

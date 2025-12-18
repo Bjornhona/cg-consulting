@@ -75,6 +75,8 @@ export const settingsQuery = groq`
 *[_type == "settings"][0]{
   siteTitle,
   siteDescription,
+  logo,
+  iconLogo,
   defaultOgImage
 }`
 

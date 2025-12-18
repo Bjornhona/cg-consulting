@@ -31,7 +31,6 @@ export async function generateMetadata(
 ------------------------------------------------------------- */
 export default async function DynamicPage({ params }: Props) {
   const { slug } = await params
-  console.log(slug)
   const page = await getPageBySlug(slug)
 
   if (!page) return notFound()

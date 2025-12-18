@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { getNavigation } from '@/sanity/queries'
-import Navbar from '@/components/ui/Navbar'
+import { getNavigation, getSettings } from '@/sanity/queries'
+import Header from '@/components/ui/navigation/header/Header'
+import Footer from '@/components/ui/navigation/footer/Footer'
 
 const inter = Inter({
   weight: ['400', '500', '600', '700'],
@@ -20,13 +21,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const navigation = await getNavigation()
+  const [navigation, settings] = await Promise.all([
+    getNavigation(),
+    getSettings(),
+  ])
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        {navigation && <Navbar items={navigation.items} />}
+        {navigation && <Header navigation={navigation.items} logo={settings?.logo} siteTitle={settings?.siteTitle} />}
         {children}
+        {navigation && <Footer navigation={navigation.items} logo={settings?.iconLogo} siteTitle={settings?.siteTitle} />}
       </body>
     </html>
   );

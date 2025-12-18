@@ -9,6 +9,7 @@ import { sectionCards } from "./sectionCards";
 import { sectionList } from "./sectionList";
 import { sectionBlogPosts } from "./sectionBlogPosts";
 import { navigation } from "./navigation";
+import { settings } from "./settings";
 import { seo } from "./seo";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
@@ -23,6 +24,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     sectionList,
     sectionBlogPosts,
     navigation,
+    settings,
     seo,
   ],
 };
