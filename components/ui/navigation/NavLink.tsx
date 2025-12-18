@@ -21,7 +21,7 @@ export default function NavLink({
       className={clsx(
         'transition-colors',
         item.isPrimary
-          ? 'btn-primary'
+          ? 'action-primary'
           : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',
         isActive && !item.isPrimary && 'text-[color:var(--nav-text-hover)]'
       )}

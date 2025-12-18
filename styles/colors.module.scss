@@ -1,0 +1,37 @@
+:root {
+  /* Brand */
+  --primary: #52b5e7;
+  --primary-hover: #a3d4f7;
+  --secondary: #8d288f;
+  --secondary-hover: #b55fb2;
+
+  /* Neutrals */
+  --gray-black: #222221;
+  --gray-dark: #333437;
+  --gray-medium: #737373;
+  --gray-light: #e0e0e0;
+  --background: #ffffff;
+
+  /* UI semantics — LIGHT */
+  --surface-bg: var(--background);
+  --surface-text: var(--gray-dark);
+
+  --nav-text: var(--gray-medium);
+  --nav-text-hover: var(--gray-dark);
+
+  --btn-primary-bg: var(--secondary);
+  --btn-primary-hover: var(--secondary-hover);
+  --btn-primary-text: #ffffff;
+}
+
+[data-theme='dark'] {
+  --surface-bg: var(--gray-black);
+  --surface-text: #ffffff;
+
+  --nav-text: #d4d4d4;
+  --nav-text-hover: #ffffff;
+
+  --btn-primary-bg: var(--primary);
+  --btn-primary-hover: var(--primary-hover);
+  --btn-primary-text: #ffffff;
+}

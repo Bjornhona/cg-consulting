@@ -1,68 +1,10 @@
 @import "tailwindcss";
 
-:root {
-  /* --background: #fffef4;
-  --foreground: #323231;
-  --real-white: #ffffff;
-  --floral-white: #fffef4;
-  --light-brown: #c4a47c;
-  --brown: #97764f;
-  --dark-brown: #65492d;
-  --dark-gray: #323231;
-  --light-gray: #e0e0e0;
-  --dark-gray: #323231; */
+@import '../styles/colors.module.scss';
+@import '../styles/spacing.module.scss';
+@import '../styles/typography.module.scss';
 
-  /* CG Consulting specific colors */
-  --primary: #52b5e7; /* main blue */
-  --primary-hover: #a3d4f7; /* light blue for hover states */
-  --secondary: #8d288f; /* accent magenta */
-  --secondary-hover: #b55fb2; /* light magenta for hover states */
- 
-  --gray-black: #222221;
-  --gray-dark: #333437; /* text & dark elements */
-  --gray-medium: #737373; /* medium gray for subtle backgrounds */
-  --gray-light: #e0e0e0; /* borders, lines, subtle backgrounds */
-  --background: #ffffff; /* page background */
-
-  --text-base: 16px;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.625;
-  --leading-tight: 1.25;
-  --text-5xl: 2.5rem;
-  --text-4xl: 2rem;
-  --text-3xl: 1.875rem;
-  --text-2xl: 1.5rem;
-  --text-xl: 1.25rem;
-  --text-lg: 1.125rem;
-  --text-md: 1rem;
-  --text-sm: 0.875rem;
-  --text-xs: 0.75rem;
-  --text-xxs: 0.625rem;
-
-  /* UI semantics — LIGHT (default) */
-  --surface-bg: var(--background);
-  --surface-text: var(--gray-dark);
-
-  --nav-text: var(--gray-medium);
-  --nav-text-hover: var(--gray-dark);
-
-  --btn-primary-bg: var(--secondary);
-  --btn-primary-hover: var(--secondary-hover);
-  --btn-primary-text: #ffffff;
-}
-
-[data-theme='dark'] {
-  --surface-bg: var(--gray-black);
-  --surface-text: #ffffff;
-
-  --nav-text: #d4d4d4;
-  --nav-text-hover: #ffffff;
-
-  --btn-primary-bg: var(--primary);
-  --btn-primary-hover: var(--primary-hover);
-  --btn-primary-text: #ffffff;
-}
-
+/* Tailwind → CSS variable bridge */
 @theme inline {
   --color-background: var(--surface-bg);
   --color-foreground: var(--surface-text);
@@ -78,9 +20,34 @@
   --color-gray-medium: var(--gray-medium);
   --color-gray-light: var(--gray-light);
 
-  --font-inter: var(--font-inter);
+  /* --font-inter: var(--font-inter);
+
+  --font-base: var(--text-base);
+  --leading-tight: var(--leading-tight);
+  --leading-normal: var(--leading-normal);
+  --leading-relaxed: var(--leading-relaxed);
+  --text-5xl: var(--text-5xl);
+  --text-4xl: var(--text-4xl);
+  --text-3xl: var(--text-3xl);
+  --text-2xl: var(--text-2xl);
+  --text-xl: var(--text-xl);
+  --text-lg: var(--text-lg);
+  --text-md: var(--text-md);
+  --text-sm: var(--text-sm);
+  --text-xs: var(--text-xs);
+  --text-xxs: var(--text-xxs);
+
+  --space-xxs: var(--space-xxs);
+  --space-xs: var(--space-xs);
+  --space-sm: var(--space-sm);
+  --space-md: var(--space-md);
+  --space-lg: var(--space-lg);
+  --space-xl: var(--space-xl);
+  --space-2xl: var(--space-2xl);
+  --space-3xl: var(--space-3xl); */
 }
 
+/* Element defaults */
 body {
   background: var(--surface-bg);
   color: var(--surface-text);
@@ -112,6 +79,20 @@ p, a {
 }
 
 .btn-primary {
+  color: var(--color-secondary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  color: var(--color-secondary-hover);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.action-primary {
   background-color: var(--btn-primary-bg);
   color: var(--btn-primary-text);
   transition: background-color 0.2s ease, opacity 0.2s ease;
@@ -121,7 +102,11 @@ p, a {
   cursor: pointer;
 }
 
-.btn-primary:hover {
+.action-primary:hover {
   background-color: var(--btn-primary-hover);
   color: var(--btn-primary-text);
+}
+
+.action-primary:active {
+  transform: translateY(1px);
 }
