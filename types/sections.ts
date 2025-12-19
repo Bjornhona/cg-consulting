@@ -43,7 +43,7 @@ export interface SectionList {
   _type: 'sectionList'
   title: string
   description: string
-  items: ListItem[]
+  listItems: ListItem[]
 }
 
 export interface SectionBlogPosts {

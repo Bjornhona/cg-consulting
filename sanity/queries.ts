@@ -48,7 +48,7 @@ export const pageQuery = groq`
     _type == "sectionList" => {
       title,
       description,
-      items
+      listItems
     },
     _type == "sectionBlogPosts" => {
       title,

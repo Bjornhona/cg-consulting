@@ -77,7 +77,7 @@ h3 {
   font-weight: 600;
 }
 
-p {
+p, li {
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   color: var(--surface-text-medium);
