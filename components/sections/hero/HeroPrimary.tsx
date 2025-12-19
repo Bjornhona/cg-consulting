@@ -14,7 +14,7 @@ const HeroPrimary = ({
   image,
 }: HeroProps) => {
   return (
-    <section className="relative overflow-hidden bg-background">
+    <section className="relative overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* Text */}
@@ -23,12 +23,12 @@ const HeroPrimary = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
+          <h1 className="mb-6">
             {headline}
           </h1>
 
           {subheadline && (
-            <p className="text-lg text-gray-medium max-w-xl mb-8">
+            <p className="max-w-xl mb-8">
               {subheadline}
             </p>
           )}

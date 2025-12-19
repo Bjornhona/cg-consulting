@@ -14,9 +14,8 @@ export default function HeroSecondary({
 
   return (
     <section
-      className={`relative overflow-hidden border-b border-gray-light ${
-        hasImage ? 'text-white' : 'bg-background'
-      }`}
+      className={`relative overflow-hidden border-b border-gray-light`}
+      data-theme={hasImage ? "dark" : undefined}
     >
       {/* Background image */}
       {hasImage && (
@@ -41,9 +40,7 @@ export default function HeroSecondary({
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, ease: 'easeOut' }}
-          className={`text-3xl lg:text-4xl font-semibold mb-4 ${
-            hasImage ? 'text-white' : ''
-          }`}
+          className="mb-4"
         >
           {headline}
         </motion.h1>
@@ -53,9 +50,7 @@ export default function HeroSecondary({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.4 }}
-            className={`max-w-2xl mx-auto ${
-              hasImage ? 'text-white/90' : 'text-gray-medium'
-            }`}
+            className={'max-w-2xl mx-auto'}
           >
             {subheadline}
           </motion.p>

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-@import '../styles/colors.module.scss';
-@import '../styles/spacing.module.scss';
-@import '../styles/typography.module.scss';
+@import "../styles/colors.module.scss";
+@import "../styles/spacing.module.scss";
+@import "../styles/typography.module.scss";
 
 /* Tailwind → CSS variable bridge */
 @theme inline {
@@ -56,6 +56,10 @@ body {
   line-height: var(--leading-normal);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--surface-text);
+}
+
 h1 {
   font-size: var(--text-5xl);
   line-height: var(--leading-tight);
@@ -73,7 +77,13 @@ h3 {
   font-weight: 600;
 }
 
-p, a {
+p {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--surface-text-medium);
+}
+
+a {
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
 }
@@ -98,14 +108,12 @@ p, a {
   color: var(--color-secondary-hover);
 }
 
-.btn-primary:active {
-  transform: translateY(1px);
-}
-
 .action-primary {
   background-color: var(--btn-primary-bg);
   color: var(--btn-primary-text);
-  transition: background-color 0.2s ease, opacity 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
   padding: 10px 20px;
   border-radius: 3px;
   border: none;
@@ -117,6 +125,8 @@ p, a {
   color: var(--btn-primary-text);
 }
 
+.btn-primary:active,
+.btn-secondary:active,
 .action-primary:active {
   transform: translateY(1px);
 }

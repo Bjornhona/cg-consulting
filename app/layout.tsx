@@ -28,15 +28,17 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {navigation && (
-          <Header
-            navigation={navigation.items}
+      <body className={`${inter.className} min-h-screen flex flex-col justify-between`}>
+        <main>
+          {navigation && (
+            <Header
+              navigation={navigation.items}
             logo={settings?.logo}
             siteTitle={settings?.siteTitle}
           />
         )}
         {children}
+        </main>
         {navigation && (
           <Footer
             navigation={navigation.items}

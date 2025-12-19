@@ -1,5 +1,5 @@
 import Hero from "@/components/sections/hero/Hero";
-import Services from "@/components/sections/Services";
+import Services from "@/components/sections/services/Services";
 import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
 import {

@@ -15,9 +15,10 @@
   /* UI semantics — LIGHT */
   --surface-bg: var(--background);
   --surface-text: var(--gray-dark);
+  --surface-text-medium: var(--gray-medium);
 
   --nav-text: var(--gray-medium);
-  --nav-text-hover: var(--gray-dark);
+  --nav-text-hover: var(--gray-black);
 
   --btn-primary-bg: var(--secondary);
   --btn-primary-hover: var(--secondary-hover);
@@ -27,8 +28,9 @@
 [data-theme='dark'] {
   --surface-bg: var(--gray-black);
   --surface-text: #ffffff;
+  --surface-text-medium: var(--gray-light);
 
-  --nav-text: #d4d4d4;
+  --nav-text: var(--gray-light);
   --nav-text-hover: #ffffff;
 
   --btn-primary-bg: var(--primary);

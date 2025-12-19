@@ -16,6 +16,8 @@ export interface Settings {
 export interface Service {
   title: string
   description: string
+  slug: string
+  icon: 'selection' | 'evaluation' | 'workshops'
 }
 
 export interface Testimonial {

@@ -22,7 +22,13 @@ export const pageQuery = groq`
     },
     _type == "sectionServices" => {
       title,
-      services
+      description,
+      services[]{
+        title,
+        description,
+        slug,
+        icon
+      }
     },
     _type == "sectionTestimonials" => {
       title,
