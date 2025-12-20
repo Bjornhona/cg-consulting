@@ -83,6 +83,14 @@ p, li {
   color: var(--surface-text-medium);
 }
 
+blockquote {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  font-style: italic;
+  color: var(--surface-text-dark);
+  letter-spacing: 0.01em;
+}
+
 a {
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
