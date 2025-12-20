@@ -1,17 +1,69 @@
 'use client'
+
 import { motion } from 'framer-motion'
 import { SectionCTA } from '@/types/sections'
 import Button from '@/components/ui/button/Button'
 
-export default function CTA({ headline, text, primaryCta, secondaryCta }: SectionCTA) {
+export default function CTA({
+  headline,
+  text,
+  primaryCta,
+  secondaryCta,
+}: SectionCTA) {
   return (
-    <section className="cta">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h2>{headline}</h2>
-        <p>{text}</p>
-        {primaryCta && <Button onClick={() => window.location.href = primaryCta.href} variant="primary" size="md">{primaryCta.label}</Button>}
-        {secondaryCta && <Button onClick={() => window.location.href = secondaryCta.href} variant="secondary" size="md">{secondaryCta.label}</Button>}
-      </motion.div>
+    <section className="relative overflow-hidden">
+      <div className="mx-auto max-w-5xl px-6 py-20 text-center">
+
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+          className="mb-4"
+        >
+          {headline}
+        </motion.h2>
+
+        {text && (
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.4 }}
+            className="max-w-2xl mx-auto mb-10"
+          >
+            {text}
+          </motion.p>
+        )}
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          {primaryCta && (
+            <Button
+              variant="primary"
+              size="lg"
+              onClick={() => (window.location.href = primaryCta.href)}
+            >
+              {primaryCta.label}
+            </Button>
+          )}
+
+          {secondaryCta && (
+            <Button
+              variant="secondary"
+              size="lg"
+              onClick={() => (window.location.href = secondaryCta.href)}
+            >
+              {secondaryCta.label}
+            </Button>
+          )}
+        </motion.div>
+      </div>
     </section>
   )
 }

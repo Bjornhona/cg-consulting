@@ -9,7 +9,7 @@ export default function ContactInfo({
 }: ContactInfoProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold">{name}</h3>
+      <h3>{name}</h3>
 
       <div className="flex items-center gap-3">
         <FiPhone />

@@ -88,6 +88,11 @@ a {
   line-height: var(--leading-relaxed);
 }
 
+label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
 .btn-primary {
   color: var(--color-primary);
   font-weight: 600;
