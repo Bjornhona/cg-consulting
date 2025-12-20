@@ -4,6 +4,8 @@ import {
   SectionTestimonials,
   SectionCTA,
   SectionCards,
+  SectionContact,
+  SectionList,
 } from "./sections";
 import { Seo } from "./sanity";
 
@@ -17,5 +19,7 @@ export interface Page {
     | SectionTestimonials
     | SectionCTA
     | SectionCards
+    | SectionList
+    | SectionContact
   )[];
 }

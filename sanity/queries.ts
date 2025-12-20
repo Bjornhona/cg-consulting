@@ -54,6 +54,11 @@ export const pageQuery = groq`
       title,
       description,
       blogPosts
+    },
+    _type == "sectionContact" => {
+      title,
+      description,
+      contactInfo
     }
   }
 }`

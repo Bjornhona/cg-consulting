@@ -9,10 +9,12 @@ import {
   SectionCTA,
   SectionCards,
   SectionList,
+  SectionContact,
 } from "@/types/sections";
 import Cards from "@/components/sections/Cards";
 import { Page } from "@/types/pages";
 import List from "@/components/sections/List";
+import Contact from "@/components/sections/contact/Contact";
 
 export default function PageRenderer({ page }: { page: Page }) {
   return (
@@ -25,7 +27,8 @@ export default function PageRenderer({ page }: { page: Page }) {
             | SectionTestimonials
             | SectionCTA
             | SectionCards
-            | SectionList,
+            | SectionList
+            | SectionContact,
           index: number
         ) => {
           switch (section._type) {
@@ -48,6 +51,9 @@ export default function PageRenderer({ page }: { page: Page }) {
 
             case "sectionList":
               return <List key={index} {...section} />;
+
+            case "sectionContact":
+              return <Contact key={index} {...section} />;
 
             default:
               return null;

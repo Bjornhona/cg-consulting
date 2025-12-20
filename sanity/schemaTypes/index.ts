@@ -8,6 +8,7 @@ import { sectionCTA } from "./sectionCTA";
 import { sectionCards } from "./sectionCards";
 import { sectionList } from "./sectionList";
 import { sectionBlogPosts } from "./sectionBlogPosts";
+import { sectionContact } from "./sectionContact";
 import { navigation } from "./navigation";
 import { settings } from "./settings";
 import { seo } from "./seo";
@@ -23,6 +24,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     sectionCards,
     sectionList,
     sectionBlogPosts,
+    sectionContact,
     navigation,
     settings,
     seo,

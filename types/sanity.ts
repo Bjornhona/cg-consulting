@@ -51,3 +51,11 @@ export interface ListItem {
   title: string
   text: string
 }
+
+export interface ContactInfo {
+  company: string
+  name: string
+  phone: string
+  email: string
+  location: string
+}

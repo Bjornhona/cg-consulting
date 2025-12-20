@@ -1,5 +1,5 @@
 import { ImageProps } from "next/image"
-import { Service, Testimonial, BlogPost, Card, ListItem } from "./sanity"
+import { Service, Testimonial, BlogPost, Card, ListItem, ContactInfo } from "./sanity"
 
 export interface SectionHero {
   _type: 'sectionHero'
@@ -53,3 +53,9 @@ export interface SectionBlogPosts {
   blogPosts: BlogPost[]
 }
 
+export interface SectionContact {
+  _type: 'sectionContact'
+  title: string
+  description: string
+  contactInfo: ContactInfo
+}
