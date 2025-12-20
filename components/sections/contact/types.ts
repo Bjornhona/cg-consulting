@@ -1,5 +1,6 @@
 export type ContactInfoProps = {
-  name: string
+  companyName: string
+  contactPerson: string
   phone: string
   email: string
   location: string

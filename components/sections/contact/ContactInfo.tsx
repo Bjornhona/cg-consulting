@@ -1,15 +1,21 @@
-import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi'
+import { FiPhone, FiMail, FiMapPin, FiUser } from 'react-icons/fi'
 import { ContactInfoProps } from './types'
 
 export default function ContactInfo({
-  name,
+  companyName,
+  contactPerson,
   phone,
   email,
   location,
 }: ContactInfoProps) {
   return (
     <div className="space-y-4">
-      <h3>{name}</h3>
+      <h3>{companyName}</h3>
+
+      <div className="flex items-center gap-3">
+        <FiUser />
+        <span>{contactPerson}</span>
+      </div>
 
       <div className="flex items-center gap-3">
         <FiPhone />

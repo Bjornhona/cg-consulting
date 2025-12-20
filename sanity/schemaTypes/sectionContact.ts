@@ -21,7 +21,12 @@ export const sectionContact = defineType({
       type: 'object',
       fields: [
         defineField({
-          name: 'name',
+          name: 'companyName',
+          title: 'Company Name',
+          type: 'string',
+        }),
+        defineField({
+          name: 'contactPerson',
           title: 'Contact Person',
           type: 'string',
         }),
