@@ -9,6 +9,8 @@
   --color-background: var(--surface-bg);
   --color-foreground: var(--surface-text);
 
+  --color-soft: var(--bg-soft);
+
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
 

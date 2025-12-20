@@ -10,9 +10,12 @@
   --gray-dark: #333437;
   --gray-medium: #737373;
   --gray-light: #e0e0e0;
+  --gray-soft: #f7f7f8;
   --background: #ffffff;
 
   /* UI semantics — LIGHT */
+  --bg-soft: var(--gray-soft);
+
   --surface-bg: var(--background);
   --surface-text: var(--gray-dark);
   --surface-text-medium: var(--gray-medium);

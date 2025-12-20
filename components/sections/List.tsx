@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 
 const List = ({ title, description, listItems }: SectionList) => {
   return (
-    <section className="bg-background">
+    <section className="bg-soft">
       <div className="mx-auto max-w-5xl px-6 py-20">
 
         {/* Header */}
