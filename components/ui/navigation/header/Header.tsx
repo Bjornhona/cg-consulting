@@ -5,7 +5,7 @@ import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
 import type { HeaderProps } from '../types'
 
-const Header = ({ navigation, logo, siteTitle }: HeaderProps) => {
+const Header = ({ navigation }: HeaderProps) => {
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}
@@ -14,7 +14,7 @@ const Header = ({ navigation, logo, siteTitle }: HeaderProps) => {
       className="sticky top-0 z-50 bg-background/80 backdrop-blur border-b-gray-light shadow-md"
     >
       <div className="mx-auto max-w-7xl px-4 h-20 sm:h-16 flex items-center justify-between">
-        <Logo logo={logo} alt={siteTitle} />
+        <Logo type="header" />
         <DesktopNav navigation={navigation} />
         <MobileNav navigation={navigation} />
       </div>

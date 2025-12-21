@@ -16,6 +16,36 @@ export const settings = defineType({
       type: 'text',
     }),
     defineField({
+      name: 'companyName',
+      title: 'Company name',
+      type: 'string',
+    }),
+    defineField({
+      name: 'contactPerson',
+      title: 'Contact person',
+      type: 'string',
+    }),
+    defineField({
+      name: 'companyNIF',
+      title: 'Company NIF/CIF',
+      type: 'string',
+    }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'string',
+    }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+    }),
+    defineField({
+      name: 'phone',
+      title: 'Phone',
+      type: 'string',
+    }),
+    defineField({
       name: 'logo',
       title: 'Logo',
       type: 'image',

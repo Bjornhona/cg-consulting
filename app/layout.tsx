@@ -4,6 +4,7 @@ import "./globals.css";
 import { getNavigation, getSettings } from "@/sanity/queries";
 import Header from "@/components/ui/navigation/header/Header";
 import Footer from "@/components/ui/navigation/footer/Footer";
+import { SettingsProvider } from "@/lib/SettingsProvider";
 
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
@@ -28,25 +29,25 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col justify-between`}>
-        <main>
-          {navigation && (
-            <Header
-              navigation={navigation.items}
-            logo={settings?.logo}
-            siteTitle={settings?.siteTitle}
-          />
-        )}
-        {children}
-        </main>
-        {navigation && (
-          <Footer
-            navigation={navigation.items}
-            logo={settings?.iconLogo ?? settings?.logo}
-            siteTitle={settings?.siteTitle}
-          />
-        )}
-      </body>
+        <body
+          className={`${inter.className} min-h-screen flex flex-col justify-between`}
+        >
+          <SettingsProvider settings={settings}>
+            <main>
+              {navigation && (
+                <Header
+                  navigation={navigation.items}
+                />
+              )}
+              {children}
+            </main>
+            {navigation && (
+              <Footer
+                navigation={navigation.items}
+              />
+            )}
+          </SettingsProvider>
+        </body>
     </html>
   );
 }

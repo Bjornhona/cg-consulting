@@ -1,5 +1,3 @@
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
-
 export type NavItem = {
   _key: string
   label: string
@@ -9,18 +7,13 @@ export type NavItem = {
 
 export type HeaderProps = {
   navigation: NavItem[]
-  logo?: SanityImageSource
-  siteTitle?: string
 }
 
 export type FooterProps = {
   navigation: NavItem[]
-  logo?: SanityImageSource
-  siteTitle?: string
 }
 
 export type LogoProps = {
-  logo?: SanityImageSource
-  alt?: string
-  textFallback?: string
+  type: "header" | "footer"
 }
+

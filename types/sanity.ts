@@ -1,3 +1,4 @@
+import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import { ImageProps } from "next/image"
 
 export interface Seo {
@@ -10,6 +11,14 @@ export interface Seo {
 export interface Settings {
   siteTitle: string
   siteDescription: string
+  companyName: string
+  contactPerson: string
+  companyNIF: string
+  location: string
+  email: string
+  phone: string
+  logo: SanityImageSource
+  iconLogo: SanityImageSource
   defaultOgImage: ImageProps
 }
 

@@ -4,13 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
+import { useSettings } from "@/lib/SettingsProvider";
 import { LogoProps } from "./types";
 
-export default function Logo({
-  logo,
-  alt = "Home",
-  textFallback = "Tech Beach Studio",
-}: LogoProps) {
+export default function Logo({type}: LogoProps) {
+  const settings = useSettings()
+  const alt = settings?.siteTitle ?? "Home"
+  const textFallback = settings?.companyName ?? "Tech Beach Studio"
+  const logo = type === "header" ? settings?.logo : settings?.iconLogo ?? settings?.logo
+
   return (
     <Link href="/home" aria-label={alt} className="block w-auto max-w-xs">
       <motion.div

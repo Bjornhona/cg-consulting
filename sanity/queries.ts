@@ -58,7 +58,6 @@ export const pageQuery = groq`
     _type == "sectionContact" => {
       title,
       description,
-      contactInfo
     }
   }
 }`
@@ -87,6 +86,12 @@ export const settingsQuery = groq`
 *[_type == "settings"][0]{
   siteTitle,
   siteDescription,
+  companyName,
+  contactPerson,
+  companyNIF,
+  location,
+  email,
+  phone,
   logo,
   iconLogo,
   defaultOgImage
