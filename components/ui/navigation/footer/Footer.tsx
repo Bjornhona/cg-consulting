@@ -1,10 +1,14 @@
+'use client'
 import FooterNav from "./FooterNav"
 import { FooterProps } from "../types"
 import Logo from "../Logo"
 import NavLink from "../NavLink"
 import { NavItem } from "../types"
+import ContactInfo from "@/components/sections/contact/ContactInfo"
+import { useSettings } from "@/lib/SettingsProvider"
 
 const Footer = ({ navigation }: FooterProps) => {
+  const settings = useSettings()
   const currentYear = new Date().getFullYear();
 
   const legalNavigation: NavItem[] = [
@@ -15,18 +19,45 @@ const Footer = ({ navigation }: FooterProps) => {
 
   return (
     <footer className="bg-gray-dark" data-theme="dark">
-      <div className="mx-auto max-w-7xl px-4 py-12 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-        <Logo type="footer" />
-        <FooterNav navigation={navigation} />
-        <nav className="flex gap-4 items-center">
-          {legalNavigation.map(item => (
-            <NavLink key={item.href} item={item} />
-          ))}
-        </nav>
-      </div>
-      <div className="flex flex-wrap justify-center items-center bg-gray-black py-2">
-          <p className="ml-4">&copy; {currentYear} <a href="https://graphicsbyasa.com/" className="btn-primary hover:btn-primary-hover" target="_blank">Graphics by Åsa</a>. All rights reserved.</p>
+      <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-4">
+      {/* <div className="mx-auto max-w-7xl px-4 py-12 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between"> */}
+        <div className="space-y-4">
+          <Logo type="footer" />
+          <p className="text-sm text-gray-medium max-w-xs">
+            {settings.siteDescription}
+          </p>
+          <div className="flex gap-4 pt-2">
+            {/* Social icons later */}
+          </div>
         </div>
+
+        <div>
+          <FooterNav navigation={navigation} />
+        </div>
+
+        <div>
+          <nav className="flex flex-col gap-3">
+            {legalNavigation.map(item => (
+              <NavLink key={item.href} item={item} />
+            ))}
+          </nav>
+        </div>
+
+        <div>
+          <ContactInfo />
+        </div>
+      </div>
+
+      <div className="border-t border-gray-light/10 py-3 text-center text-xs text-gray-medium">
+        © {currentYear} {settings.siteTitle} |{" Created by "}
+        <a
+          href="https://graphicsbyasa.com/"
+          target="_blank"
+          className="hover:text-white transition-colors"
+        >
+          Graphics by Åsa
+        </a>
+      </div>
     </footer>
   )
 }

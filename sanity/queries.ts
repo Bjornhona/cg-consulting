@@ -82,6 +82,21 @@ export const getNavigation = async () => {
   return navigation
 }
 
+export const footerNavigationQuery = groq`
+*[_type == "navigation" && title == "Footer Navigation"][0]{
+  title,
+  items[]{
+    label,
+    href,
+    isPrimary
+  }
+}`
+
+export const getFooterNavigation = async () => {
+  const footerNavigation = await client.fetch(footerNavigationQuery)
+  return footerNavigation
+}
+
 export const settingsQuery = groq`
 *[_type == "settings"][0]{
   siteTitle,

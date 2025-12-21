@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { getNavigation, getSettings } from "@/sanity/queries";
+import { getNavigation, getFooterNavigation, getSettings } from "@/sanity/queries";
 import Header from "@/components/ui/navigation/header/Header";
 import Footer from "@/components/ui/navigation/footer/Footer";
 import { SettingsProvider } from "@/lib/SettingsProvider";
@@ -22,8 +22,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [navigation, settings] = await Promise.all([
+  const [navigation, footerNavigation, settings] = await Promise.all([
     getNavigation(),
+    getFooterNavigation(),
     getSettings(),
   ]);
 
@@ -41,9 +42,9 @@ export default async function RootLayout({
               )}
               {children}
             </main>
-            {navigation && (
+            {footerNavigation && (
               <Footer
-                navigation={navigation.items}
+                navigation={footerNavigation.items}
               />
             )}
           </SettingsProvider>

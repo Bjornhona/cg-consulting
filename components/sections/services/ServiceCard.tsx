@@ -1,19 +1,17 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { HiOutlineUserGroup, HiOutlineAcademicCap } from "react-icons/hi2";
-import { HiOutlineClipboardCheck } from "react-icons/hi";
-import { IconType } from "react-icons";
+import { Users, ClipboardCheck, GraduationCap, LucideIcon } from 'lucide-react'
 import { Service } from "@/types/sanity";
 
 const iconMap = {
-  selection: HiOutlineUserGroup,
-  evaluation: HiOutlineClipboardCheck,
-  workshops: HiOutlineAcademicCap,
+  selection: Users,
+  evaluation: ClipboardCheck,
+  workshops: GraduationCap,
 };
 
 const ServiceCard = ({ service, index }: { service: Service, index: number }) => {
-  const Icon: IconType = iconMap[service.icon] || HiOutlineClipboardCheck;
+  const Icon: LucideIcon = iconMap[service.icon] || ClipboardCheck;
 
   return (
     <motion.div

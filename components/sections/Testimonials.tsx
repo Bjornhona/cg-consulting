@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { SectionTestimonials } from '@/types/sections'
-import { FaQuoteLeft } from 'react-icons/fa'
+import { Quote } from 'lucide-react'
 
 export default function Testimonials({
   title,
@@ -51,7 +51,7 @@ export default function Testimonials({
                 hover:shadow-md
               "
             >
-              <FaQuoteLeft className="h-6 w-6 text-primary mb-4 opacity-60" />
+              <Quote className="h-6 w-6 text-primary mb-4 opacity-60" />
               {/* Quote */}
               <blockquote className="mb-6">
                 “{t.quote}”
