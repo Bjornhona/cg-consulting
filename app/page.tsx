@@ -26,9 +26,5 @@ export default async function Home() {
 
   if (!page) return notFound()
 
-  return (
-    <main className="container mx-auto">
-      <PageRenderer page={page} />
-    </main>
-  );
+  return <PageRenderer page={page} />
 }
