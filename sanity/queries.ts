@@ -107,6 +107,8 @@ export const settingsQuery = groq`
   location,
   email,
   phone,
+  linkedinUrl,
+  instagramUrl,
   logo,
   iconLogo,
   defaultOgImage

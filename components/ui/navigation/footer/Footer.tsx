@@ -6,6 +6,7 @@ import NavLink from "../NavLink"
 import { NavItem } from "../types"
 import ContactInfo from "@/components/sections/contact/ContactInfo"
 import { useSettings } from "@/lib/SettingsProvider"
+import SocialMediaNav from "../SocialMediaNav"
 
 const Footer = ({ navigation }: FooterProps) => {
   const settings = useSettings()
@@ -20,15 +21,13 @@ const Footer = ({ navigation }: FooterProps) => {
   return (
     <footer className="bg-gray-dark" data-theme="dark">
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-4">
-      {/* <div className="mx-auto max-w-7xl px-4 py-12 flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between"> */}
+        
         <div className="space-y-4">
           <Logo type="footer" />
           <p className="text-sm text-gray-medium max-w-xs">
             {settings.siteDescription}
           </p>
-          <div className="flex gap-4 pt-2">
-            {/* Social icons later */}
-          </div>
+          <SocialMediaNav />
         </div>
 
         <div>

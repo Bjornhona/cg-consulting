@@ -17,6 +17,8 @@ export interface Settings {
   location: string
   email: string
   phone: string
+  linkedinUrl: string
+  instagramUrl: string
   logo: SanityImageSource
   iconLogo: SanityImageSource
   defaultOgImage: ImageProps

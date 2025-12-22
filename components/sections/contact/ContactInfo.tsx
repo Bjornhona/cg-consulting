@@ -4,30 +4,30 @@ import { useSettings } from '@/lib/SettingsProvider'
 
 export default function ContactInfo() {
   const settings = useSettings()
+  const contactInfoList = [{
+    text: settings.contactPerson,
+    icon: User,
+  }, {
+    text: settings.phone,
+    icon: Phone,
+  }, {
+    text: settings.email,
+    icon: Mail,
+  }, {
+    text: settings.location,
+    icon: MapPin,
+  }]
 
   return (
     <div className="space-y-4 text-[color:var(--nav-text)]">
       <h3>{settings?.companyName}</h3>
 
-      {settings.contactPerson && <div className="flex items-center gap-3">
-        <User />
-        <span>{settings.contactPerson}</span>
-      </div>}
-
-      {settings.phone && <div className="flex items-center gap-3">
-        <Phone />
-        <span>{settings.phone}</span>
-      </div>}
-
-      {settings.email && <div className="flex items-center gap-3">
-        <Mail />
-        <span>{settings.email}</span>
-      </div>}
-
-      {settings.location && <div className="flex items-center gap-3">
-        <MapPin />
-        <span>{settings.location}</span>
-      </div>}
+      {contactInfoList.map((item, index) => (
+        item.text && <div key={index} className="flex items-center gap-3">
+          <item.icon className="h-4 w-4 mt-0.5 opacity-80" />
+          <p>{item.text}</p>
+        </div>
+      ))}
     </div>
   )
 }

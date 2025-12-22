@@ -46,6 +46,16 @@ export const settings = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'linkedinUrl',
+      title: 'LinkedIn URL',
+      type: 'string',
+    }),
+    defineField({
+      name: 'instagramUrl',
+      title: 'Instagram URL',
+      type: 'string',
+    }),
+    defineField({
       name: 'logo',
       title: 'Logo',
       type: 'image',

@@ -7,24 +7,28 @@ import clsx from 'clsx'
 export default function NavLink({
   item,
   onClick,
+  variant,
 }: {
   item: NavItem
   onClick?: () => void
+  variant?: 'footer'
 }) {
   const pathname = usePathname()
   const isActive = pathname === item.href
+  const linkStyles = clsx(
+    'transition-colors',
+    item.isPrimary
+      ? 'action-primary'
+      : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',
+    isActive && !item.isPrimary && 'text-[color:var(--nav-text-hover)]',
+    variant === 'footer' && 'text-gray-medium hover:text-white'
+  )
 
   return (
     <Link
       href={item.href}
       onClick={onClick}
-      className={clsx(
-        'transition-colors',
-        item.isPrimary
-          ? 'action-primary'
-          : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',
-        isActive && !item.isPrimary && 'text-[color:var(--nav-text-hover)]'
-      )}
+      className={linkStyles}
     >
       {item.label}
     </Link>
