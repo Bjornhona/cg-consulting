@@ -15,8 +15,8 @@ const HeroPrimary = ({
 }: HeroProps) => {
   return (
     <section className="relative overflow-hidden"
-        // {/* style={{ background: 'var(--gradient-soft)' }}> */}
-        style={{ background: 'var(--bg-gradient-layered)' }}>
+      // style={{ background: 'var(--bg-gradient-layered)' }}
+      >
       <div className="mx-auto max-w-7xl px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* Text */}
