@@ -14,7 +14,9 @@ const HeroPrimary = ({
   image,
 }: HeroProps) => {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden"
+        // {/* style={{ background: 'var(--gradient-soft)' }}> */}
+        style={{ background: 'var(--bg-gradient-layered)' }}>
       <div className="mx-auto max-w-7xl px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* Text */}
@@ -23,8 +25,10 @@ const HeroPrimary = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h1 className="mb-6">
-            {headline}
+          <h1 className="mb-6 gradient-text">
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              {headline}
+            </span>
           </h1>
 
           {subheadline && (

@@ -10,7 +10,7 @@ export default function Testimonials({
   testimonials,
 }: SectionTestimonials) {
   return (
-    <section className="bg-soft">
+    <section style={{ background: 'var(--bg-gradient-soft)' }}>
       <div className="mx-auto max-w-6xl px-6 py-20">
 
         {/* Header */}

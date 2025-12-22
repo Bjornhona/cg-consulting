@@ -3,7 +3,7 @@ import ServiceCard from './ServiceCard'
 
 const Services = ({ title, description, services }: SectionServices) => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-soft">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <h2 className="mb-4">{title}</h2>
         <p className="max-w-2xl mx-auto mb-12">

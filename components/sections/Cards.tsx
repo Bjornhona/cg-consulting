@@ -3,7 +3,7 @@ import Card from "@/components/ui/Card"
 
 const Cards = ({ title, description, cards }: SectionCards) => {
   return (
-    <section className="bg-background">
+    <section className="bg-soft">
       <div className="mx-auto max-w-6xl px-6 py-20">
 
         {/* Section header */}

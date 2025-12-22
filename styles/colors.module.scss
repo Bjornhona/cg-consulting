@@ -26,6 +26,30 @@
   --btn-primary-bg: var(--secondary);
   --btn-primary-hover: var(--secondary-hover);
   --btn-primary-text: #ffffff;
+
+  --bg-gradient-soft: linear-gradient(
+    135deg,
+    rgba(82, 181, 231, 0.12) 0%,
+    rgba(141, 40, 143, 0.08) 100%
+  );
+
+  --bg-gradient-radial: radial-gradient(
+    circle at top left,
+    rgba(82, 181, 231, 0.14),
+    transparent 60%
+  );
+
+  --bg-gradient-layered:
+    radial-gradient(
+      circle at top left,
+      rgba(82, 181, 231, 0.22),
+      transparent 60%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(82, 181, 231, 0.12),
+      rgba(141, 40, 143, 0.12)
+    );
 }
 
 [data-theme='dark'] {

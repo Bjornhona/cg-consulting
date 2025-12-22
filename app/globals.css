@@ -22,31 +22,9 @@
   --color-gray-medium: var(--gray-medium);
   --color-gray-light: var(--gray-light);
 
-  /* --font-inter: var(--font-inter);
-
-  --font-base: var(--text-base);
-  --leading-tight: var(--leading-tight);
-  --leading-normal: var(--leading-normal);
-  --leading-relaxed: var(--leading-relaxed);
-  --text-5xl: var(--text-5xl);
-  --text-4xl: var(--text-4xl);
-  --text-3xl: var(--text-3xl);
-  --text-2xl: var(--text-2xl);
-  --text-xl: var(--text-xl);
-  --text-lg: var(--text-lg);
-  --text-md: var(--text-md);
-  --text-sm: var(--text-sm);
-  --text-xs: var(--text-xs);
-  --text-xxs: var(--text-xxs);
-
-  --space-xxs: var(--space-xxs);
-  --space-xs: var(--space-xs);
-  --space-sm: var(--space-sm);
-  --space-md: var(--space-md);
-  --space-lg: var(--space-lg);
-  --space-xl: var(--space-xl);
-  --space-2xl: var(--space-2xl);
-  --space-3xl: var(--space-3xl); */
+  --color-gradient-soft: var(--bg-gradient-soft);
+  --color-gradient-radial: var(--bg-gradient-radial);
+  --color-gradient-layered: var(--bg-gradient-layered);
 }
 
 /* Element defaults */
@@ -65,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: var(--text-5xl);
   line-height: var(--leading-tight);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 h2 {
