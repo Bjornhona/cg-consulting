@@ -31,13 +31,19 @@ const Footer = ({ navigation }: FooterProps) => {
         </div>
 
         <div>
+          <h5 className="mb-4 text-white">
+            Navigation
+          </h5>
           <FooterNav navigation={navigation} />
         </div>
 
         <div>
+          <h5 className="mb-4 text-white">
+            Legal
+          </h5>
           <nav className="flex flex-col gap-3">
             {legalNavigation.map(item => (
-              <NavLink key={item.href} item={item} />
+              <NavLink key={item.href} item={item} variant="footer" />
             ))}
           </nav>
         </div>

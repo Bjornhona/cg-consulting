@@ -21,7 +21,8 @@ export default function NavLink({
       ? 'action-primary'
       : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',
     isActive && !item.isPrimary && 'text-[color:var(--nav-text-hover)]',
-    variant === 'footer' && 'text-gray-medium hover:text-white'
+    variant === 'footer' && 'text-gray-medium hover:text-white',
+    (variant === 'footer' && item.isPrimary) && 'hidden'
   )
 
   return (
