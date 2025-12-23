@@ -13,5 +13,6 @@ export type HeroProps = {
   subheadline?: string
   primaryCta?: HeroCta
   secondaryCta?: HeroCta
-  image?: SanityImageSource
+  image?: SanityImageSource // Sanity image
+  staticImageSrc?: string // local image
 }

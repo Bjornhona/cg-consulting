@@ -50,15 +50,20 @@ export const pageQuery = groq`
       description,
       listItems
     },
-    _type == "sectionBlogPosts" => {
-      title,
-      description,
-      blogPosts
-    },
     _type == "sectionContact" => {
       title,
       description,
-    }
+    },
+    _type == "sectionBlogPosts" => {
+      title,
+      description,
+      limit
+    },
+    _type == "sectionJobOffers" => {
+      title,
+      description,
+      limit
+    },
   }
 }`
 
@@ -117,4 +122,73 @@ export const settingsQuery = groq`
 export const getSettings = async () => {
   const settings = await client.fetch(settingsQuery)
   return settings
+}
+
+export const blogPostsQuery = groq`
+*[_type == "blogPost" && defined(publishedAt)]
+| order(publishedAt desc)[0...$limit]{
+  title,
+  slug,
+  excerpt,
+  publishedAt,
+  coverImage,
+  content,
+  seo
+}`
+
+export const getBlogPosts = async (limit = 3) => {
+  return client.fetch(blogPostsQuery, { limit })
+}
+
+export const jobOffersQuery = groq`
+*[_type == "jobOffer" && defined(publishedAt)]
+| order(publishedAt desc)[0...$limit]{
+  title,
+  slug,
+  location,
+  contractType,
+  excerpt,
+  publishedAt,
+  seo
+}`
+
+export const getJobOffers = async (limit = 6) => {
+  return client.fetch(jobOffersQuery, { limit })
+}
+
+export const blogPostBySlugQuery = groq`
+*[_type == "blogPost" && slug.current == $slug][0]{
+  title,
+  slug,
+  excerpt,
+  publishedAt,
+  content,
+  seo{
+    metaTitle,
+    metaDescription,
+    ogImage
+  }
+}`
+
+export const getBlogPostBySlug = async (slug: string) => {
+  return client.fetch(blogPostBySlugQuery, { slug })
+}
+
+export const jobOfferBySlugQuery = groq`
+*[_type == "jobOffer" && slug.current == $slug][0]{
+  title,
+  slug,
+  location,
+  contractType,
+  excerpt,
+  publishedAt,
+  content,
+  seo{
+    metaTitle,
+    metaDescription,
+  }
+}`
+
+export const getJobOfferBySlug = async (slug: string) => {
+  return client.fetch(jobOfferBySlugQuery, { slug })
 }

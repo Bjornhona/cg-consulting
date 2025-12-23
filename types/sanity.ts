@@ -1,5 +1,6 @@
 import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import { ImageProps } from "next/image"
+import { PortableTextBlock } from "sanity"
 
 export interface Seo {
   metaTitle: string
@@ -39,6 +40,7 @@ export interface Testimonial {
 
 export interface BlogPost {
   title: string
+  description: string
   slug: string
   image: ImageProps
   excerpt: string
@@ -69,4 +71,25 @@ export interface ContactInfo {
   phone: string
   email: string
   location: string
+}
+
+export interface JobOfferType {
+  title: string
+  slug: { current: string }
+  location: string
+  contractType: string
+  excerpt: string
+  publishedAt: string
+  content: PortableTextBlock[]
+  seo: Seo
+}
+
+export interface BlogPostType {
+  title: string
+  slug: { current: string }
+  coverImage: ImageProps
+  excerpt: string
+  publishedAt: string
+  content: PortableTextBlock[]
+  seo: Seo
 }

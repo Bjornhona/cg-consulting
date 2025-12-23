@@ -1,5 +1,5 @@
 import { ImageProps } from "next/image"
-import { Service, Testimonial, BlogPost, Card, ListItem, ContactInfo } from "./sanity"
+import { Service, Testimonial, Card, ListItem, ContactInfo, JobOfferType, BlogPostType } from "./sanity"
 
 export interface SectionHero {
   _type: 'sectionHero'
@@ -26,10 +26,10 @@ export interface SectionTestimonials {
 
 export interface SectionCTA {
   _type: 'sectionCTA'
-  headline: string
-  text: string
-  primaryCta: { label: string; href: string }
-  secondaryCta: { label: string; href: string }
+  headline?: string
+  text?: string
+  primaryCta?: { label: string; href: string }
+  secondaryCta?: { label: string; href: string }
 }
 
 export interface SectionCards {
@@ -46,16 +46,22 @@ export interface SectionList {
   listItems: ListItem[]
 }
 
-export interface SectionBlogPosts {
-  _type: 'sectionBlogPosts'
-  title: string
-  description: string
-  blogPosts: BlogPost[]
-}
-
 export interface SectionContact {
   _type: 'sectionContact'
   title: string
   description: string
   contactInfo: ContactInfo
+}
+
+export interface SectionBlogPosts {
+  _type: 'sectionBlogPosts'
+  title: string
+  description: string
+  blogPosts: BlogPostType[]
+}
+export interface SectionJobOffers {
+  _type: 'sectionJobOffers'
+  title: string
+  description: string
+  jobOffers: JobOfferType[]
 }
