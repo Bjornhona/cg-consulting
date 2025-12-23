@@ -72,7 +72,7 @@ const HeroPrimary = ({
           >
             <Image
               src={urlFor(image).width(1200).quality(90).url()}
-              alt={headline}
+              alt={headline ?? 'Hero image'}
               width={1200}
               height={900}
               priority
