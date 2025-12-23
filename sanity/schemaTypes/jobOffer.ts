@@ -52,6 +52,11 @@ export const jobOffer = defineType({
       title: 'Job Description',
       type: 'array',
       of: [{ type: 'block' }]
+    }),
+    defineField({
+      name: 'seo',
+      title: 'SEO',
+      type: 'seo',
     })
   ],
 })

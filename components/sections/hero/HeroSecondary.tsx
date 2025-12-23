@@ -15,7 +15,7 @@ export default function HeroSecondary({
 
   return (
     <section
-      className={`relative overflow-hidden border-b border-gray-light`}
+      className={`relative overflow-hidden border-b border-gray-light min-h-[40vh]`}
       data-theme={hasImage ? "dark" : undefined}
     >
       {/* Background image */}

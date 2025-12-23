@@ -53,17 +53,7 @@ export const pageQuery = groq`
     _type == "sectionContact" => {
       title,
       description,
-    },
-    _type == "sectionBlogPosts" => {
-      title,
-      description,
-      limit
-    },
-    _type == "sectionJobOffers" => {
-      title,
-      description,
-      limit
-    },
+    }
   }
 }`
 
@@ -163,11 +153,8 @@ export const blogPostBySlugQuery = groq`
   excerpt,
   publishedAt,
   content,
-  seo{
-    metaTitle,
-    metaDescription,
-    ogImage
-  }
+  coverImage,
+  seo
 }`
 
 export const getBlogPostBySlug = async (slug: string) => {
@@ -183,10 +170,7 @@ export const jobOfferBySlugQuery = groq`
   excerpt,
   publishedAt,
   content,
-  seo{
-    metaTitle,
-    metaDescription,
-  }
+  seo
 }`
 
 export const getJobOfferBySlug = async (slug: string) => {

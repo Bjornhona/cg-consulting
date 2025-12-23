@@ -82,6 +82,7 @@ export interface JobOfferType {
   publishedAt: string
   content: PortableTextBlock[]
   seo: Seo
+  index: number
 }
 
 export interface BlogPostType {

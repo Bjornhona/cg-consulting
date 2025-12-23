@@ -1,27 +1,47 @@
-import { getBlogPosts } from "@/sanity/queries"
+import CTA from "@/components/sections/CTA"
+import Hero from "@/components/sections/hero/Hero"
 import BlogSection from "@/components/sections/blog/Blog"
-// import Hero from "@/components/sections/hero/Hero"
+import { getBlogPosts } from "@/sanity/queries"
+import image from '@/components/sections/blog/cabecera_1.jpg'
+import { Metadata } from "next"
+import { getSettings } from "@/sanity/queries"
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  const settings = await getSettings()
+  return {
+    title: `Blog | ${settings.siteTitle}`,
+    description: 'Artículos sobre selección de talento, mercado laboral y liderazgo.',
+  }
+}
 
 const BlogPage = async () => {
-  const title = 'Blog'
-  const description = 'Descubre nuestras últimas noticias y artículos'
-  const limit = 12
-  const blogPosts = await getBlogPosts(limit)
-  // const heroData = {
-  //   headline: 'Blog Post',
-  //   subheadline: 'Descubre nuestras últimas noticias y artículos',
-  //   // image: '/images/blog/hero.jpg',
-  // }
+  const blogPosts = await getBlogPosts(12)
+
+  const heroData = {
+    headline: 'Blog',
+    subheadline: 'Descubre nuestras últimas noticias y artículos',
+    staticImageSrc: image.src,
+  }
+
+  const blogPostsData_ES = {
+    _type: 'sectionBlogPosts' as const,
+    title: 'Últimos artículos',
+    description: 'Tendencias, insights y novedades del sector',
+    blogPosts: blogPosts,
+  }
+
+  const ctaData = {
+    _type: 'sectionCTA' as const,
+    headline: '¿Quieres unirte a nuestro equipo?',
+    text: 'Consulta nuestras oportunidades laborales actuales o ponte en contacto con nosotros.',
+    primaryCta: { label: 'Contactar', href: '/contact' },
+  }
 
   return (
     <>
-      {/* <Hero {...heroData} /> */}
-      <BlogSection
-        _type="sectionBlogPosts"
-        title={title}
-        description={description}
-        blogPosts={blogPosts}
-      />
+      <Hero {...heroData} />
+      <BlogSection {...blogPostsData_ES} />
+      <CTA {...ctaData} />
     </>
   )
 }

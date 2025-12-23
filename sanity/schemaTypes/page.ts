@@ -35,8 +35,6 @@ export const page = defineType({
         { type: 'sectionCards' },
         { type: 'sectionList' },
         { type: 'sectionContact' },
-        { type: 'sectionBlogPosts' },
-        { type: 'sectionJobOffers' },
       ]
     })
   ]

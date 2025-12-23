@@ -8,6 +8,7 @@ export interface BlogItemProps {
   excerpt: string
   publishedAt: string
   coverImage: Image
+  index: number
 }
 
 export interface PostItemProps {
@@ -18,4 +19,12 @@ export interface PostItemProps {
   publishedAt: string
   content: PortableTextBlock[]
   seo: Seo
+}
+
+export interface BlogPostProps {
+  title: string
+  excerpt: string
+  publishedAt: string
+  content: PortableTextBlock[]
+  coverImage: Image
 }

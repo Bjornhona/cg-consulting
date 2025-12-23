@@ -137,3 +137,15 @@ label {
 .action-primary:active {
   transform: translateY(1px);
 }
+
+.prose {
+  color: var(--surface-text);
+}
+
+.prose h2 {
+  margin-top: 2.5rem;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+}

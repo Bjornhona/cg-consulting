@@ -10,14 +10,15 @@ const JobOfferItem = ({
   contractType,
   excerpt,
   publishedAt,
-  slug
+  slug,
+  index
 }: JobOfferType) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.4,  delay: index * 0.06 }}
       whileHover={{ y: -6 }}
       className="
         group
@@ -70,11 +71,10 @@ const JobOfferItem = ({
       )}
 
       {/* CTA */}
-      {/* <Link href={`/job-offers/${slug}`} className="mt-auto flex items-center gap-2 font-semibold text-primary"> */}
-        <div className="mt-auto flex items-center gap-2 font-semibold text-primary">
-          Ver oferta
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </div>
+      <div className="mt-auto flex items-center gap-2 font-semibold text-primary">
+        Ver oferta
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+      </div>
     </motion.article>
   )
 }

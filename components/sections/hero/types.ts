@@ -9,7 +9,7 @@ export type HeroCta = {
 
 export type HeroProps = {
   variant?: HeroVariant
-  headline: string
+  headline?: string
   subheadline?: string
   primaryCta?: HeroCta
   secondaryCta?: HeroCta

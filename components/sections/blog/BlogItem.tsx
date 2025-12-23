@@ -1,23 +1,59 @@
+'use client'
 import Link from "next/link"
-import { BlogItemProps } from "./types"
 import Image from "next/image"
+import { BlogItemProps } from "./types"
 import { urlFor } from "@/sanity/lib/image"
+import { motion } from "framer-motion"
 
-const BlogItem = ({ title, slug, excerpt, publishedAt, coverImage }: BlogItemProps) => {
-  console.log(slug)
-  console.log(title)
-  console.log(excerpt)
-  console.log(publishedAt)
+const BlogItem = ({ title, slug, excerpt, publishedAt, coverImage, index }: BlogItemProps) => {
   return (
-    <div>
-      {coverImage && <Image src={urlFor(coverImage).width(100).height(100).url()} alt={title} width={100} height={100} />}
-      <h2>{title}</h2>
-      <p>{excerpt}</p>
-      <p>Published on {new Date(publishedAt).toLocaleDateString()}</p>
-      <Link href={`/blog/${slug.current}`}>
-        <p>Read post</p>
-      </Link>
-    </div>
+    <motion.article 
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+      whileHover={{ y: -6 }}
+      className="
+        group relative h-full
+        rounded-xl border border-gray-light
+        bg-white overflow-hidden
+        shadow-sm transition
+        hover:-translate-y-1 hover:shadow-md"
+    >
+      {/* Click overlay */}
+      <Link href={`/blog/${slug.current}`} className="absolute inset-0 z-10" />
+
+      {/* Image */}
+      {coverImage && (
+        <div className="relative h-48 w-full overflow-hidden">
+          <Image
+            src={urlFor(coverImage).width(800).height(500).quality(85).url()}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+      )}
+
+      {/* Content */}
+      <div className="p-6 flex flex-col gap-3">
+        <time className="text-xs text-gray-medium">
+          {new Date(publishedAt).toLocaleDateString('es-ES')}
+        </time>
+
+        <h3 className="text-lg font-semibold leading-snug">
+          {title}
+        </h3>
+
+        <p className="text-sm text-gray-medium line-clamp-3">
+          {excerpt}
+        </p>
+
+        <span className="mt-auto text-sm font-semibold text-primary">
+          Leer artículo →
+        </span>
+      </div>
+    </motion.article>
   )
 }
 

@@ -6,8 +6,6 @@ import {
   SectionCards,
   SectionContact,
   SectionList,
-  SectionJobOffers,
-  SectionBlogPosts,
 } from "./sections";
 import { Seo } from "./sanity";
 
@@ -23,7 +21,5 @@ export interface Page {
     | SectionCards
     | SectionList
     | SectionContact
-    | SectionJobOffers
-    | SectionBlogPosts
   )[];
 }
