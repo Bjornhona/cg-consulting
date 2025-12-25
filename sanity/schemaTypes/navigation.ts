@@ -37,6 +37,27 @@ export const navigation = defineType({
             type: 'boolean',
             initialValue: false,
           },
+          {
+            name: 'children',
+            title: 'Children',
+            type: 'array',
+            of: [{
+              name: 'child',
+              type: 'object',
+              fields: [{
+                name: 'label',
+                title: 'Label',
+                type: 'string',
+                validation: Rule => Rule.required(),
+              },
+              {
+                name: 'href',
+                title: 'Link',
+                type: 'string',
+                validation: Rule => Rule.required(),
+              }],
+            }],
+          },
         ],
       }],
     }),

@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import Logo from '../Logo'
 import DesktopNav from './DesktopNav'
 import MobileNav from './MobileNav'
-import type { HeaderProps } from '../types'
+import { NavItem } from '@/types/sanity'
 
-const Header = ({ navigation }: HeaderProps) => {
+const Header = ({ navigation }: { navigation: NavItem[] }) => {
   return (
     <motion.header
       initial={{ y: -20, opacity: 0 }}

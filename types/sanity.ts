@@ -51,6 +51,7 @@ export interface NavItem {
   label: string
   href: string
   isPrimary?: boolean
+  children?: NavItem[]
 }
 
 export interface Card {

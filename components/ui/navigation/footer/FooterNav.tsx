@@ -1,7 +1,7 @@
-import { NavItem } from '../types'
+import { NavItem } from '@/types/sanity'
 import NavLink from '../NavLink'
 
-export default function FooterNav({ navigation }: { navigation: NavItem[] }) {
+const FooterNav = ({ navigation }: { navigation: NavItem[] }) => {
   
   return (
     <nav className="flex flex-col gap-3">
@@ -11,3 +11,5 @@ export default function FooterNav({ navigation }: { navigation: NavItem[] }) {
     </nav>
   )
 }
+
+export default FooterNav

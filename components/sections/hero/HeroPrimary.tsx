@@ -76,6 +76,7 @@ const HeroPrimary = ({
               width={1200}
               height={900}
               priority
+              fetchPriority="high"
               className="rounded-xl shadow-xl"
             />
           </motion.div>

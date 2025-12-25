@@ -1,21 +1,20 @@
 'use client'
 import FooterNav from "./FooterNav"
-import { FooterProps } from "../types"
 import Logo from "../Logo"
 import NavLink from "../NavLink"
-import { NavItem } from "../types"
+import { NavItem } from "@/types/sanity"
 import ContactInfo from "@/components/sections/contact/ContactInfo"
 import { useSettings } from "@/lib/SettingsProvider"
 import SocialMediaNav from "../SocialMediaNav"
 
-const Footer = ({ navigation }: FooterProps) => {
+const Footer = ({ navigation }: { navigation: NavItem[]}) => {
   const settings = useSettings()
   const currentYear = new Date().getFullYear();
 
   const legalNavigation: NavItem[] = [
-    { _key: "legal-notice", href: "/legal-notice", label: "Aviso Legal" },
-    { _key: "politica-de-privacidad", href: "/privacy-policy", label: "Política de Privacidad" },
-    { _key: "politica-de-cookies", href: "/cookies-policy", label: "Política de Cookies" },
+    { href: "/legal-notice", label: "Aviso Legal" },
+    { href: "/privacy-policy", label: "Política de Privacidad" },
+    { href: "/cookies-policy", label: "Política de Cookies" },
   ]
 
   return (

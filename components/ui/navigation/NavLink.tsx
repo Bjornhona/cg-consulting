@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NavItem } from './types'
+import { NavItem } from '@/types/sanity'
 import clsx from 'clsx'
 
 export default function NavLink({
@@ -16,7 +16,7 @@ export default function NavLink({
   const pathname = usePathname()
   const isActive = pathname === item.href
   const linkStyles = clsx(
-    'transition-colors',
+    'transition-colors w-auto',
     item.isPrimary
       ? 'action-primary'
       : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',

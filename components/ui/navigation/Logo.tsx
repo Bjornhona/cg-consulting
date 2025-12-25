@@ -5,9 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
 import { useSettings } from "@/lib/SettingsProvider";
-import { LogoProps } from "./types";
 
-export default function Logo({type}: LogoProps) {
+export default function Logo({type}: {type: "header" | "footer"}) {
   const settings = useSettings()
   const alt = settings?.siteTitle ?? "Home"
   const textFallback = settings?.companyName ?? "Tech Beach Studio"

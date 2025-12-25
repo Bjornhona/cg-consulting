@@ -68,7 +68,8 @@ export const navigationQuery = groq`
   items[]{
     label,
     href,
-    isPrimary
+    isPrimary,
+    children[]
   }
 }`
 
