@@ -23,9 +23,10 @@ export default function HeroSecondary({
         <div className="absolute inset-0">
           {image && (
             <Image
-              src={urlFor(image!).width(2000).quality(85).url()}
+              src={urlFor(image!).quality(85).url()}
               alt=""
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={false}
               className="object-cover"
             />

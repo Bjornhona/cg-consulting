@@ -71,7 +71,7 @@ const HeroPrimary = ({
             className="relative"
           >
             <Image
-              src={urlFor(image).width(1200).quality(90).url()}
+              src={urlFor(image).quality(90).url()}
               alt={headline ?? 'Hero image'}
               width={1200}
               height={900}

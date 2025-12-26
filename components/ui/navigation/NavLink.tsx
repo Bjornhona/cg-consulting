@@ -16,7 +16,7 @@ export default function NavLink({
   const pathname = usePathname()
   const isActive = pathname === item.href
   const linkStyles = clsx(
-    'transition-colors w-auto',
+    'inline-flex w-max min-w-0 items-center whitespace-normal transition-colors',
     item.isPrimary
       ? 'action-primary'
       : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',

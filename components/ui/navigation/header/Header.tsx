@@ -13,7 +13,7 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
       transition={{ duration: 0.4, ease: 'easeOut' }}
       className="sticky top-0 z-50 bg-background/80 backdrop-blur border-b-gray-light shadow-md"
     >
-      <div className="mx-auto max-w-7xl px-4 h-20 sm:h-16 flex items-center justify-between">
+      <div className="mx-auto max-w-7xl px-4 h-20 sm:h-16 flex items-center justify-between gap-4">
         <Logo type="header" />
         <DesktopNav navigation={navigation} />
         <MobileNav navigation={navigation} />
