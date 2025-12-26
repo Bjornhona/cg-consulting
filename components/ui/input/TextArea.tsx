@@ -2,6 +2,8 @@
 import { TextareaProps } from './types'
 
 export function Textarea({
+  value,
+  onChange,
   label,
   name,
   required,
@@ -19,6 +21,8 @@ export function Textarea({
         rows={rows}
         required={required}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className="rounded-md border border-gray-light px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
       />
     </div>

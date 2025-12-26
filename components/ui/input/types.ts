@@ -1,4 +1,6 @@
 export type InputProps = {
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   label: string
   name: string
   type?: string
@@ -7,6 +9,8 @@ export type InputProps = {
 }
 
 export type TextareaProps = {
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   label: string
   name: string
   required?: boolean

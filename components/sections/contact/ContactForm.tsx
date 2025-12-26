@@ -4,8 +4,41 @@ import { motion } from 'framer-motion'
 import { Input } from '@/components/ui/input/Input'
 import { Textarea } from '@/components/ui/input/TextArea'
 import Button from '@/components/ui/button/Button'
+import Link from 'next/link'
+import { useMemo, useState } from 'react'
 
 export default function ContactForm() {
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+    privacyAccepted: false,
+  })
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = e.target
+    setForm((prev) => ({
+      ...prev,
+      [name]:
+        type === 'checkbox'
+          ? (e.target as HTMLInputElement).checked
+          : value,
+    }))
+  }
+
+  const isEmailValid = useMemo(() => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)
+  }, [form.email])
+
+  const isFormValid =
+    form.name.trim().length > 0 &&
+    isEmailValid &&
+    form.message.trim().length > 0 &&
+    form.privacyAccepted
+    
   return (
     <motion.form
       initial={{ opacity: 0, y: 16 }}
@@ -14,40 +47,70 @@ export default function ContactForm() {
       className="flex flex-col gap-6"
     >
       <Input
-        label="Nombre"
+        label="Nombre *"
         name="name"
         required
         placeholder="Tu nombre"
+        value={form.name}
+        onChange={handleChange}
       />
 
       <Input
-        label="Email"
+        label="Email *"
         name="email"
         type="email"
         required
         placeholder="tu@email.com"
+        value={form.email}
+        onChange={handleChange}
       />
 
       <Input
-        label="Empresa"
+        label="Empresa (opcional)"
         name="company"
-        placeholder="Nombre de la empresa (opcional)"
+        placeholder="Nombre de la empresa"
+        value={form.company}
+        onChange={handleChange}
       />
 
       <Textarea
-        label="Mensaje"
+        label="Mensaje *"
         name="message"
         required
         placeholder="Cuéntanos brevemente en qué podemos ayudarte"
         rows={5}
+        value={form.message}
+        onChange={handleChange}
       />
 
-      <Button variant="primary" size="lg">
+      <label className="flex items-start gap-3 text-sm text-gray-medium">
+        <input
+          type="checkbox"
+          name="privacyAccepted"
+          checked={form.privacyAccepted}
+          onChange={handleChange}
+          required
+          className="mt-1 accent-primary"
+        />
+        <span>
+          He leído y acepto la{' '}
+          <Link
+            href="/privacy-policy"
+            target="_blank"
+            className="underline hover:text-white transition-colors"
+          >
+            Política de Privacidad
+          </Link>{' '}
+          *
+        </span>
+      </label>
+
+      <Button type="submit" variant="primary" size="lg" disabled={!isFormValid}>
         Enviar mensaje
       </Button>
 
-      <p>
-        Respondemos normalmente en menos de 24 horas.
+      <p className="text-xs text-gray-medium">
+      * Campos obligatorios. Respondemos normalmente en menos de 24 horas.
       </p>
     </motion.form>
   )

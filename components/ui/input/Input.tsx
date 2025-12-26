@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import { InputProps } from './types'
 
 export function Input({
+  value,
+  onChange,
   label,
   name,
   type = 'text',
@@ -20,6 +22,8 @@ export function Input({
         type={type}
         required={required}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className={clsx(
           'rounded-md border border-gray-light px-4 py-2',
           'focus:outline-none focus:ring-2 focus:ring-primary'
