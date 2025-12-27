@@ -11,7 +11,7 @@ const Header = ({ navigation }: { navigation: NavItem[] }) => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className="sticky top-0 z-50 bg-background/80 backdrop-blur border-b-gray-light shadow-md"
+      className="sticky top-0 z-150 bg-background/80 backdrop-blur border-b-gray-light shadow-md"
     >
       <div className="mx-auto max-w-7xl px-4 h-20 sm:h-16 flex items-center justify-between gap-4">
         <Logo type="header" />

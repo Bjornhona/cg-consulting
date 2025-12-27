@@ -10,6 +10,10 @@ export function Input({
   type = 'text',
   required,
   placeholder,
+  error,
+  tabIndex,
+  autoComplete,
+  className,
 }: InputProps) {
   return (
     <div className="flex flex-col gap-1">
@@ -26,9 +30,17 @@ export function Input({
         onChange={onChange}
         className={clsx(
           'rounded-md border border-gray-light px-4 py-2',
-          'focus:outline-none focus:ring-2 focus:ring-primary'
+          'focus:outline-none focus:ring-2 focus:ring-primary',
+          className
         )}
+        tabIndex={tabIndex}
+        autoComplete={autoComplete}
       />
+      {error && (
+        <span className="text-xs text-red-500">
+          {error}
+        </span>
+      )}
     </div>
   )
 }

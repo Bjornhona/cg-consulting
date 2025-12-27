@@ -1,11 +1,15 @@
 export type InputProps = {
   value: string
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  label: string
+  label?: string
   name: string
   type?: string
   required?: boolean
   placeholder?: string
+  error?: string;
+  tabIndex?: number
+  autoComplete?: string
+  className?: string
 }
 
 export type TextareaProps = {
