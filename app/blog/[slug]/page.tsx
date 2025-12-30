@@ -6,6 +6,7 @@ import { urlFor } from "@/sanity/lib/image"
 import CTA from "@/components/sections/CTA"
 import { SectionCTA, SectionHero } from "@/types/sections"
 import cloudImage from '@/components/sections/blog/cabecera_1.jpg'
+import { notFound } from "next/navigation"
 
 export async function generateMetadata(
   { params }: { params: { slug: string } }
@@ -40,6 +41,9 @@ export async function generateMetadata(
 const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = await params
   const post = await getBlogPostBySlug(slug)
+  if (!post) {
+    return notFound()
+  }
   const heroData: SectionHero = {
     _type: "sectionHero" as const,
     staticImageSrc: post.coverImage ? urlFor(post.coverImage).width(2000).quality(85).url() : cloudImage.src,
@@ -53,8 +57,6 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
       href: "/contact",
     }
   }
-
-  if (!post) return null
 
   return (
     <>
