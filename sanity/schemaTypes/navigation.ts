@@ -39,7 +39,7 @@ export const navigation = defineType({
           },
           {
             name: 'children',
-            title: 'Children',
+            title: 'Sub-items',
             type: 'array',
             of: [{
               name: 'child',
