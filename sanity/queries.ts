@@ -53,7 +53,7 @@ export const pageQuery = groq`
     _type == "sectionContact" => {
       title,
       description,
-    }
+    },
   }
 }`
 

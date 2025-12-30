@@ -5,6 +5,7 @@ import { getBlogPosts } from "@/sanity/queries"
 import image from '@/components/sections/blog/cabecera_1.jpg'
 import { Metadata } from "next"
 import { getSettings } from "@/sanity/queries"
+import { SectionBlogPosts, SectionHero } from "@/types/sections"
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const settings = await getSettings()
@@ -17,13 +18,14 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const BlogPage = async () => {
   const blogPosts = await getBlogPosts(12)
 
-  const heroData = {
+  const heroData: SectionHero = {
+    _type: 'sectionHero' as const,
     headline: 'Blog',
     subheadline: 'Descubre nuestras últimas noticias y artículos',
     staticImageSrc: image.src,
   }
 
-  const blogPostsData_ES = {
+  const blogPostsData_ES: SectionBlogPosts= {
     _type: 'sectionBlogPosts' as const,
     title: 'Últimos artículos',
     description: 'Tendencias, insights y novedades del sector',

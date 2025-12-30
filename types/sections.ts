@@ -3,11 +3,12 @@ import { Service, Testimonial, Card, ListItem, ContactInfo, JobOfferType, BlogPo
 
 export interface SectionHero {
   _type: 'sectionHero'
-  variant: 'primary' | 'secondary'
-  headline: string
-  subheadline: string
-  primaryCta: { label: string; href: string }
-  image: ImageProps
+  variant?: 'primary' | 'secondary'
+  headline?: string
+  subheadline?: string
+  primaryCta?: { label: string; href: string }
+  image?: ImageProps,
+  staticImageSrc?: string
 }
 
 export interface SectionServices {
