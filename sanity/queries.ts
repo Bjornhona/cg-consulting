@@ -128,7 +128,7 @@ export const blogPostsQuery = groq`
 }`
 
 export const getBlogPosts = async (limit = 3) => {
-  return client.fetch(blogPostsQuery, { limit })
+  return client.fetch(blogPostsQuery, { limit }, { next: { revalidate: 60 } })
 }
 
 export const jobOffersQuery = groq`
