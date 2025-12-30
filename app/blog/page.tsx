@@ -5,7 +5,7 @@ import { getBlogPosts } from "@/sanity/queries"
 import image from '@/components/sections/blog/cabecera_1.jpg'
 import { Metadata } from "next"
 import { getSettings } from "@/sanity/queries"
-import { SectionBlogPosts, SectionHero } from "@/types/sections"
+import { SectionBlogPosts, SectionHero, SectionCTA } from "@/types/sections"
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const settings = await getSettings()
@@ -32,7 +32,7 @@ const BlogPage = async () => {
     blogPosts: blogPosts,
   }
 
-  const ctaData = {
+  const ctaData: SectionCTA = {
     _type: 'sectionCTA' as const,
     headline: '¿Quieres unirte a nuestro equipo?',
     text: 'Consulta nuestras oportunidades laborales actuales o ponte en contacto con nosotros.',

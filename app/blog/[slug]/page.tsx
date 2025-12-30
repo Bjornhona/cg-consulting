@@ -4,6 +4,8 @@ import BlogPost from "@/components/sections/blog/Post"
 import Hero from "@/components/sections/hero/Hero"
 import { urlFor } from "@/sanity/lib/image"
 import CTA from "@/components/sections/CTA"
+import { SectionCTA, SectionHero } from "@/types/sections"
+import cloudImage from '@/components/sections/blog/cabecera_1.jpg'
 
 export async function generateMetadata(
   { params }: { params: { slug: string } }
@@ -38,11 +40,11 @@ export async function generateMetadata(
 const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = await params
   const post = await getBlogPostBySlug(slug)
-  const heroData = {
+  const heroData: SectionHero = {
     _type: "sectionHero" as const,
-    staticImageSrc: post.coverImage ? urlFor(post.coverImage).width(2000).quality(85).url() : "",
+    staticImageSrc: post.coverImage ? urlFor(post.coverImage).width(2000).quality(85).url() : cloudImage.src,
   }
-  const ctaData = {
+  const ctaData: SectionCTA = {
     _type: "sectionCTA" as const,
     headline: "¿Buscas talento especializado?",
     text: "Contacta con nosotros",
