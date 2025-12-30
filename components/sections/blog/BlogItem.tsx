@@ -30,6 +30,7 @@ const BlogItem = ({ title, slug, excerpt, publishedAt, coverImage, index }: Blog
             src={urlFor(coverImage).width(800).height(500).quality(85).url()}
             alt={title}
             fill
+            sizes="(max-width: 768px) 100vw, 800px"
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
