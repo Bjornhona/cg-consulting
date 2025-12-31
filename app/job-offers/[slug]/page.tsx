@@ -5,6 +5,8 @@ import JobOffer from "@/components/sections/jobOffers/JobOffer";
 import CTA from "@/components/sections/CTA";
 import Hero from "@/components/sections/hero/Hero";
 import image from "@/components/sections/jobOffers/job-offer-item.jpg";
+import { SectionHero } from "@/types/sections";
+import { PortableTextBlock } from "next-sanity";
 
 export async function generateMetadata({
   params,
@@ -25,10 +27,10 @@ export async function generateMetadata({
 const JobOfferPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = await params;
   const jobOffer: JobOfferType = await getJobOfferBySlug(slug);
-  const heroData = {
+  const heroData: SectionHero = {
     _type: "sectionHero" as const,
     headline: jobOffer.title,
-    subheadline: jobOffer.excerpt,
+    subheadline: [{_type: 'block', children: [{_type: 'span', text: jobOffer.excerpt}]}] as PortableTextBlock[],
     staticImageSrc: image.src,
   };
   // const ctaData_EN = {

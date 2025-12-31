@@ -1,12 +1,14 @@
 import { ImageProps } from "next/image"
 import { Service, Testimonial, Card, ListItem, ContactInfo, JobOfferType, BlogPostType } from "./sanity"
+import { PortableTextBlock } from "next-sanity"
 
 export interface SectionHero {
   _type: 'sectionHero'
   variant?: 'primary' | 'secondary'
   headline?: string
-  subheadline?: string
+  subheadline?: PortableTextBlock[]
   primaryCta?: { label: string; href: string }
+  secondaryCta?: { label: string; href: string }
   image?: ImageProps,
   staticImageSrc?: string
 }

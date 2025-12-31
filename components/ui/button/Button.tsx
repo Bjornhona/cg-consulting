@@ -5,13 +5,13 @@ import clsx from 'clsx'
 import { ButtonProps, ButtonVariant, ButtonSize } from './types'
 
 const baseStyles =
-  'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none'
+  'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50 disabled:pointer-events-none cursor-pointer'
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
     'bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover)] shadow-md',
   secondary:
-    'bg-white text-[var(--secondary)] border border-[var(--secondary)] hover:text-[var(--secondary-hover)] hover:border-[var(--secondary-hover)] shadow-sm',
+    'bg-white text-[var(--btn-primary-bg)] border border-[var(--btn-primary-bg)] hover:text-[var(--btn-primary-hover)] hover:border-[var(--btn-primary-hover)] shadow-sm',
   ghost:
     'bg-transparent text-[var(--nav-text)] hover:text-[var(--nav-text-hover)]',
 }

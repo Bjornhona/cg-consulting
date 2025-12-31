@@ -1,16 +1,16 @@
 "use client";
-
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { HeroProps } from "./types";
 import { urlFor } from "@/sanity/lib/image";
+import { PortableText } from "next-sanity";
+import { SectionHero } from "@/types/sections";
 
 export default function HeroSecondary({
   headline,
   subheadline,
   image,
   staticImageSrc,
-}: HeroProps) {
+}: SectionHero) {
   const hasImage = Boolean(image || staticImageSrc);
 
   return (
@@ -58,14 +58,14 @@ export default function HeroSecondary({
         </motion.h1>
 
         {subheadline && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.4 }}
             className={"max-w-2xl mx-auto"}
           >
-            {subheadline}
-          </motion.p>
+            <PortableText value={subheadline} />
+          </motion.div>
         )}
       </div>
     </section>

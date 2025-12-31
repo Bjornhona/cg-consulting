@@ -1,10 +1,10 @@
 'use client'
-
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { HeroProps } from './types'
 import { urlFor } from '@/sanity/lib/image'
 import Button from '@/components/ui/button/Button'
+import { SectionHero } from '@/types/sections'
+import { PortableText } from 'next-sanity'
 
 const HeroPrimary = ({
   headline,
@@ -12,7 +12,7 @@ const HeroPrimary = ({
   primaryCta,
   secondaryCta,
   image,
-}: HeroProps) => {
+}: SectionHero) => {
   return (
     <section className="relative overflow-hidden"
       // style={{ background: 'var(--bg-gradient-layered)' }}
@@ -32,9 +32,9 @@ const HeroPrimary = ({
           </h1>
 
           {subheadline && (
-            <p className="max-w-xl mb-8">
-              {subheadline}
-            </p>
+            <div className="max-w-xl mb-8">
+              <PortableText value={subheadline} />
+            </div>
           )}
 
           {(primaryCta || secondaryCta) && (

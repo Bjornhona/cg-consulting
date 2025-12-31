@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 import {
   getNavigation,
@@ -11,9 +11,9 @@ import Footer from "@/components/ui/navigation/footer/Footer";
 import { SettingsProvider } from "@/lib/SettingsProvider";
 import { ToastProvider } from "@/components/ui/toast/ToastContext";
 
-const inter = Inter({
+const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-raleway",
   subsets: ["latin"],
 });
 
@@ -36,7 +36,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} min-h-screen flex flex-col justify-between`}
+        className={`${raleway.className} min-h-screen flex flex-col justify-between`}
       >
         <SettingsProvider settings={settings}>
           <ToastProvider>

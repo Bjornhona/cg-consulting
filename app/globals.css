@@ -31,7 +31,7 @@
 body {
   background: var(--surface-bg);
   color: var(--surface-text);
-  font-family: var(--font-inter);
+  font-family: var(--font-raleway);
   font-size: var(--text-base);
   line-height: var(--leading-normal);
 }

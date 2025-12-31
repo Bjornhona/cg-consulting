@@ -14,7 +14,8 @@ export const sectionHero = defineType({
     defineField({
       name: 'subheadline',
       title: 'Subheadline',
-      type: 'text'
+      type: 'array',
+      of: [{ type: 'block' }]
     }),
     defineField({
       name: 'primaryCta',
