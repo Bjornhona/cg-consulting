@@ -21,3 +21,8 @@ export type TextareaProps = {
   placeholder?: string
   rows?: number
 }
+
+export interface RadioButtonsProps {
+  purpose: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}

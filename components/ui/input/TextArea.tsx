@@ -1,7 +1,7 @@
 'use client'
 import { TextareaProps } from './types'
 
-export function Textarea({
+const Textarea = ({
   value,
   onChange,
   label,
@@ -9,7 +9,7 @@ export function Textarea({
   required,
   placeholder,
   rows = 4,
-}: TextareaProps) {
+}: TextareaProps) => {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={name}>
@@ -28,3 +28,5 @@ export function Textarea({
     </div>
   )
 }
+
+export default Textarea;

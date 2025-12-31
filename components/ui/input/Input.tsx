@@ -2,7 +2,7 @@
 import clsx from 'clsx'
 import { InputProps } from './types'
 
-export function Input({
+const Input = ({
   value,
   onChange,
   label,
@@ -14,7 +14,7 @@ export function Input({
   tabIndex,
   autoComplete,
   className,
-}: InputProps) {
+}: InputProps) => {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={name}>
@@ -44,3 +44,5 @@ export function Input({
     </div>
   )
 }
+
+export default Input;
