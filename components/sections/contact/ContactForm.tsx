@@ -22,8 +22,6 @@ export default function ContactForm() {
     purpose: ""
   });
 
-  console.log(form);
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

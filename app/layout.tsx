@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import {
+  Raleway,
+  // Oswald,
+  // Lora,
+  // Playfair Display,
+  // Montserrat,
+  // Roboto,
+  // Open Sans,
+  // Inter,
+  // Fira Sans,
+  // Noto Sans,
+  // Nunito,
+  // Poppins,
+} from "next/font/google";
 import "./globals.css";
 import {
   getNavigation,
