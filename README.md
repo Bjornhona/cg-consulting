@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CG Consulting – HR Consultancy Website
 
-## Getting Started
+Client project built with **Next.js** and deployed on **Vercel**.  
+A high-conversion website for an HR consultancy, focused on employer branding, job offers, and lead generation.
 
-First, run the development server:
+🌐 Live site: https://cg-consulting.es
 
+---
+
+## ✨ Project Overview
+
+This project is a **custom-designed HR consultancy website** featuring:
+
+- Marketing-focused landing pages
+- Job offers / vacancies listing
+- Blog powered by a headless CMS
+- Contact and lead generation forms
+- SEO-optimized structure and metadata
+- Smooth animations and transitions
+
+The goal was to create a **professional, trustworthy, and conversion-oriented web presence** for an HR consulting business.
+
+---
+
+## 🛠 Tech Stack
+
+- **Next.js (App Router)**
+- **TypeScript**
+- **Tailwind CSS**
+- **Framer Motion** (animations)
+- **Sanity CMS** (blog & job offers)
+- **Vercel** (deployment & hosting)
+
+---
+
+## 📄 Key Features
+
+- **Custom UI & UX design** (not a template)
+- **Headless CMS integration** (Sanity) for:
+  - Blog posts
+  - Job offers
+- **SEO setup**
+  - Metadata
+  - Open Graph
+  - Structured content
+- **Animated UI** using Framer Motion
+- **Contact form** with environment-based configuration
+- **Responsive & performance-focused**
+
+---
+
+## 🚀 Deployment
+
+The project is deployed on **Vercel**.
+
+Typical deployment flow:
+1. Connect GitHub repository to Vercel
+2. Configure environment variables
+3. Deploy via Vercel dashboard or automatic CI on push
+
+---
+
+## 🌍 Domain & DNS Setup
+
+The domain is managed externally (Raiola Networks) and connected to Vercel via DNS.
+
+Typical DNS configuration:
+- `A` record for root domain (`@`) → Vercel IP
+- `CNAME` for `www` → Vercel domain
+
+Exact values depend on the Vercel project and are provided in the Vercel dashboard.
+
+---
+
+## 🔐 Environment Variables
+
+This project relies on environment variables for configuration.
+
+Create a `.env.local` file based on `.env.example`.
+
+Typical variables include:
+- Sanity project ID
+- Sanity dataset
+- Sanity API token
+- Public site configuration values
+
+Example:
 ```bash
+NEXT_PUBLIC_SANITY_PROJECT_ID=xxxx
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=xxxx
+⚠️ Environment variables are not committed to the repository.
+
+🧑‍💻 Development
+Install dependencies and run the development server:
+
+bash
+Copy code
+npm install
 npm run dev
 # or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Then open:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+arduino
+Copy code
+http://localhost:3000
+📌 Notes
+This repository represents a delivered client project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The codebase is intentionally stable and not used as an evolving template
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A separate internal starter/template is used for future client work
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👩‍💻 Author
+Built by Asa Eriksson
+Frontend Developer & Designer
+Specialized in Next.js, UI systems, and conversion-focused websites
