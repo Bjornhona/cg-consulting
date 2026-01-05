@@ -15,48 +15,48 @@ const LegalNoticeContent = () => {
           siguientes datos:
         </p>
 
-        <p className="mb-4">
-          <strong>Titular del sitio web:</strong><br/>
+        <div className="mb-4">
+          <p><strong>Titular del sitio web:</strong><br/></p>
           <ul>
-            <li>Nombre comercial: {settings?.siteTitle}</li>
-            {settings?.companyName && <li>Razón social: {settings.companyName}</li>}
-            {settings?.companyNIF && <li>NIF/CIF: {settings.companyNIF}</li>}
-            {settings?.location && <li>Domicilio social: {settings.location}</li>}
-            {settings?.email && <li>Correo electrónico: {settings.email}</li>}
-            {settings?.phone && <li>Teléfono: {settings.phone}</li>}
+            <li><p>Nombre comercial: {settings?.siteTitle}</p></li>
+            {settings?.companyName && <li><p>Razón social: {settings.companyName}</p></li>}
+            {settings?.companyNIF && <li><p>NIF/CIF: {settings.companyNIF}</p></li>}
+            {settings?.location && <li><p>Domicilio social: {settings.location}</p></li>}
+            {settings?.email && <li><p>Correo electrónico: {settings.email}</p></li>}
+            {settings?.phone && <li><p>Teléfono: {settings.phone}</p></li>}
           </ul>
-        </p>
+        </div>
 
-        <p className="mb-4">
-          <strong>Actividad:</strong><br/>
-          Servicios de consultoría en recursos humanos, selección,
-          evaluación y formación.
-        </p>
+        <div className="mb-4">
+          <p><strong>Actividad:</strong></p>
+          <p>Servicios de consultoría en recursos humanos, selección,
+          evaluación y formación.</p>
+        </div>
 
-        <p className="mb-4">
-          <strong>Condiciones de uso:</strong><br/>
-          El acceso y uso de este sitio web atribuye la
+        <div className="mb-4">
+          <p><strong>Condiciones de uso:</strong></p>
+          <p>El acceso y uso de este sitio web atribuye la
           condición de usuario e implica la aceptación plena de las presentes
           condiciones. El titular se reserva el derecho a modificar, en cualquier momento y sin
           previo aviso, la presentación y configuración del sitio web, así como el
-          presente aviso legal.
-        </p>
+          presente aviso legal.</p>
+        </div>
 
-        <p className="mb-4">
-          <strong>Propiedad intelectual e industrial:</strong><br/>
-          Todos los contenidos del sitio web
+        <div className="mb-4">
+          <p><strong>Propiedad intelectual e industrial:</strong></p>
+          <p>Todos los contenidos del sitio web
           (textos, imágenes, diseño, código fuente, etc.) son titularidad del
           propietario o de terceros autorizados, quedando prohibida su
-          reproducción sin autorización expresa.
-        </p>
+          reproducción sin autorización expresa.</p>
+        </div>
         
-        <p className="mb-4">
-          <strong>Legislación aplicable y jurisdicción:</strong><br/>
-          La relación entre el usuario y el
+        <div className="mb-4">
+          <p><strong>Legislación aplicable y jurisdicción:</strong></p>
+          <p>La relación entre el usuario y el
           titular se regirá por la normativa española vigente. Para cualquier
           controversia que pudiera derivarse, ambas partes se someterán a los
-          juzgados y tribunales de Barcelona.
-        </p>
+          juzgados y tribunales de Barcelona.</p>
+        </div>
       </div>
     </main>
   )

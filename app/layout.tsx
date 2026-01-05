@@ -23,6 +23,11 @@ import Header from "@/components/ui/navigation/header/Header";
 import Footer from "@/components/ui/navigation/footer/Footer";
 import { SettingsProvider } from "@/lib/SettingsProvider";
 import { ToastProvider } from "@/components/ui/toast/ToastContext";
+import CookieBanner from "@/components/ui/cookie-banner/CookieBanner";
+import ClientOnly from "@/components/ClientOnly";
+import Script from "next/script";
+import { cookies } from "next/headers";
+import { CookieConsentProvider } from "@/lib/CookieConsentContext";
 
 const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
@@ -46,20 +51,53 @@ export default async function RootLayout({
     getSettings(),
   ]);
 
+  const cookieConsent = (await cookies()).get("cookie_consent");
+  const consent = cookieConsent?.value;
+
   return (
     <html lang="en">
+      <head>
+        {settings.enableAnalytics &&
+          settings.gaMeasurementId &&
+          consent === "accepted" && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaMeasurementId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${settings.gaMeasurementId}', {
+                  anonymize_ip: true,
+                  page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+          </>
+        )}
+      </head>
       <body
         className={`${raleway.className} min-h-screen flex flex-col justify-between`}
       >
-        <SettingsProvider settings={settings}>
-          <ToastProvider>
-            <main>
-              {navigation && <Header navigation={navigation.items} />}
-              {children}
-            </main>
-            {footerNavigation && <Footer navigation={footerNavigation.items} />}
-          </ToastProvider>
-        </SettingsProvider>
+        <CookieConsentProvider>
+          <SettingsProvider settings={settings}>
+            <ToastProvider>
+              <main>
+                {navigation && <Header navigation={navigation.items} />}
+                {children}
+                <ClientOnly>
+                  <CookieBanner />
+                </ClientOnly>
+              </main>
+              {footerNavigation && (
+                <Footer navigation={footerNavigation.items} />
+              )}
+            </ToastProvider>
+          </SettingsProvider>
+        </CookieConsentProvider>
       </body>
     </html>
   );

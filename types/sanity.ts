@@ -52,6 +52,7 @@ export interface NavItem {
   href: string
   isPrimary?: boolean
   children?: NavItem[]
+  onClick?: (e?: React.MouseEvent) => void
 }
 
 export interface Card {

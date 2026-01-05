@@ -107,6 +107,8 @@ export const settingsQuery = groq`
   instagramUrl,
   logo,
   iconLogo,
+  enableAnalytics,
+  gaMeasurementId,
   defaultOgImage
 }`
 
