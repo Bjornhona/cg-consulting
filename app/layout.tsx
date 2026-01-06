@@ -57,8 +57,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {settings.enableAnalytics &&
-          settings.gaMeasurementId &&
+        {settings?.enableAnalytics &&
+          settings?.gaMeasurementId &&
           consent === "accepted" && (
           <>
             <Script

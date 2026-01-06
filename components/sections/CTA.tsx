@@ -1,8 +1,8 @@
 'use client'
-
 import { motion } from 'framer-motion'
 import { SectionCTA } from '@/types/sections'
 import Button from '@/components/ui/button/Button'
+import { PortableText } from 'next-sanity'
 
 export default function CTA({
   headline,
@@ -25,15 +25,15 @@ export default function CTA({
         </motion.h2>
 
         {text && (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.4 }}
             className="max-w-2xl mx-auto mb-10"
           >
-            {text}
-          </motion.p>
+            <PortableText value={text} />
+          </motion.div>
         )}
 
         <motion.div

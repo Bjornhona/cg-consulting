@@ -1,5 +1,5 @@
 import { ImageProps } from "next/image"
-import { Service, Testimonial, Card, ListItem, ContactInfo, JobOfferType, BlogPostType } from "./sanity"
+import { Service, Testimonial, Card, ListItem, JobOfferType, BlogPostType } from "./sanity"
 import { PortableTextBlock } from "next-sanity"
 
 export interface SectionHero {
@@ -30,7 +30,7 @@ export interface SectionTestimonials {
 export interface SectionCTA {
   _type: 'sectionCTA'
   headline?: string
-  text?: string
+  text?: PortableTextBlock[]
   primaryCta?: { label: string; href: string }
   secondaryCta?: { label: string; href: string }
 }
@@ -53,7 +53,6 @@ export interface SectionContact {
   _type: 'sectionContact'
   title: string
   description: string
-  contactInfo: ContactInfo
 }
 
 export interface SectionBlogPosts {

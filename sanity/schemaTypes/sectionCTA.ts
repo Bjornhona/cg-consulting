@@ -13,7 +13,8 @@ export const sectionCTA = defineType({
     defineField({
       name: 'text',
       title: 'Text',
-      type: 'text'
+      type: 'array',
+      of: [{ type: 'block' }]
     }),
     defineField({
       name: 'primaryCta',

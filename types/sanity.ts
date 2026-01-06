@@ -67,14 +67,6 @@ export interface ListItem {
   text: string
 }
 
-export interface ContactInfo {
-  companyName: string
-  contactPerson: string
-  phone: string
-  email: string
-  location: string
-}
-
 export interface JobOfferType {
   title: string
   slug: { current: string }
