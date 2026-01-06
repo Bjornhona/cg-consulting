@@ -51,7 +51,13 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   const ctaData: SectionCTA = {
     _type: "sectionCTA" as const,
     headline: "¿Buscas talento especializado?",
-    text: "Contacta con nosotros",
+    text: [{
+      _type: "block",
+      children: [{
+        _type: "span",
+        text: "Contacta con nosotros"
+      }]
+    }],
     primaryCta: {
       label: "Contactar",
       href: "/contact",

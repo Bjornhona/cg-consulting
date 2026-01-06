@@ -42,7 +42,13 @@ const JobOfferPage = async ({ params }: { params: { slug: string } }) => {
   const ctaData_ES = {
     _type: "sectionCTA" as const,
     headline: "¿Te interesa esta oportunidad?",
-    text: "Envíanos tu candidatura y nos pondremos en contacto contigo lo antes posible.",
+    text: [{
+      _type: "block",
+      children: [{
+        _type: "span",
+        text: "Envíanos tu candidatura y nos pondremos en contacto contigo lo antes posible."
+      }]
+    }],
     primaryCta: { label: "Enviar candidatura", href: "/contact" },
   };
   

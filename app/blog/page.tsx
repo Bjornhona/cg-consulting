@@ -36,7 +36,13 @@ const BlogPage = async () => {
   const ctaData: SectionCTA = {
     _type: 'sectionCTA' as const,
     headline: '¿Quieres unirte a nuestro equipo?',
-    text: 'Consulta nuestras oportunidades laborales actuales o ponte en contacto con nosotros.',
+    text: [{
+      _type: "block",
+      children: [{
+        _type: "span",
+        text: "Consulta nuestras oportunidades laborales actuales o ponte en contacto con nosotros."
+      }]
+    }],
     primaryCta: { label: 'Contactar', href: '/contact' },
   }
 

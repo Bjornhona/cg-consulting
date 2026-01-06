@@ -35,7 +35,13 @@ const JobOffersPage = async () => {
   const ctaData_ES = {
     _type: 'sectionCTA' as const,
     headline: '¿Quieres unirte a nuestro equipo?',
-    text: 'Responde a nuestras oportunidades laborales actuales. Si no encuentras una oferta que encaje con tu perfil, no dudes en ponerte en contacto con nosotros. Siempre estamos interesados en conocer talento excepcional.',
+    text: [{
+      _type: "block",
+      children: [{
+        _type: "span",
+        text: "Responde a nuestras oportunidades laborales actuales. Si no encuentras una oferta que encaje con tu perfil, no dudes en ponerte en contacto con nosotros. Siempre estamos interesados en conocer talento excepcional."
+      }]
+    }],
     primaryCta: { label: 'Contactar', href: '/contact' },
   }
   
