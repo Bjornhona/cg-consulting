@@ -35,7 +35,7 @@ const JobOfferPage = async ({ params }: { params: { slug: string } }) => {
   const jobOffer: JobOfferType = await getJobOfferBySlug(slug);
   const heroData: SectionHero = {
     _type: "sectionHero" as const,
-    headline: jobOffer.title,
+    headline: jobOffer?.title ?? "Oferta laboral no encontrada",
     subheadline: [{_type: 'block', children: [{_type: 'span', text: jobOffer.excerpt}]}] as PortableTextBlock[],
     staticImageSrc: image.src,
   };
