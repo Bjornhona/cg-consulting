@@ -4,9 +4,9 @@ import JobOfferItem from "./JobOfferItem";
 import { motion } from "framer-motion";
 
 const JobOffersSection = ({
-  title,
-  description,
-  jobOffers,
+  title = "Ofertas laborales",
+  description = "Descubre nuestras ofertas laborales actuales. Si no encuentras una oferta que encaje con tu perfil, no dudes en ponerte en contacto con nosotros. Siempre estamos interesados en conocer talento excepcional.",
+  jobOffers = [],
 }: SectionJobOffers) => {
   return (
     <section className="bg-soft">

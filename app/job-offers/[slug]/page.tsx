@@ -17,9 +17,15 @@ export async function generateMetadata({
   const jobOffer = await getJobOfferBySlug(slug);
   const settings = await getSettings();
 
+  if (!jobOffer || !settings) {
+    return {
+      title: "Oferta laboral no encontrada",
+      description: "Esta oferta laboral no existe",
+    }
+  }
+
   return {
-    title:
-      jobOffer.seo?.metaTitle ?? `${jobOffer.title} | ${settings.siteTitle}`,
+    title: jobOffer.seo?.metaTitle ?? `${jobOffer.title} | ${settings.siteTitle}`,
     description: jobOffer.seo?.metaDescription ?? jobOffer.excerpt,
   };
 }

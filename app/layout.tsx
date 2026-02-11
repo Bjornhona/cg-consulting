@@ -28,6 +28,7 @@ import ClientOnly from "@/components/ClientOnly";
 import Script from "next/script";
 import { cookies } from "next/headers";
 import { CookieConsentProvider } from "@/lib/CookieConsentContext";
+// import Background from "@/components/ui/background/Background";
 
 const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
@@ -87,6 +88,7 @@ export default async function RootLayout({
             <ToastProvider>
               <main>
                 {navigation && <Header navigation={navigation.items} />}
+                {/* <Background /> */}
                 {children}
                 <ClientOnly>
                   <CookieBanner />

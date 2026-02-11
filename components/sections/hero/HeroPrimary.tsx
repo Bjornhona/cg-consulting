@@ -63,7 +63,7 @@ const HeroPrimary = ({
         </motion.div>
 
         {/* Image */}
-        {image && (
+        {/* {image && (
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -80,7 +80,7 @@ const HeroPrimary = ({
               className="rounded-xl shadow-xl"
             />
           </motion.div>
-        )}
+        )} */}
       </div>
     </section>
   )
