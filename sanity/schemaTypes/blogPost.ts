@@ -11,12 +11,38 @@ export const blogPost = defineType({
       type: 'string',
       validation: Rule => Rule.required()
     }),
+    // defineField({
+    //   name: 'slug',
+    //   title: 'Slug',
+    //   type: 'slug',
+    //   options: { source: 'title' },
+    //   validation: Rule => Rule.required()
+    // }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'URL (auto-generated)',
       type: 'slug',
-      options: { source: 'title' },
-      validation: Rule => Rule.required()
+      options: {
+        source: 'title',
+        maxLength: 96,
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, '-')
+            .replace(/[^\w-]+/g, '')
+            .slice(0, 96),
+      },
+      validation: (Rule) =>
+        Rule.required().custom((slug) => {
+          if (!slug?.current) return true
+    
+          const valid = /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug.current)
+    
+          return valid
+            ? true
+            : 'Only lowercase letters, numbers and hyphens allowed. No spaces.'
+        }),
     }),
     defineField({
       name: 'publishedAt',
