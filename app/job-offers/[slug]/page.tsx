@@ -7,6 +7,7 @@ import Hero from "@/components/sections/hero/Hero";
 import image from "@/components/sections/jobOffers/job-offer-item.jpg";
 import { SectionHero } from "@/types/sections";
 import { PortableTextBlock } from "next-sanity";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -14,6 +15,9 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata> {
   const { slug } = await params;
+  if (!slug) {
+    notFound()
+  }
   const jobOffer = await getJobOfferBySlug(slug);
   const settings = await getSettings();
 
@@ -32,7 +36,13 @@ export async function generateMetadata({
 
 const JobOfferPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = await params;
+  if (!slug) {
+    notFound()
+  }
   const jobOffer: JobOfferType = await getJobOfferBySlug(slug);
+  if (!jobOffer) {
+    return notFound()
+  }
   const heroData: SectionHero = {
     _type: "sectionHero" as const,
     headline: jobOffer?.title ?? "Oferta laboral no encontrada",

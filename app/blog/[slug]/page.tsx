@@ -12,6 +12,9 @@ export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
   const { slug } = await params
+  if (!slug) {
+    notFound()
+  }
   const post = await getBlogPostBySlug(slug)
   const settings = await getSettings()
 
@@ -40,6 +43,9 @@ export async function generateMetadata(
 
 const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = await params
+  if (!slug) {
+    return notFound()
+  }
   const post = await getBlogPostBySlug(slug)
   if (!post) {
     return notFound()
