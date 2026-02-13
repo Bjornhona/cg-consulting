@@ -84,12 +84,8 @@ export default async function RootLayout({
       <body
         className={`${raleway.className} min-h-screen flex flex-col justify-between`}
       >
-        {settings?.enableAnalytics &&
-        settings?.gaMeasurementId &&
-        consent === "accepted" && (
-          <Analytics measurementId={settings.gaMeasurementId} />
-        )}
         <CookieConsentProvider>
+        <Analytics measurementId={settings?.gaMeasurementId} />
           <SettingsProvider settings={settings}>
             <ToastProvider>
               <main>

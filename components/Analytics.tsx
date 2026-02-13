@@ -2,13 +2,17 @@
 
 import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useCookieConsentContext } from "@/lib/CookieConsentContext";
 
-export default function Analytics({ measurementId }: { measurementId: string }) {
+export default function Analytics({ measurementId }: { measurementId?: string }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { consent } = useCookieConsentContext();
 
   useEffect(() => {
-    if (!measurementId || typeof window.gtag !== "function") return;
+    if (!measurementId) return;
+    if (consent !== "accepted") return;
+    if (typeof window.gtag !== "function") return;
 
     const url =
       pathname +
@@ -17,7 +21,9 @@ export default function Analytics({ measurementId }: { measurementId: string }) 
     window.gtag("config", measurementId, {
       page_path: url,
     });
-  }, [pathname, searchParams, measurementId]);
+
+    // console.log("GA pageview sent:", url);
+  }, [pathname, searchParams, consent, measurementId]);
 
   return null;
 }
