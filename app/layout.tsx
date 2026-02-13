@@ -28,6 +28,7 @@ import ClientOnly from "@/components/ClientOnly";
 import Script from "next/script";
 import { cookies } from "next/headers";
 import { CookieConsentProvider } from "@/lib/CookieConsentContext";
+import Analytics from "@/components/Analytics";
 // import Background from "@/components/ui/background/Background";
 
 const raleway = Raleway({
@@ -69,11 +70,11 @@ export default async function RootLayout({
             <Script id="ga4-init" strategy="afterInteractive">
               {`
                 window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
+                window.gtag = function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
                 gtag('config', '${settings.gaMeasurementId}', {
                   anonymize_ip: true,
-                  page_path: window.location.pathname,
+                  send_page_view: false
                 });
               `}
             </Script>
@@ -83,6 +84,11 @@ export default async function RootLayout({
       <body
         className={`${raleway.className} min-h-screen flex flex-col justify-between`}
       >
+        {settings?.enableAnalytics &&
+        settings?.gaMeasurementId &&
+        consent === "accepted" && (
+          <Analytics measurementId={settings.gaMeasurementId} />
+        )}
         <CookieConsentProvider>
           <SettingsProvider settings={settings}>
             <ToastProvider>
