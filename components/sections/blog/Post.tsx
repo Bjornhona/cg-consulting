@@ -35,9 +35,9 @@ const BlogPost = ({
           {new Date(publishedAt).toLocaleDateString()}
         </span>
 
-        <h1 className="mt-3 mb-6 text-4xl font-semibold">
+        <h2 className="mt-3 mb-6 text-4xl font-semibold">
           {title}
-        </h1>
+        </h2>
 
         {excerpt && (
           <p className="mb-10 text-lg text-gray-medium leading-relaxed">

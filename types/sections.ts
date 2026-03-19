@@ -33,6 +33,7 @@ export interface SectionCTA {
   text?: PortableTextBlock[]
   primaryCta?: { label: string; href: string }
   secondaryCta?: { label: string; href: string }
+  darkBackground?: boolean
 }
 
 export interface SectionCards {

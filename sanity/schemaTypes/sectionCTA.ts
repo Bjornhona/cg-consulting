@@ -33,6 +33,12 @@ export const sectionCTA = defineType({
         { name: 'label', type: 'string', title: 'Label' },
         { name: 'href', type: 'string', title: 'Link' }
       ]
+    }),
+    defineField({
+      name: 'darkBackground',
+      title: 'Dark background',
+      type: 'boolean',
+      initialValue: false
     })
   ]
 })

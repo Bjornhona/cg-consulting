@@ -9,9 +9,11 @@ export default function CTA({
   text,
   primaryCta,
   secondaryCta,
+  darkBackground,
 }: SectionCTA) {
+  console.log(darkBackground);
   return (
-    <section className="relative overflow-hidden">
+    <section className={`relative overflow-hidden ${darkBackground ? 'bg-soft' : ''}`}>
       <div className="mx-auto max-w-5xl px-6 py-20 text-center">
 
         <motion.h2

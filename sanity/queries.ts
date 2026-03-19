@@ -38,7 +38,8 @@ export const pageQuery = groq`
       headline,
       text,
       primaryCta,
-      secondaryCta
+      secondaryCta,
+      darkBackground
     },
     _type == "sectionCards" => {
       title,
