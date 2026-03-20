@@ -11,15 +11,15 @@ export const pageQuery = groq`
     ogImage,
     noIndex
   },
+  hero{
+    headline,
+    subheadline,
+    primaryCta,
+    secondaryCta,
+    image
+  },
   sections[]{
     ...,
-    _type == "sectionHero" => {
-      headline,
-      subheadline,
-      primaryCta,
-      secondaryCta,
-      image
-    },
     _type == "sectionServices" => {
       title,
       description,

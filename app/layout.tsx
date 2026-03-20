@@ -59,16 +59,18 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {settings?.enableAnalytics &&
+        {/* {settings?.enableAnalytics && */}
+        {settings?.analyticsMode !== "none" &&
+          settings?.analyticsMode === "ga4" &&
           settings?.gaMeasurementId &&
           consent === "accepted" && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaMeasurementId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`
+            <>
+              <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaMeasurementId}`}
+                strategy="afterInteractive"
+              />
+              <Script id="ga4-init" strategy="afterInteractive">
+                {`
                 window.dataLayer = window.dataLayer || [];
                 window.gtag = function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -77,15 +79,39 @@ export default async function RootLayout({
                   send_page_view: false
                 });
               `}
-            </Script>
-          </>
-        )}
+              </Script>
+            </>
+          )}
+        {/* {settings?.enableAnalytics && */}
+        {settings?.analyticsMode !== "none" &&
+          settings?.analyticsMode === "gtm" &&
+          settings?.gtmId &&
+          consent === "accepted" && (
+            <>
+              <Script
+                id="gtm-script"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                  __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${settings.gtmId}');
+          `,
+                }}
+              />
+            </>
+          )}
       </head>
       <body
         className={`${raleway.className} min-h-screen flex flex-col justify-between`}
       >
         <CookieConsentProvider>
-          <Analytics measurementId={settings?.gaMeasurementId} />
+          <Analytics measurementId={settings?.gaMeasurementId} analyticsMode={settings?.analyticsMode} />
           <SettingsProvider settings={settings}>
             <ToastProvider>
               <main>

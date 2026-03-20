@@ -13,8 +13,8 @@ export interface Page {
   title: string;
   slug: { current: string };
   seo: Seo;
+  hero: SectionHero;
   sections: (
-    | SectionHero
     | SectionServices
     | SectionTestimonials
     | SectionCTA

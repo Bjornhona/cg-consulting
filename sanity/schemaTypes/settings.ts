@@ -67,18 +67,62 @@ export const settings = defineType({
       type: 'image',
       options: { hotspot: true }
     }),
+    // {
+    //   name: "enableAnalytics",
+    //   title: "Enable Google Analytics",
+    //   type: "boolean",
+    //   initialValue: false,
+    // },
+    // {
+    //   name: "gaMeasurementId",
+    //   title: "GA4 Measurement ID",
+    //   type: "string",
+    //   description: "Example: G-XXXXXXXXXX",
+    //   hidden: ({ parent }) => !parent?.enableAnalytics,
+    // },
     {
-      name: "enableAnalytics",
-      title: "Enable Google Analytics",
-      type: "boolean",
-      initialValue: false,
+      name: 'analyticsMode',
+      title: 'Analytics Setup',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'None', value: 'none' },
+          { title: 'Google Analytics (GA4)', value: 'ga4' },
+          { title: 'Google Tag Manager (Recommended)', value: 'gtm' },
+        ],
+        layout: 'radio'
+      },
+      initialValue: 'none'
     },
     {
-      name: "gaMeasurementId",
-      title: "GA4 Measurement ID",
-      type: "string",
+      name: 'gaMeasurementId',
+      title: 'GA4 Measurement ID',
+      type: 'string',
       description: "Example: G-XXXXXXXXXX",
-      hidden: ({ parent }) => !parent?.enableAnalytics,
+      hidden: ({ parent }) => parent?.analyticsMode !== 'ga4',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const parent = context.parent as { analyticsMode?: string };
+          if (parent?.analyticsMode === "ga4" && !value) {
+            return "GA4 Measurement ID is required";
+          }
+          return true;
+        })
+    },
+    {
+      name: 'gtmId',
+      title: 'Google Tag Manager ID',
+      type: 'string',
+      description: "Example: GTM-XXXXXXXXXX",
+      hidden: ({ parent }) => parent?.analyticsMode !== 'gtm',
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const parent = context.parent as { analyticsMode?: string };
+          if (parent?.analyticsMode === "gtm" && !value) {
+            return "Google Tag Manager ID is required";
+          }
+          return true;
+        })
     },
     defineField({
       name: 'defaultOgImage',

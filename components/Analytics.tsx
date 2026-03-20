@@ -4,26 +4,43 @@ import { useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useCookieConsentContext } from "@/lib/CookieConsentContext";
 
-export default function Analytics({ measurementId }: { measurementId?: string }) {
+type Props = {
+  measurementId?: string;
+  analyticsMode?: "ga4" | "gtm" | "none";
+};
+
+export default function Analytics({ measurementId, analyticsMode }: Props) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { consent } = useCookieConsentContext();
 
   useEffect(() => {
-    if (!measurementId) return;
     if (consent !== "accepted") return;
-    if (typeof window.gtag !== "function") return;
 
     const url =
       pathname +
       (searchParams?.toString() ? `?${searchParams.toString()}` : "");
 
-    window.gtag("config", measurementId, {
-      page_path: url,
-    });
+    // ✅ GA4 direct tracking
+    if (
+      analyticsMode === "ga4" &&
+      measurementId &&
+      typeof window.gtag === "function"
+    ) {
+      window.gtag("config", measurementId, {
+        page_path: url,
+      });
+    }
 
-    // console.log("GA pageview sent:", url);
-  }, [pathname, searchParams, consent, measurementId]);
+    // ✅ GTM tracking (dataLayer push)
+    if (analyticsMode === "gtm" && typeof window !== "undefined") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "page_view",
+        page_path: url,
+      });
+    }
+  }, [pathname, searchParams, consent, measurementId, analyticsMode]);
 
   return null;
 }

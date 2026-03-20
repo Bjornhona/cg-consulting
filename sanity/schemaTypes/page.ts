@@ -24,11 +24,16 @@ export const page = defineType({
       type: 'seo'
     }),
     defineField({
+      name: 'hero',
+      title: 'Hero Section',
+      type: 'sectionHero',
+    }),
+    defineField({
       name: 'sections',
       title: 'Page sections',
       type: 'array',
       of: [
-        { type: 'sectionHero' },
+        // { type: 'sectionHero' },
         { type: 'sectionServices' },
         { type: 'sectionTestimonials' },
         { type: 'sectionCTA' },
