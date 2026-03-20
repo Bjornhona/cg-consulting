@@ -33,7 +33,6 @@ export const page = defineType({
       title: 'Page sections',
       type: 'array',
       of: [
-        // { type: 'sectionHero' },
         { type: 'sectionServices' },
         { type: 'sectionTestimonials' },
         { type: 'sectionCTA' },

@@ -59,7 +59,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* {settings?.enableAnalytics && */}
         {settings?.analyticsMode !== "none" &&
           settings?.analyticsMode === "ga4" &&
           settings?.gaMeasurementId &&
@@ -82,7 +81,6 @@ export default async function RootLayout({
               </Script>
             </>
           )}
-        {/* {settings?.enableAnalytics && */}
         {settings?.analyticsMode !== "none" &&
           settings?.analyticsMode === "gtm" &&
           settings?.gtmId &&

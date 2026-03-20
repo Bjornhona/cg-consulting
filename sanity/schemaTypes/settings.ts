@@ -67,20 +67,7 @@ export const settings = defineType({
       type: 'image',
       options: { hotspot: true }
     }),
-    // {
-    //   name: "enableAnalytics",
-    //   title: "Enable Google Analytics",
-    //   type: "boolean",
-    //   initialValue: false,
-    // },
-    // {
-    //   name: "gaMeasurementId",
-    //   title: "GA4 Measurement ID",
-    //   type: "string",
-    //   description: "Example: G-XXXXXXXXXX",
-    //   hidden: ({ parent }) => !parent?.enableAnalytics,
-    // },
-    {
+    defineField({
       name: 'analyticsMode',
       title: 'Analytics Setup',
       type: 'string',
@@ -93,8 +80,8 @@ export const settings = defineType({
         layout: 'radio'
       },
       initialValue: 'none'
-    },
-    {
+    }),
+    defineField({
       name: 'gaMeasurementId',
       title: 'GA4 Measurement ID',
       type: 'string',
@@ -108,8 +95,8 @@ export const settings = defineType({
           }
           return true;
         })
-    },
-    {
+    }),
+    defineField({
       name: 'gtmId',
       title: 'Google Tag Manager ID',
       type: 'string',
@@ -123,7 +110,7 @@ export const settings = defineType({
           }
           return true;
         })
-    },
+    }),
     defineField({
       name: 'defaultOgImage',
       title: 'Default Open Graph image',

@@ -3,13 +3,12 @@ import Services from "@/components/sections/services/Services";
 import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
 import {
-  SectionHero,
   SectionServices,
   SectionTestimonials,
   SectionCTA,
   SectionCards,
   SectionList,
-  SectionContact
+  SectionContact,
 } from "@/types/sections";
 import Cards from "@/components/sections/Cards";
 import { Page } from "@/types/pages";
@@ -17,26 +16,24 @@ import List from "@/components/sections/List";
 import Contact from "@/components/sections/contact/Contact";
 
 export default function PageRenderer({ page }: { page: Page }) {
+  const isHome = page.slug.current === "home";
+  const variant = isHome ? "primary" : "secondary";
+
   return (
     <>
+      {page.hero && <Hero {...page.hero} variant={variant} />}
       {page.sections?.map(
         (
           section:
-            | SectionHero
             | SectionServices
             | SectionTestimonials
             | SectionCTA
             | SectionCards
             | SectionList
             | SectionContact,
-          index: number
+          index: number,
         ) => {
           switch (section._type) {
-            case "sectionHero":
-              const isHome = page.slug.current === "home";
-              const variant = isHome ? "primary" : "secondary";
-              return <Hero key={index} {...section} variant={variant} />;
-
             case "sectionServices":
               return <Services key={index} {...section} />;
 
@@ -58,7 +55,7 @@ export default function PageRenderer({ page }: { page: Page }) {
             default:
               return null;
           }
-        }
+        },
       )}
     </>
   );
