@@ -3,6 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, ClipboardCheck, GraduationCap, LucideIcon } from 'lucide-react'
 import { Service } from "@/types/sanity";
+import { EVENTS, trackEvent } from "@/lib/tracking";
 
 const iconMap = {
   selection: Users,
@@ -26,6 +27,12 @@ const ServiceCard = ({ service, index }: { service: Service, index: number }) =>
       <Link
         href={`/services/${service.slug}`}
         className="block h-full rounded-xl border border-gray-light bg-white p-8 text-left transition-shadow hover:shadow-lg"
+        onClick={() => {
+          trackEvent(EVENTS.CTA_CLICK, {
+            location: "service_card",
+            label: service.title,
+          });
+        }}
       >
         <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-secondary/10 text-secondary">
           <Icon size={24} />

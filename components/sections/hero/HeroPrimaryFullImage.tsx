@@ -5,6 +5,7 @@ import { urlFor } from '@/sanity/lib/image'
 import Button from '@/components/ui/button/Button'
 import { PortableText } from 'next-sanity'
 import { SectionHero } from '@/types/sections'
+import { EVENTS, trackEvent } from '@/lib/tracking'
 
 const HeroPrimary = ({
   headline,
@@ -13,6 +14,25 @@ const HeroPrimary = ({
   secondaryCta,
   image,
 }: SectionHero) => {
+  const onPrimaryCtaClick = () => {
+    if (primaryCta) {
+      window.location.href = primaryCta.href;
+      trackEvent(EVENTS.CTA_CLICK, {
+        location: "homepage_hero",
+        label: primaryCta.label,
+      });
+    }
+  }
+  const onSecondaryCtaClick = () => {
+    if (secondaryCta) {
+      window.location.href = secondaryCta.href;
+      trackEvent(EVENTS.CTA_CLICK, {
+        location: "homepage_hero",
+        label: secondaryCta.label,
+      });
+    }
+  }
+
   return (
     <section className="relative min-h-[80vh] flex items-center overflow-hidden" data-theme="dark">
       
@@ -52,7 +72,7 @@ const HeroPrimary = ({
                 <Button
                   variant="primary"
                   size="lg"
-                  onClick={() => (window.location.href = primaryCta.href)}
+                  onClick={onPrimaryCtaClick}
                 >
                   {primaryCta.label}
                 </Button>
@@ -62,7 +82,7 @@ const HeroPrimary = ({
                 <Button
                   variant="secondary"
                   size="lg"
-                  onClick={() => (window.location.href = secondaryCta.href)}
+                  onClick={onSecondaryCtaClick}
                 >
                   {secondaryCta.label}
                 </Button>

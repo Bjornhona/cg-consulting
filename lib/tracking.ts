@@ -13,3 +13,9 @@ export const trackEvent = (event: string, data: Record<string, unknown> = {}) =>
     window.gtag("event", event, data);
   }
 };
+
+export const EVENTS = {
+  CTA_CLICK: "cta_click",
+  BACK_CLICK: "back_click",
+  FORM_SUBMIT: "form_submit",
+};

@@ -1,8 +1,9 @@
-'use client'
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { MapPin, Briefcase, ArrowRight } from "lucide-react"
-import { JobOfferType } from "@/types/sanity"
+"use client";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { MapPin, Briefcase, ArrowRight } from "lucide-react";
+import { JobOfferType } from "@/types/sanity";
+import { EVENTS, trackEvent } from "@/lib/tracking";
 
 const JobOfferItem = ({
   title,
@@ -11,14 +12,14 @@ const JobOfferItem = ({
   excerpt,
   publishedAt,
   slug,
-  index
+  index,
 }: JobOfferType) => {
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4,  delay: index * 0.06 }}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
       whileHover={{ y: -6 }}
       className="
         group
@@ -33,7 +34,16 @@ const JobOfferItem = ({
         hover:shadow-md
       "
     >
-      <Link href={`/job-offers/${slug.current}`} className="absolute inset-0" />
+      <Link
+        href={`/job-offers/${slug.current}`}
+        className="absolute inset-0"
+        onClick={() => {
+          trackEvent(EVENTS.CTA_CLICK, {
+            location: "job_offer_card",
+            label: title,
+          });
+        }}
+      />
 
       {/* Meta */}
       <div className="mb-4 flex flex-wrap gap-3 text-sm text-gray-medium">
@@ -65,9 +75,7 @@ const JobOfferItem = ({
 
       {/* Excerpt */}
       {excerpt && (
-        <p className="mb-6 text-gray-medium leading-relaxed">
-          {excerpt}
-        </p>
+        <p className="mb-6 text-gray-medium leading-relaxed">{excerpt}</p>
       )}
 
       {/* CTA */}
@@ -76,7 +84,7 @@ const JobOfferItem = ({
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
       </div>
     </motion.article>
-  )
-}
+  );
+};
 
-export default JobOfferItem
+export default JobOfferItem;

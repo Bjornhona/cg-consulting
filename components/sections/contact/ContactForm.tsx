@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useToast } from "@/components/ui/toast/ToastContext";
 import RadioButtons from "@/components/ui/input/RadioButtons";
+import { trackEvent, EVENTS } from "@/lib/tracking";
 
 export default function ContactForm() {
   const { showToast } = useToast();
@@ -95,6 +96,9 @@ const isPhoneValid = useMemo(() => {
       showToast("error", message);
     } finally {
       setLoading(false);
+      trackEvent(EVENTS.FORM_SUBMIT, {
+        form: "contact_form",
+      });
     }
   };
 
@@ -194,6 +198,12 @@ const isPhoneValid = useMemo(() => {
           variant="primary"
           size="lg"
           disabled={!isFormValid || loading}
+          onClick={() => {
+            trackEvent(EVENTS.CTA_CLICK, {
+              location: "contact_form",
+              label: "submit_button",
+            });
+          }}
         >
           {loading ? "Enviando..." : "Enviar mensaje"}
         </Button>

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { SectionCTA } from '@/types/sections'
 import Button from '@/components/ui/button/Button'
 import { PortableText } from 'next-sanity'
+import { EVENTS, trackEvent } from '@/lib/tracking'
 
 export default function CTA({
   headline,
@@ -11,6 +12,25 @@ export default function CTA({
   secondaryCta,
   darkBackground,
 }: SectionCTA) {
+  const onPrimaryCtaClick = () => {
+    if (primaryCta) {
+      window.location.href = primaryCta.href;
+      trackEvent(EVENTS.CTA_CLICK, {
+        location: "cta_section",
+        label: primaryCta.label,
+      });
+    }
+  }
+  const onSecondaryCtaClick = () => {
+    if (secondaryCta) {
+      window.location.href = secondaryCta.href;
+      trackEvent(EVENTS.CTA_CLICK, {
+        location: "cta_section",
+        label: secondaryCta.label,
+      });
+    }
+  }
+
   return (
     <section className={`relative overflow-hidden ${darkBackground ? 'bg-soft' : ''}`}>
       <div className="mx-auto max-w-5xl px-6 py-20 text-center">
@@ -48,7 +68,7 @@ export default function CTA({
             <Button
               variant="primary"
               size="lg"
-              onClick={() => (window.location.href = primaryCta.href)}
+              onClick={onPrimaryCtaClick}
             >
               {primaryCta.label}
             </Button>
@@ -58,7 +78,7 @@ export default function CTA({
             <Button
               variant="secondary"
               size="lg"
-              onClick={() => (window.location.href = secondaryCta.href)}
+              onClick={onSecondaryCtaClick}
             >
               {secondaryCta.label}
             </Button>

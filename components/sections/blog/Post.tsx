@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { PortableText } from "next-sanity"
 import { BlogPostProps } from "./types"
 import Link from "next/link"
+import { EVENTS, trackEvent } from "@/lib/tracking"
 
 const BlogPost = ({
   title,
@@ -14,6 +15,12 @@ const BlogPost = ({
     <Link
       href="/blog"
       className="flex items-center gap-2 text-sm text-primary hover:text-primary-hover transition-colors"
+      onClick={() => {
+        trackEvent(EVENTS.BACK_CLICK, {
+          location: "blog_post",
+          label: title,
+        });
+      }}
     >
       ← Volver al blog
     </Link>

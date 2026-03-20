@@ -5,6 +5,7 @@ import { BlogItemProps } from "./types";
 import { urlFor } from "@/sanity/lib/image";
 import { motion } from "framer-motion";
 import cloudImage from "@/components/sections/blog/cabecera_1.jpg";
+import { EVENTS, trackEvent } from "@/lib/tracking";
 
 const BlogItem = ({
   title,
@@ -33,7 +34,16 @@ const BlogItem = ({
         hover:-translate-y-1 hover:shadow-md"
     >
       {/* Click overlay */}
-      <Link href={`/blog/${slug.current}`} className="absolute inset-0 z-10" />
+      <Link
+        href={`/blog/${slug.current}`}
+        className="absolute inset-0 z-10"
+        onClick={() => {
+          trackEvent(EVENTS.CTA_CLICK, {
+            location: "blog_card",
+            label: title,
+          });
+        }}
+      />
 
       {/* Image */}
       <div className="relative h-48 w-full overflow-hidden">
