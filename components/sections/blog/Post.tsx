@@ -4,6 +4,8 @@ import { PortableText } from "next-sanity"
 import { BlogPostProps } from "./types"
 import Link from "next/link"
 import { EVENTS, trackEvent } from "@/lib/tracking"
+import { getLocale } from "next-intl/server"
+import { useTranslations } from "next-intl"
 
 const BlogPost = ({
   title,
@@ -11,9 +13,12 @@ const BlogPost = ({
   publishedAt,
   content
 }: BlogPostProps) => {
+  const locale = getLocale();
+  const t = useTranslations("blog");
+
   const backToBlogLink = (
     <Link
-      href="/blog"
+      href={`${locale}/blog`}
       className="flex items-center gap-2 text-sm text-primary hover:text-primary-hover transition-colors"
       onClick={() => {
         trackEvent(EVENTS.BACK_CLICK, {
@@ -22,7 +27,7 @@ const BlogPost = ({
         });
       }}
     >
-      ← Volver al blog
+      ← {t("backToBlog")}
     </Link>
   )
 

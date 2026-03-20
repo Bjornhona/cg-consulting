@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Users, ClipboardCheck, GraduationCap, LucideIcon } from 'lucide-react'
 import { Service } from "@/types/sanity";
 import { EVENTS, trackEvent } from "@/lib/tracking";
+import { useTranslations } from 'next-intl';
 
 const iconMap = {
   selection: Users,
@@ -12,6 +13,7 @@ const iconMap = {
 };
 
 const ServiceCard = ({ service, index }: { service: Service, index: number }) => {
+  const t = useTranslations('common');
   const Icon: LucideIcon = iconMap[service.icon] || ClipboardCheck;
 
   return (
@@ -45,7 +47,7 @@ const ServiceCard = ({ service, index }: { service: Service, index: number }) =>
         <p className="mb-6">{service.description}</p>
 
         <span className="inline-flex items-center text-sm font-medium text-primary">
-          Ver servicio →
+          {t("common.seeService")} →
         </span>
       </Link>
     </motion.div>

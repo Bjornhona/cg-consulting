@@ -22,6 +22,11 @@ export interface Settings {
   instagramUrl: string
   logo: SanityImageSource
   iconLogo: SanityImageSource
+  languages: string[]
+  defaultLanguage: string
+  analyticsMode: 'none' | 'ga4' | 'gtm'
+  gaMeasurementId: string
+  gtmId: string
   defaultOgImage: ImageProps
 }
 

@@ -68,6 +68,31 @@ export const settings = defineType({
       options: { hotspot: true }
     }),
     defineField({
+      name: 'languages',
+      title: 'Available Languages',
+      type: 'array',
+      of: [{ type: "string" }],
+      initialValue: ['en'],
+      options: {
+        list: [
+          { title: "English", value: "en" },
+          { title: "Spanish", value: "es" },
+        ],
+      },
+    }),
+    defineField({
+      name: "defaultLanguage",
+      title: "Default Language",
+      type: "string",
+      initialValue: "en",
+      options: {
+        list: [
+          { title: "English", value: "en" },
+          { title: "Spanish", value: "es" },
+        ],
+      },
+    }),
+    defineField({
       name: 'analyticsMode',
       title: 'Analytics Setup',
       type: 'string',

@@ -3,14 +3,16 @@ import { getPageBySlug, getSettings } from '@/sanity/queries'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo'
+import { getLocale } from 'next-intl/server'
 
 /* ------------------------------------------------------------
    SEO / Metadata
 ------------------------------------------------------------- */
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
   const [settings, page] = await Promise.all([
     getSettings(),
-    getPageBySlug('home'),
+    getPageBySlug('home', locale),
   ])
 
   if (!page) return {}
@@ -22,7 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
    Page
 ------------------------------------------------------------- */
 export default async function Home() {
-  const page = await getPageBySlug('home')
+  const locale = await getLocale();
+  const page = await getPageBySlug('home', locale)
 
   if (!page) return notFound()
 

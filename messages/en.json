@@ -1,0 +1,11 @@
+{
+  "common": {
+    "contact": "Contact us",
+    "submit": "Submit",
+    "readMore": "Read more",
+    "seeService": "See service"
+  },
+  "blog": {
+    "backToBlog": "Back to blog"
+  }
+}

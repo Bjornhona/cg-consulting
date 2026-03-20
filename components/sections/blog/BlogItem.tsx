@@ -6,6 +6,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { motion } from "framer-motion";
 import cloudImage from "@/components/sections/blog/cabecera_1.jpg";
 import { EVENTS, trackEvent } from "@/lib/tracking";
+import { getLocale } from "next-intl/server";
 
 const BlogItem = ({
   title,
@@ -15,6 +16,7 @@ const BlogItem = ({
   coverImage,
   index,
 }: BlogItemProps) => {
+  const locale = getLocale();
   const imageSrc = coverImage
     ? urlFor(coverImage).width(800).height(500).quality(85).url()
     : cloudImage.src;
@@ -35,7 +37,7 @@ const BlogItem = ({
     >
       {/* Click overlay */}
       <Link
-        href={`/blog/${slug.current}`}
+        href={`${locale}/blog/${slug.current}`}
         className="absolute inset-0 z-10"
         onClick={() => {
           trackEvent(EVENTS.CTA_CLICK, {

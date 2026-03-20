@@ -3,7 +3,7 @@ import { Phone, Mail, MapPin, User } from 'lucide-react'
 import { useSettings } from '@/lib/SettingsProvider'
 
 export default function ContactInfo() {
-  const settings = useSettings()
+  const settings = useSettings();
   const contactInfoList = [{
     text: settings.contactPerson,
     icon: User,

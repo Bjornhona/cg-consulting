@@ -19,6 +19,19 @@ export const page = defineType({
       validation: Rule => Rule.required()
     }),
     defineField({
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      initialValue: 'en',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Spanish', value: 'es' },
+        ]
+      },
+      description: "Select the language for this page. Make sure a version exists for each active language in Site Settings.",
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo'

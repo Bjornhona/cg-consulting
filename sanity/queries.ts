@@ -2,9 +2,10 @@ import { client } from './lib/client'
 import { groq } from 'next-sanity'
 
 export const pageQuery = groq`
-*[_type == "page" && slug.current == $slug][0]{
+*[_type == "page" && slug.current == $slug && language == $lang][0]{
   title,
   slug,
+  language,
   seo{
     metaTitle,
     metaDescription,
@@ -58,14 +59,18 @@ export const pageQuery = groq`
   }
 }`
 
-export const getPageBySlug = async (slug: string) => {
-  const page = await client.fetch(pageQuery, { slug })
+export const getPageBySlug = async (slug: string, lang: string) => {
+  let page = await client.fetch(pageQuery, { slug, lang })
+  if (!page && lang !== "en") {
+    page = await client.fetch(pageQuery, { slug, lang: "en" });
+  }
   return page
 }
 
 export const navigationQuery = groq`
-*[_type == "navigation"][0]{
+*[_type == "navigation" && language == $lang][0]{
   title,
+  language,
   items[]{
     label,
     href,
@@ -74,14 +79,18 @@ export const navigationQuery = groq`
   }
 }`
 
-export const getNavigation = async () => {
-  const navigation = await client.fetch(navigationQuery)
+export const getNavigation = async (lang: string) => {
+  let navigation = await client.fetch(navigationQuery, { lang })
+  if (!navigation && lang !== "en") {
+    navigation = await client.fetch(navigationQuery, { lang: "en" });
+  }
   return navigation
 }
 
 export const footerNavigationQuery = groq`
-*[_type == "navigation" && title == "Footer Navigation"][0]{
+*[_type == "navigation" && title == "Footer Navigation" && language == $lang][0]{
   title,
+  language,
   items[]{
     label,
     href,
@@ -89,8 +98,8 @@ export const footerNavigationQuery = groq`
   }
 }`
 
-export const getFooterNavigation = async () => {
-  const footerNavigation = await client.fetch(footerNavigationQuery)
+export const getFooterNavigation = async (lang: string) => {
+  const footerNavigation = await client.fetch(footerNavigationQuery, { lang })
   return footerNavigation
 }
 
@@ -114,16 +123,17 @@ export const settingsQuery = groq`
   defaultOgImage
 }`
 
-export const getSettings = async () => {
-  const settings = await client.fetch(settingsQuery)
+export const getSettings = async (lang: string) => {
+  const settings = await client.fetch(settingsQuery, { lang })
   return settings
 }
 
 export const blogPostsQuery = groq`
-*[_type == "blogPost" && defined(publishedAt)]
+*[_type == "blogPost" && defined(publishedAt) && language == $lang]
 | order(publishedAt desc)[0...$limit]{
   title,
   slug,
+  language,
   excerpt,
   publishedAt,
   coverImage,
@@ -131,30 +141,32 @@ export const blogPostsQuery = groq`
   seo
 }`
 
-export const getBlogPosts = async (limit = 3) => {
-  return client.fetch(blogPostsQuery, { limit }, { next: { revalidate: 60 } })
+export const getBlogPosts = async (limit = 3, lang: string) => {
+  return client.fetch(blogPostsQuery, { limit, lang }, { next: { revalidate: 60 } })
 }
 
 export const jobOffersQuery = groq`
-*[_type == "jobOffer" && defined(publishedAt)]
+*[_type == "jobOffer" && defined(publishedAt) && language == $lang]
 | order(publishedAt desc)[0...$limit]{
   title,
   slug,
+  language,
   location,
   contractType,
   excerpt,
   publishedAt,
-  seo
+  seo,
 }`
 
-export const getJobOffers = async (limit = 6) => {
-  return client.fetch(jobOffersQuery, { limit }, { next: { revalidate: 60 } })
+export const getJobOffers = async (limit = 6, lang: string) => {
+  return client.fetch(jobOffersQuery, { limit, lang }, { next: { revalidate: 60 } })
 }
 
 export const blogPostBySlugQuery = groq`
-*[_type == "blogPost" && slug.current == $slug][0]{
+*[_type == "blogPost" && slug.current == $slug && language == $lang][0]{
   title,
   slug,
+  language,
   excerpt,
   publishedAt,
   content,
@@ -162,14 +174,15 @@ export const blogPostBySlugQuery = groq`
   seo
 }`
 
-export const getBlogPostBySlug = async (slug: string) => {
-  return client.fetch(blogPostBySlugQuery, { slug })
+export const getBlogPostBySlug = async (slug: string, lang: string) => {
+  return client.fetch(blogPostBySlugQuery, { slug, lang })
 }
 
 export const jobOfferBySlugQuery = groq`
-*[_type == "jobOffer" && slug.current == $slug][0]{
+*[_type == "jobOffer" && slug.current == $slug && language == $lang][0]{
   title,
   slug,
+  language,
   location,
   contractType,
   excerpt,
@@ -178,6 +191,6 @@ export const jobOfferBySlugQuery = groq`
   seo
 }`
 
-export const getJobOfferBySlug = async (slug: string) => {
-  return client.fetch(jobOfferBySlugQuery, { slug })
+export const getJobOfferBySlug = async (slug: string, lang: string) => {
+  return client.fetch(jobOfferBySlugQuery, { slug, lang })
 }
