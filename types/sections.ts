@@ -15,6 +15,7 @@ export interface SectionHero {
 
 export interface SectionServices {
   _type: 'sectionServices'
+  _key: string
   title: string
   description: string
   services: Service[]
@@ -22,6 +23,7 @@ export interface SectionServices {
 
 export interface SectionTestimonials {
   _type: 'sectionTestimonials'
+  _key: string
   title: string
   description: string
   testimonials: Testimonial[]
@@ -29,6 +31,7 @@ export interface SectionTestimonials {
 
 export interface SectionCTA {
   _type: 'sectionCTA'
+  _key: string
   headline?: string
   text?: PortableTextBlock[]
   primaryCta?: { label: string; href: string }
@@ -38,6 +41,7 @@ export interface SectionCTA {
 
 export interface SectionCards {
   _type: 'sectionCards'
+  _key: string
   title: string
   description: string
   cards: Card[]
@@ -45,6 +49,7 @@ export interface SectionCards {
 
 export interface SectionList {
   _type: 'sectionList'
+  _key: string
   title: string
   description: string
   listItems: ListItem[]
@@ -52,6 +57,7 @@ export interface SectionList {
 
 export interface SectionContact {
   _type: 'sectionContact'
+  _key: string
   visibleFields?: string[]
   visibleContactInfo?: string[]
 }

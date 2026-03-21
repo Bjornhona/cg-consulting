@@ -27,7 +27,7 @@ export default function HeroSecondary({
               alt=""
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={false}
+              priority
               className="object-cover"
             />
           )}
@@ -36,7 +36,7 @@ export default function HeroSecondary({
               src={staticImageSrc}
               alt=""
               fill
-              priority={false}
+              priority
               className="object-cover"
             />
           )}

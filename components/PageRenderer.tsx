@@ -30,27 +30,26 @@ export default function PageRenderer({ page }: { page: Page }) {
             | SectionCTA
             | SectionCards
             | SectionList
-            | SectionContact,
-          index: number,
+            | SectionContact
         ) => {
           switch (section._type) {
             case "sectionServices":
-              return <Services key={index} {...section} />;
+              return <Services key={section._key} {...section} />;
 
             case "sectionTestimonials":
-              return <Testimonials key={index} {...section} />;
+              return <Testimonials key={section._key} {...section} />;
 
             case "sectionCTA":
-              return <CTA key={index} {...section} />;
+              return <CTA key={section._key} {...section} />;
 
             case "sectionCards":
-              return <Cards key={index} {...section} />;
+              return <Cards key={section._key} {...section} />;
 
             case "sectionList":
-              return <List key={index} {...section} />;
+              return <List key={section._key} {...section} />;
 
             case "sectionContact":
-              return <Contact key={index} {...section} />;
+              return <Contact key={section._key} {...section} />;
 
             default:
               return null;
