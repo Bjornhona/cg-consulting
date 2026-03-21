@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {isUniqueSlugPerLanguage} from '../lib/isUniqueSlugPerLanguage'
 
 export const blogPost = defineType({
   name: 'blogPost',
@@ -18,6 +19,7 @@ export const blogPost = defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        isUnique: isUniqueSlugPerLanguage as import("sanity").SlugIsUniqueValidator,
         slugify: (input) =>
           input
             .toLowerCase()

@@ -1,4 +1,5 @@
 import { defineType, defineField } from 'sanity'
+import { isUniqueSlugPerLanguage } from '../lib/isUniqueSlugPerLanguage'
 
 export const page = defineType({
   name: 'page',
@@ -15,7 +16,7 @@ export const page = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title' },
+      options: { source: 'title', isUnique: isUniqueSlugPerLanguage as import("sanity").SlugIsUniqueValidator },
       validation: Rule => Rule.required()
     }),
     defineField({
