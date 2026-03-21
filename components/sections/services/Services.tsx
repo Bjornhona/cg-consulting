@@ -12,7 +12,8 @@ const Services = ({ title, description, services }: SectionServices) => {
 
         <div className="grid gap-8 md:grid-cols-3">
           {services.map((service, index) => {
-            return <ServiceCard key={service.slug} service={service} index={index} />
+            const key = service._key ?? `${service.slug}-${index}`
+            return <ServiceCard key={key} service={service} index={index} />
           })}
         </div>
       </div>

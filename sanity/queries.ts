@@ -20,11 +20,13 @@ export const pageQuery = groq`
     image
   },
   sections[]{
+    _key,
     ...,
     _type == "sectionServices" => {
       title,
       description,
-      services[]{
+        services[]{
+        _key,
         title,
         description,
         slug,

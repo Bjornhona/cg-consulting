@@ -31,6 +31,7 @@ export interface Settings {
 }
 
 export interface Service {
+  _key?: string
   title: string
   description: string
   slug: string

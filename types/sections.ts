@@ -13,25 +13,27 @@ export interface SectionHero {
   staticImageSrc?: string
 }
 
-export interface SectionServices {
+/** Base for all section types - _key from Sanity ensures unique React keys */
+interface SectionBase {
+  _key?: string
+}
+
+export interface SectionServices extends SectionBase {
   _type: 'sectionServices'
-  _key: string
   title: string
   description: string
   services: Service[]
 }
 
-export interface SectionTestimonials {
+export interface SectionTestimonials extends SectionBase {
   _type: 'sectionTestimonials'
-  _key: string
   title: string
   description: string
   testimonials: Testimonial[]
 }
 
-export interface SectionCTA {
+export interface SectionCTA extends SectionBase {
   _type: 'sectionCTA'
-  _key: string
   headline?: string
   text?: PortableTextBlock[]
   primaryCta?: { label: string; href: string }
@@ -39,25 +41,22 @@ export interface SectionCTA {
   darkBackground?: boolean
 }
 
-export interface SectionCards {
+export interface SectionCards extends SectionBase {
   _type: 'sectionCards'
-  _key: string
   title: string
   description: string
   cards: Card[]
 }
 
-export interface SectionList {
+export interface SectionList extends SectionBase {
   _type: 'sectionList'
-  _key: string
   title: string
   description: string
   listItems: ListItem[]
 }
 
-export interface SectionContact {
+export interface SectionContact extends SectionBase {
   _type: 'sectionContact'
-  _key: string
   visibleFields?: string[]
   visibleContactInfo?: string[]
 }
