@@ -16,6 +16,19 @@ const JobOfferItem = ({
   index,
 }: JobOfferType) => {
   const t = useTranslations("jobOffers");
+  const contractTypeText = () => {
+    switch (contractType) {
+      case 'fullTime':
+        return t("fullTime");
+      case 'partTime':
+        return t("partTime");
+      case 'freelance':
+        return t("freelance");
+      default:
+        return t("fullTime");
+    }
+  }
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -58,7 +71,7 @@ const JobOfferItem = ({
         {contractType && (
           <span className="flex items-center gap-1">
             <Briefcase className="h-4 w-4" />
-            {contractType}
+            {contractTypeText()}
           </span>
         )}
       </div>

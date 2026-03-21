@@ -29,6 +29,20 @@ const JobOffer = ({
       ← {t("backToOffers")}
     </Link>
   );
+  
+  const contractTypeText = () => {
+    switch (contractType) {
+      case 'fullTime':
+        return t("fullTime");
+      case 'partTime':
+        return t("partTime");
+      case 'freelance':
+        return t("freelance");
+      default:
+        return t("fullTime");
+    }
+  }
+
   return (
     <section className="bg-soft">
       <div className="mx-auto max-w-3xl px-6 py-20">
@@ -44,7 +58,7 @@ const JobOffer = ({
             {contractType && (
               <span className="flex items-center gap-2">
                 <Briefcase size={16} />
-                {contractType}
+                {contractTypeText()}
               </span>
             )}
             {publishedAt && (

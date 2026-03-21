@@ -170,6 +170,9 @@
     "sendApplication": "Apply now",
     "publishedAt": "Published on ",
     "viewOffer": "View offer",
-    "backToOffers": "Back to all offers"
+    "backToOffers": "Back to all offers",
+    "fullTime": "Full-time",
+    "partTime": "Part-time",
+    "freelance": "Freelance"
   }
 }

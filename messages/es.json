@@ -170,6 +170,9 @@
     "sendApplication": "Enviar candidatura",
     "publishedAt": "Publicado el ",
     "viewOffer": "Ver oferta",
-    "backToOffers": "Volver a todas las ofertas"
+    "backToOffers": "Volver a todas las ofertas",
+    "fullTime": "Tiempo completo",
+    "partTime": "Tiempo parcial",
+    "freelance": "Autónomo"
   }
 }
