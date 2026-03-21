@@ -1,11 +1,12 @@
 import ContactForm from './ContactForm'
 import ContactInfo from './ContactInfo'
+import type { SectionContact } from '@/types/sections'
 
-export default function ContactSection() {
+export default function ContactSection({ visibleFields }: SectionContact) {
   return (
     <section>
       <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <ContactForm />
+        <ContactForm visibleFields={visibleFields} />
         <ContactInfo />
       </div>
     </section>
