@@ -6,6 +6,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { motion } from "framer-motion";
 import cloudImage from "@/components/sections/blog/cabecera_1.jpg";
 import { EVENTS, trackEvent } from "@/lib/tracking";
+import { useTranslations } from "next-intl";
 
 const BlogItem = ({
   title,
@@ -15,6 +16,7 @@ const BlogItem = ({
   coverImage,
   index,
 }: BlogItemProps) => {
+  const t = useTranslations("blog");
   const imageSrc = coverImage
     ? urlFor(coverImage).width(800).height(500).quality(85).url()
     : cloudImage.src;
@@ -67,7 +69,7 @@ const BlogItem = ({
         <p className="text-sm text-gray-medium line-clamp-3">{excerpt}</p>
 
         <span className="mt-auto text-sm font-semibold text-primary">
-          Leer artículo →
+          {t("readArticle")} →
         </span>
       </div>
     </motion.article>

@@ -149,7 +149,8 @@
     "postNotFound": "Post not found",
     "postNotFoundDescription": "This post does not exist",
     "specializedTalent": "Looking for specialized talent?",
-    "contactUs": "Contact us"
+    "contactUs": "Contact us",
+    "readArticle": "Read article"
   },
   "jobOffers": {
     "title": "Job Opportunities",

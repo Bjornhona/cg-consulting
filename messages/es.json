@@ -149,7 +149,8 @@
     "postNotFound": "Artículo no encontrado",
     "postNotFoundDescription": "Este artículo no existe",
     "specializedTalent": "¿Buscas talento especializado?",
-    "contactUs": "Contacta con nosotros"
+    "contactUs": "Contacta con nosotros",
+    "readArticle": "Leer artículo"
   },
   "jobOffers": {
     "title": "Ofertas de trabajo",
