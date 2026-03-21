@@ -7,21 +7,23 @@ import ContactInfo from "@/components/sections/contact/ContactInfo"
 import { useSettings } from "@/lib/SettingsProvider"
 import SocialMediaNav from "../SocialMediaNav"
 import { useCookieConsentContext } from "@/lib/CookieConsentContext"
+import { useTranslations } from "next-intl";
 
 const Footer = ({ navigation }: { navigation: NavItem[]}) => {
+  const t = useTranslations("footer");
   const { openBanner } = useCookieConsentContext();
   const settings = useSettings()
   const currentYear = new Date().getFullYear();
 
   const legalNavigation: NavItem[] = [
-    { href: `/legal-notice`, label: "Aviso Legal" },
-    { href: `/privacy-policy`, label: "Política de Privacidad" },
-    { href: `/cookies-policy`, label: "Política de Cookies" },
-    { href: "#", label: "Cookie Settings", onClick: (e?: React.MouseEvent) => {
+    { href: `/legal-notice`, label: t("legalNotice.title") },
+    { href: `/privacy-policy`, label: t("privacyPolicy.title") },
+    { href: `/cookies-policy`, label: t("cookiesPolicy.title") },
+    { href: "#", label: t("cookieSettings.title"), onClick: (e?: React.MouseEvent) => {
       e?.preventDefault();
       openBanner();
     }},
-  ]
+  ];
 
   return (
     <footer className="bg-gray-dark" data-theme="dark">
@@ -37,14 +39,14 @@ const Footer = ({ navigation }: { navigation: NavItem[]}) => {
 
         <div>
           <h5 className="mb-4 text-white">
-            Navigation
+            {t("navigation")}
           </h5>
           <FooterNav navigation={navigation} />
         </div>
 
         <div>
           <h5 className="mb-4 text-white">
-            Legal
+            {t("legal")}
           </h5>
           <nav className="flex flex-col gap-3">
             {legalNavigation.map(item => (
@@ -59,7 +61,7 @@ const Footer = ({ navigation }: { navigation: NavItem[]}) => {
       </div>
 
       <div className="border-t border-gray-light/10 py-3 text-center text-xs text-gray-medium">
-        © {currentYear} {settings?.siteTitle ?? ""} |{" Created by "}
+        © {currentYear} {settings?.siteTitle ?? ""} | {t("createdBy")}{" "}
         <a
           href="https://graphicsbyasa.com/"
           target="_blank"

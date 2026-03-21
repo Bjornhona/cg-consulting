@@ -5,6 +5,39 @@
     "readMore": "Read more",
     "seeService": "Ver servicio"
   },
+  "footer": {
+    "navigation": "Navegación",
+    "legal": "Legal",
+    "legalNotice": {
+      "title": "Aviso Legal",
+      "legalNoticeText": "En cumplimiento con el deber de información establecido en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se facilitan a continuación los siguientes datos",
+      "webSiteOwner": "Titular del sitio web",
+      "siteTitle": "Nombre comercial",
+      "companyName": "Razón social",
+      "companyNIF": "NIF/CIF",
+      "location": "Domicilio social",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "activity": "Actividad",
+      "activityDescription": "Servicios de consultoría en recursos humanos, selección, evaluación y formación.",
+      "conditionsOfUse": "Condiciones de uso",
+      "conditionsOfUseDescription": "El acceso y uso de este sitio web atribuye la condición de usuario e implica la aceptación plena de las presentes condiciones. El titular se reserva el derecho a modificar, en cualquier momento y sin previo aviso, la presentación y configuración del sitio web, así como el presente aviso legal.",
+      "intellectualProperty": "Propiedad intelectual e industrial",
+      "intellectualPropertyDescription": "Todos los contenidos del sitio web (textos, imágenes, diseño, código fuente, etc.) son titularidad del propietario o de terceros autorizados, quedando prohibida su reproducción sin autorización expresa.",
+      "applicableLaw": "Legislación aplicable y jurisdicción",
+      "applicableLawDescription": "La relación entre el usuario y el titular se regirá por la normativa española vigente. Para cualquier controversia que pudiera derivarse, ambas partes se someterán a los juzgados y tribunales de Barcelona."
+    },
+    "privacyPolicy": {
+      "title": "Política de Privacidad"
+    },
+    "cookiesPolicy": {
+      "title": "Política de Cookies"
+    },
+    "cookieSettings": {
+      "title": "Configuración de Cookies"
+    },
+    "createdBy": "Creado por"
+  },
   "blog": {
     "backToBlog": "Volver al blog"
   }

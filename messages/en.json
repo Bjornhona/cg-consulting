@@ -5,6 +5,39 @@
     "readMore": "Read more",
     "seeService": "See service"
   },
+  "footer": {
+    "navigation": "Navigation",
+    "legal": "Legal",
+    "legalNotice": {
+      "title": "Legal Notice",
+      "legalNoticeText": "In compliance with the duty of information established in Law 34/2002 of July 11 on Information Society Services and Electronic Commerce (LSSI-CE), the following information is provided:",
+      "webSiteOwner": "Website Owner",
+      "siteTitle": "Trade Name",
+      "companyName": "Company Name",
+      "companyNIF": "Tax ID (NIF/CIF)",
+      "location": "Registered Address",
+      "email": "Email",
+      "phone": "Phone",
+      "activity": "Activity",
+      "activityDescription": "Human resources consulting services, recruitment, assessment, and training.",
+      "conditionsOfUse": "Terms of Use",
+      "conditionsOfUseDescription": "Access to and use of this website grants the status of user and implies full acceptance of these terms. The owner reserves the right to modify, at any time and without prior notice, the presentation and configuration of the website, as well as this legal notice.",
+      "intellectualProperty": "Intellectual and Industrial Property",
+      "intellectualPropertyDescription": "All website content (texts, images, design, source code, etc.) is owned by the owner or authorized third parties, and its reproduction without express authorization is prohibited.",
+      "applicableLaw": "Applicable Law and Jurisdiction",
+      "applicableLawDescription": "The relationship between the user and the owner shall be governed by current Spanish legislation. For any disputes that may arise, both parties submit to the courts and tribunals of Barcelona."
+    },
+    "privacyPolicy": {
+      "title": "Privacy Policy"
+    },
+    "cookiesPolicy": {
+      "title": "Cookies Policy"
+    },
+    "cookieSettings": {
+      "title": "Cookie Settings"
+    },
+    "createdBy": "Created by"
+  },
   "blog": {
     "backToBlog": "Back to blog"
   }
