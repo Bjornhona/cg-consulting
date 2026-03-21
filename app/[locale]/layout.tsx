@@ -1,4 +1,4 @@
-import { getNavigation, getFooterNavigation } from "@/sanity/queries";
+import { getNavigation } from "@/sanity/queries";
 import Header from "@/components/ui/navigation/header/Header";
 import Footer from "@/components/ui/navigation/footer/Footer";
 import CookieBanner from "@/components/ui/cookie-banner/CookieBanner";
@@ -20,10 +20,7 @@ export default async function RootLayout({ children, params }: Props) {
   }
 
   const messages = await getMessages();
-  const [navigation, footerNavigation] = await Promise.all([
-    getNavigation(locale),
-    getFooterNavigation(locale),
-  ]);
+  const navigation = await getNavigation(locale);
 
   return (
     <div className="min-h-screen flex flex-col justify-between">
@@ -35,7 +32,7 @@ export default async function RootLayout({ children, params }: Props) {
             <CookieBanner />
           </ClientOnly>
         </main>
-        <Footer navigation={footerNavigation?.items ?? []} />
+        <Footer navigation={navigation?.items ?? []} />
       </NextIntlClientProvider>
     </div>
   );

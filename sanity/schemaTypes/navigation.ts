@@ -9,7 +9,7 @@ export const navigation = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'For internal reference only (e.g. Main Navigation, Footer Navigation)',
+      description: 'For internal reference only (e.g. Main Navigation)',
     }),
     defineField({
       name: 'language',

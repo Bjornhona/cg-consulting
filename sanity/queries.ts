@@ -68,7 +68,7 @@ export const getPageBySlug = async (slug: string, lang: string) => {
 }
 
 export const navigationQuery = groq`
-*[_type == "navigation" && title != "Footer Navigation" && language == $lang][0]{
+*[_type == "navigation" && language == $lang][0]{
   title,
   language,
   items[]{
@@ -88,25 +88,6 @@ export const getNavigation = async (lang: string) => {
     navigation = await client.fetch(navigationQuery, { lang: "en" }, { next: { revalidate: 60 } });
   }
   return navigation
-}
-
-export const footerNavigationQuery = groq`
-*[_type == "navigation" && title == "Footer Navigation" && language == $lang][0]{
-  title,
-  language,
-  items[]{
-    label,
-    href,
-    isPrimary
-  }
-}`
-
-export const getFooterNavigation = async (lang: string) => {
-  let footerNavigation = await client.fetch(footerNavigationQuery, { lang })
-  if (!footerNavigation && lang !== "en") {
-    footerNavigation = await client.fetch(footerNavigationQuery, { lang: "en" })
-  }
-  return footerNavigation
 }
 
 export const settingsQuery = groq`
