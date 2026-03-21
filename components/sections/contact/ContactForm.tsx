@@ -8,8 +8,10 @@ import { useMemo, useState } from "react";
 import { useToast } from "@/components/ui/toast/ToastContext";
 import RadioButtons from "@/components/ui/input/RadioButtons";
 import { trackEvent, EVENTS } from "@/lib/tracking";
+import { useTranslations } from "next-intl";
 
 export default function ContactForm() {
+  const t = useTranslations("contact");
   const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -67,13 +69,13 @@ const isPhoneValid = useMemo(() => {
 
       if (!res.ok) {
         const message =
-          data?.error || "No se pudo enviar el mensaje. Inténtalo de nuevo.";
+          data?.error || t("errorSendingMessage");
         throw new Error(message);
       }
 
       showToast(
         "success",
-        "Mensaje enviado correctamente. Te contactaremos pronto."
+        t("successSendingMessage")
       );
 
       // Reset form state
@@ -91,7 +93,7 @@ const isPhoneValid = useMemo(() => {
       const message =
         err instanceof Error
           ? err.message
-          : "Error de red. Inténtalo más tarde.";
+          : t("networkError");
 
       showToast("error", message);
     } finally {
@@ -122,50 +124,50 @@ const isPhoneValid = useMemo(() => {
       />
       <div className="flex flex-col gap-6">
         <Input
-          label="Nombre *"
+          label={t("nameLabel") + " *"}
           name="name"
           required
-          placeholder="Tu nombre"
+          placeholder={t("namePlaceholder")}
           value={form.name}
           onChange={handleChange}
         />
 
         <Input
-          label="Email *"
+          label={t("emailLabel") + " *"}
           name="email"
           type="email"
           required
-          placeholder="tu@email.com"
+          placeholder={t("emailPlaceholder")}
           value={form.email}
           onChange={handleChange}
-          error={form.email && !isEmailValid ? "Email inválido" : undefined}
+          error={form.email && !isEmailValid ? t("invalidEmail") : undefined}
         />
 
         <Input
-          label="Teléfono (opcional)"
+          label={t("phoneLabel")}
           name="phone"
           type="tel"
-          placeholder="+34 612 345 678"
+          placeholder={t("phonePlaceholder")}
           value={form.phone}
           onChange={handleChange}
-          error={form.phone && !isPhoneValid ? "Número de teléfono inválido" : undefined}
+          error={form.phone && !isPhoneValid ? t("invalidPhone") : undefined}
         />
 
         <RadioButtons purpose={form.purpose} handleChange={handleChange} />
 
         <Input
-          label="Empresa (opcional)"
+          label={t("companyLabel")}
           name="company"
-          placeholder="Nombre de la empresa"
+          placeholder={t("companyPlaceholder")}
           value={form.company}
           onChange={handleChange}
         />
 
         <Textarea
-          label="Mensaje *"
+          label={t("messageLabel") + " *"}
           name="message"
           required
-          placeholder="Cuéntanos brevemente en qué podemos ayudarte"
+          placeholder={t("messagePlaceholder")}
           rows={5}
           value={form.message}
           onChange={handleChange}
@@ -181,13 +183,13 @@ const isPhoneValid = useMemo(() => {
             className="mt-1 accent-primary"
           />
           <span>
-            He leído y acepto la{" "}
+            {t("privacyAcceptedLabel")} {" "}
             <Link
               href="/privacy-policy"
               target="_blank"
               className="underline hover:text-white transition-colors"
             >
-              Política de Privacidad
+              {t("privacyPolicyLink")}
             </Link>{" "}
             *
           </span>
@@ -205,12 +207,12 @@ const isPhoneValid = useMemo(() => {
             });
           }}
         >
-          {loading ? "Enviando..." : "Enviar mensaje"}
+          {loading ? t("sending") + "..." : t("submitButton")}
         </Button>
       </div>
 
       <p className="text-xs text-gray-medium">
-        * Campos obligatorios. Respondemos normalmente en menos de 24 horas.
+        * {t("requiredFields")}
       </p>
     </motion.form>
   );

@@ -1,10 +1,13 @@
 import { RadioButtonsProps } from "@/components/ui/input/types";
+import { useTranslations } from "next-intl";
 
 const RadioButtons = ({ purpose, handleChange }: RadioButtonsProps) => {
+  const t = useTranslations("contact");
+
   return (
     <div className="flex flex-col gap-2">
       <label>
-        Identifica el propósito de la consulta (opcional)
+        {t("purposeLabel")}
       </label>
 
       <label htmlFor="purpose" className="flex items-center gap-2">
@@ -16,7 +19,7 @@ const RadioButtons = ({ purpose, handleChange }: RadioButtonsProps) => {
           checked={purpose === "Empresa / Cliente"}
           onChange={handleChange}
         />
-        <p>Soy Empresa / Cliente</p>
+        <p>{t("iAmCompanyClient")}</p>
       </label>
 
       <label className="flex items-center gap-2">
@@ -28,7 +31,7 @@ const RadioButtons = ({ purpose, handleChange }: RadioButtonsProps) => {
           checked={purpose === "Candidato"}
           onChange={handleChange}
         />
-        <p>Soy Candidato</p>
+        <p>{t("iAmCandidate")}</p>
       </label>
     </div>
   );
