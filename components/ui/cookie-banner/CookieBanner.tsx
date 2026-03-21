@@ -2,9 +2,12 @@
 import { useCookieConsentContext } from "@/lib/CookieConsentContext";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../button/Button";
+import { useTranslations } from "next-intl";
 
 export default function CookieBanner() {
-  const { showBanner, acceptCookies, rejectCookies } = useCookieConsentContext();
+  const t = useTranslations("footer.cookieSettings");
+  const { showBanner, acceptCookies, rejectCookies } =
+    useCookieConsentContext();
 
   return (
     <AnimatePresence>
@@ -17,31 +20,25 @@ export default function CookieBanner() {
           className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-6 z-50 rounded-t-lg border-t border-gray-200 gap-4 flex flex-col"
         >
           <p>
-            We use cookies for analytics to improve your experience. By clicking
-            <strong> “Accept cookies”</strong>, you allow us to use Google Analytics
-            or other analytics scripts.
+            {t.rich("weUseCookies", {
+              strong: (chunks) => <strong>{chunks}</strong>,
+            })}
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <Button
-              onClick={acceptCookies}
-              variant="primary"
-              size="sm"
-            >
-              Accept cookies
+            <Button onClick={acceptCookies} variant="primary" size="sm">
+              {t("acceptCookies")}
             </Button>
 
-            <Button
-              onClick={rejectCookies}
-              variant="secondary"
-              size="sm"
-            >
-              Reject cookies
+            <Button onClick={rejectCookies} variant="secondary" size="sm">
+              {t("rejectCookies")}
             </Button>
           </div>
 
           <p>
-            You can change consent anytime via the <strong>“Cookie Settings”</strong> link in the footer.
+            {t.rich("changeOrWithdrawConsent", {
+              strong: (chunks) => <strong>{chunks}</strong>,
+            })}
           </p>
         </motion.div>
       )}

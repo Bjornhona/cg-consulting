@@ -1,112 +1,161 @@
 "use client";
 import { useSettings } from "@/lib/SettingsProvider";
+import { useTranslations } from "next-intl";
 
 const CookiesPolicyContent = () => {
+  const t = useTranslations("footer.cookiesPolicy");
   const LAST_UPDATED = "2026-01-05";
   const settings = useSettings();
-  
+
   const CookiePolicyText_ES = (
     <>
-      <h1>Política de Cookies</h1>
-      <p><strong>Última actualización:</strong> {LAST_UPDATED}</p>
+      <h1>{t("title")}</h1>
       <p>
-        Este sitio web utiliza cookies para mejorar la experiencia del usuario y analizar el tráfico del sitio web. A continuación, encontrarás información detallada sobre qué son las cookies, qué cookies utilizamos y cómo puedes gestionar tus preferencias.
+        <strong>{t("lastUpdated")}:</strong> {LAST_UPDATED}
       </p>
-      <h3>1. ¿Qué son las cookies?</h3>
-      <p>
-        Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, tablet, teléfono móvil) cuando visitas un sitio web. Las cookies permiten al sitio web recordar tus acciones y preferencias sobre un periodo de tiempo, por lo que no tienes que volver a introducirlos cada vez que vuelvas al sitio.
-      </p>
-      <p>Las cookies pueden ser:</p>
+      <p>{t("cookiesDescription")}</p>
+      <h3>1. {t("whatAreCookies")}</h3>
+      <p>{t("whatAreCookiesDescription")}</p>
+      <p>{t("cookiesCanBe")}:</p>
       <ul className="list-disc list-inside">
-        <li><strong>Cookies de primeras partes:</strong> establecidas por este sitio web</li>
-        <li><strong>Cookies de terceras partes:</strong> establecidas por servicios externos</li>
+        <li>
+          {t.rich("firstPartyCookies", {
+            strong: (chunks) => <strong>{chunks}</strong>,
+          })}
+        </li>
+        <li>
+          {t.rich("thirdPartyCookies", {
+            strong: (chunks) => <strong>{chunks}</strong>,
+          })}
+        </li>
       </ul>
-      
-      <h3>2. Tipos de cookies utilizadas en este sitio web</h3>
-      <h5>a) Cookies estrictamente necesarias</h5>
-      <p>
-        Estas cookies son esenciales para que el sitio web funcione correctamente y no pueden ser desactivadas. Se suelen establecer en respuesta a acciones como la configuración de tus preferencias de privacidad.
-      </p>
-      <p>Ejemplo:</p>
+
+      <h3>2. {t("cookieTypesUsed")}</h3>
+      <h5>a) {t("cookieTypesUsedDescription")}</h5>
+      <p>{t("necessaryCookiesDescription")}</p>
+      <p>{t("example")}:</p>
       <ul className="list-disc list-inside">
-        <li>Estado de consentimiento de cookies</li>
+        <li>{t("necessaryCookiesExampleDescription")}</li>
       </ul>
-      <h5>b) Cookies de análisis (opcionales)</h5>
+      <h5>b) {t("analysisCookies")}</h5>
+      <p>{t("analysisCookiesDescription")}</p>
       <p>
-        Las cookies de análisis nos ayudan a entender cómo los visitantes interactúan con el sitio web recopilando información de forma anónima. Esto nos permite mejorar el rendimiento y el contenido del sitio web.
+        {t.rich("useOfAnalysisCookies", {
+          strong: (chunks) => <strong>{chunks}</strong>,
+        })}
       </p>
-      <p>Estas cookies <strong>solo se utilizan si das tu consentimiento explícitamente.</strong></p>
-      <p>Posibles herramientas de análisis:</p>
+      <p>{t("possibleAnalysisTools")}:</p>
       <ul className="list-disc list-inside">
         <li>Google Analytics (GA4)</li>
       </ul>
-      <p>Los datos recopilados pueden incluir:</p>
+      <p>{t("collectedData")}:</p>
       <ul className="list-disc list-inside">
-        <li>Páginas visitadas</li>
-        <li>Tiempo de permanencia en las páginas</li>
-        <li>Tipo de dispositivo y navegador (anónimo)</li>
+        <li>{t("pagesVisited")}</li>
+        <li>{t("timeSpentOnPages")}</li>
+        <li>{t("deviceAndBrowser")}</li>
       </ul>
-      <p>La anonimización de IP está habilitada donde sea aplicable.</p>
-      
-      <h3>3. Lista de cookies</h3>
+      <p>{t("ipAnonymization")}</p>
+
+      <h3>3. {t("cookiesList")}</h3>
       <table>
         <thead>
           <tr className="border-b border-gray-200">
-            <th className="text-left">Nombre de la cookie</th>
-            <th className="text-left">Proveedor</th>
-            <th className="text-left p-2">Propósito</th>
-            <th className="text-left p-2">Duración</th>
+            <th className="text-left">{t("cookieName")}</th>
+            <th className="text-left">{t("cookieProvider")}</th>
+            <th className="text-left p-2">{t("cookiesPurpose")}</th>
+            <th className="text-left p-2">{t("cookiesDuration")}</th>
           </tr>
         </thead>
         <tbody>
           <tr className="border-b border-gray-100">
             <td>cookie_consent</td>
-            <td>Este sitio web</td>
-            <td>Almacena la preferencia de cookies del usuario</td>
-            <td>1 año</td>
+            <td>{t("thisWebsite")}</td>
+            <td>{t("savingUserCookiePreference")}</td>
+            <td>{t("oneYear")}</td>
           </tr>
           <tr className="border-b border-gray-100">
             <td>_ga, _ga_*</td>
             <td>Google Analytics</td>
-            <td>Análisis de uso del sitio web (solo si se acepta)</td>
-            <td>Hasta 2 años</td>
+            <td>{t("webAnalysis")}</td>
+            <td>{t("upToTwoYears")}</td>
           </tr>
         </tbody>
       </table>
-      <p className="text-gray-200"> * Esta lista puede ser actualizada si se añaden nuevos servicios.</p>
+      <p className="text-gray-200"> * {t("listUpdated")}</p>
 
-      <h3>4. Gestión de preferencias de cookies</h3>
-      <p>Cuando visites este sitio web, podrás:</p>
+      <h3>4. {t("cookiesPreferencesManagement")}</h3>
+      <p>{t("onThisWebsiteYouCan")}:</p>
       <ul className="list-disc list-inside">
-        <li><strong>Aceptar cookies</strong></li>
-        <li><strong>Rechazar cookies</strong></li>
+        <li>
+          <strong>{t("acceptCookies")}</strong>
+        </li>
+        <li>
+          <strong>{t("rejectCookies")}</strong>
+        </li>
       </ul>
       <p>
-        Puedes cambiar o retirar tu consentimiento en cualquier momento haciendo clic en el enlace <strong>“Configuración de cookies”</strong> disponible en el pie de página del sitio web.
+        {t.rich("changeOrWithdrawConsent", {
+          strong: (chunks) => <strong>{chunks}</strong>,
+        })}
       </p>
-      
-      <h3>5. ¿Cómo desactivar las cookies a través de tu navegador?</h3>
-      <p>
-        También puedes controlar y eliminar cookies a través de la configuración de tu navegador. Por favor, ten en cuenta que desactivar las cookies puede afectar la funcionalidad de este sitio web.
-      </p>
-      <p>Instrucciones para navegadores populares:</p>
+
+      <h3>5. {t("deactivateCookies")}</h3>
+      <p>{t("controlAndDeleteCookies")}</p>
+      <p>{t("navigationInstructions")}:</p>
       <ul className="list-disc list-inside">
-        <li>Chrome: <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">https://support.google.com/chrome/answer/95647</a></li>
-        <li>Firefox: <a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" target="_blank" rel="noopener noreferrer">https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences</a></li>
-        <li>Safari: <a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">https://support.apple.com/en-gb/guide/safari/sfri11471/mac</a></li>
-        <li>Edge: <a href="https://support.microsoft.com/en-us/help/4027947" target="_blank" rel="noopener noreferrer">https://support.microsoft.com/en-us/help/4027947</a></li>
+        <li>
+          Chrome:{" "}
+          <a
+            href="https://support.google.com/chrome/answer/95647"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://support.google.com/chrome/answer/95647
+          </a>
+        </li>
+        <li>
+          Firefox:{" "}
+          <a
+            href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences
+          </a>
+        </li>
+        <li>
+          Safari:{" "}
+          <a
+            href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://support.apple.com/en-gb/guide/safari/sfri11471/mac
+          </a>
+        </li>
+        <li>
+          Edge:{" "}
+          <a
+            href="https://support.microsoft.com/en-us/help/4027947"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://support.microsoft.com/en-us/help/4027947
+          </a>
+        </li>
       </ul>
-      
-      <h3>6. Cambios a esta Política de Cookies</h3>
+
+      <h3>6. {t("cookiesPolicyChages")}</h3>
+      <p>{t("cookiesPolicyChagesDescription")}</p>
+
+      <h3>7. {t("contact")}</h3>
+      <p>{t("anyQuestions")}:</p>
       <p>
-        Esta Política de Cookies puede ser actualizada para reflejar cambios en requisitos legales o funcionalidad del sitio web. Cualquier cambio se publicará en esta página con una fecha de revisión actualizada.
+        <strong>{settings?.companyName}</strong>
       </p>
-      
-      <h3>7. Contacto</h3>
       <p>
-        Si tienes alguna pregunta sobre esta Política de Cookies o cómo utilizamos las cookies, puedes contactarnos a través de:</p>
-      <p><strong>{settings?.companyName}</strong></p>
-      <p><strong>Email:</strong> {settings?.email}</p>
+        <strong>Email:</strong> {settings?.email}
+      </p>
     </>
   );
 
