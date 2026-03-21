@@ -36,6 +36,7 @@ const List = ({ title, description, listItems }: SectionList) => {
               transition={{ duration: 0.4, delay: index * 0.06 }}
               className="
                 flex gap-4
+                items-center
                 rounded-xl
                 border border-gray-light
                 bg-white
