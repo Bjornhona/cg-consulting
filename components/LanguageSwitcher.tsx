@@ -11,7 +11,6 @@ export default function LanguageSwitcher() {
   const settings = useSettings();
   const availableLanguages = settings?.languages || ["en"];
 
-  // pathname from next-intl has NO locale prefix (e.g. "/about" or "/")
   const switchLanguage = (newLocale: string) => {
     const path = pathname === "/" ? "" : pathname;
     return `/${newLocale}${path}`;

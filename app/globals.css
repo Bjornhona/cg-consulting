@@ -71,7 +71,7 @@ h5, th {
   letter-spacing: 0.05em;
 }
 
-p, li, td {
+p, li, td, select, option {
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   color: var(--surface-text-medium);
