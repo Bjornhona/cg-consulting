@@ -7,46 +7,48 @@ import { Metadata } from "next"
 import { getSettings } from "@/sanity/queries"
 import { SectionBlogPosts, SectionHero, SectionCTA } from "@/types/sections"
 import { PortableTextBlock } from "next-sanity"
-import { getLocale } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 
 export const generateMetadata = async (): Promise<Metadata> => {
+  const t = await getTranslations("blog");
   const locale = await getLocale()
   const settings = await getSettings(locale)
   return {
-    title: `Blog | ${settings.siteTitle}`,
-    description: 'Artículos sobre selección de talento, mercado laboral y liderazgo.',
+    title: `${t("title")} | ${settings.siteTitle}`,
+    description: t("metaDescription"),
   }
 }
 
 const BlogPage = async () => {
+  const t = await getTranslations("blog");
   const locale = await getLocale()
   const blogPosts = await getBlogPosts(12, locale)
 
   const heroData: SectionHero = {
     _type: 'sectionHero' as const,
-    headline: 'Blog',
-    subheadline: [{_type: 'block', children: [{_type: 'span', text: 'Descubre nuestras últimas noticias y artículos'}]}] as PortableTextBlock[],
+    headline: t("title"),
+    subheadline: [{_type: 'block', children: [{_type: 'span', text: t("description")}]}] as PortableTextBlock[],
     staticImageSrc: image.src,
   }
 
   const blogPostsData_ES: SectionBlogPosts= {
     _type: 'sectionBlogPosts' as const,
-    title: 'Últimos artículos',
-    description: 'Tendencias, insights y novedades del sector',
+    title: t("latestPosts"),
+    description: t("trends"),
     blogPosts: blogPosts,
   }
 
   const ctaData: SectionCTA = {
     _type: 'sectionCTA' as const,
-    headline: '¿Quieres unirte a nuestro equipo?',
+    headline: t("joinOurTeam"),
     text: [{
       _type: "block",
       children: [{
         _type: "span",
-        text: "Consulta nuestras oportunidades laborales actuales o ponte en contacto con nosotros."
+        text: t("opportunities"),
       }]
     }],
-    primaryCta: { label: 'Contactar', href: '/contact' },
+    primaryCta: { label: t("contactUs"), href: '/contact' },
   }
 
   return (

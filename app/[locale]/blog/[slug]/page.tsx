@@ -1,5 +1,5 @@
 import { getBlogPostBySlug, getSettings } from "@/sanity/queries"
-import { getLocale } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 import { Metadata } from "next"
 import BlogPost from "@/components/sections/blog/Post"
 import Hero from "@/components/sections/hero/Hero"
@@ -16,6 +16,7 @@ export async function generateMetadata(
   if (!slug) {
     notFound()
   }
+  const t = await getTranslations("blog");
   const locale = await getLocale()
   const [post, settings] = await Promise.all([
     getBlogPostBySlug(slug, locale),
@@ -24,8 +25,8 @@ export async function generateMetadata(
 
   if (!post) {
     return {
-      title: "Post not found",
-      description: "This post does not exist",
+      title: t("postNotFound"),
+      description: t("postNotFoundDescription"),
     }
   }
 
@@ -46,12 +47,13 @@ export async function generateMetadata(
 }
 
 const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
+  const t = await getTranslations("blog");
   const { slug } = await params
   if (!slug) {
     return notFound()
   }
-  const locale = await getLocale()
-  const post = await getBlogPostBySlug(slug, locale)
+  const locale = await getLocale();
+  const post = await getBlogPostBySlug(slug, locale);
   if (!post) {
     return notFound()
   }
@@ -61,16 +63,16 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   }
   const ctaData: SectionCTA = {
     _type: "sectionCTA" as const,
-    headline: "¿Buscas talento especializado?",
+    headline: t("specializedTalent"),
     text: [{
       _type: "block",
       children: [{
         _type: "span",
-        text: "Contacta con nosotros"
+        text: t("contactUs"),
       }]
     }],
     primaryCta: {
-      label: "Contactar",
+      label: t("contact"),
       href: "/contact",
     }
   }

@@ -137,6 +137,18 @@
     "createdBy": "Created by"
   },
   "blog": {
-    "backToBlog": "Back to blog"
+    "title": "Blog",
+    "description": "Discover our latest news and articles",
+    "metaDescription": "Articles on talent acquisition, the job market, and leadership.",
+    "latestPosts": "Latest articles",
+    "trends": "Trends, insights, and industry updates",
+    "joinOurTeam": "Want to join our team?",
+    "opportunities": "Explore our current job opportunities or get in touch with us.",
+    "contact": "Contact",
+    "backToBlog": "Back to blog",
+    "postNotFound": "Post not found",
+    "postNotFoundDescription": "This post does not exist",
+    "specializedTalent": "Looking for specialized talent?",
+    "contactUs": "Contact us"
   }
 }

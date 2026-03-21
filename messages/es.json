@@ -137,6 +137,18 @@
     "createdBy": "Creado por"
   },
   "blog": {
-    "backToBlog": "Volver al blog"
+    "title": "Blog",
+    "description": "Descubre nuestras últimas noticias y artículos",
+    "metaDescription": "Artículos sobre selección de talento, mercado laboral y liderazgo.",
+    "latestPosts": "Últimos artículos",
+    "trends": "Tendencias, insights y novedades del sector",
+    "joinOurTeam": "¿Quieres unirte a nuestro equipo?",
+    "opportunities": "Consulta nuestras oportunidades laborales actuales o ponte en contacto con nosotros.",
+    "contact": "Contactar",
+    "backToBlog": "Volver al blog",
+    "postNotFound": "Artículo no encontrado",
+    "postNotFoundDescription": "Este artículo no existe",
+    "specializedTalent": "¿Buscas talento especializado?",
+    "contactUs": "Contacta con nosotros"
   }
 }
