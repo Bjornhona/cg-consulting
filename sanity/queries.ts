@@ -54,6 +54,7 @@ export const pageQuery = groq`
     },
     _type == "sectionContact" => {
       visibleFields,
+      visibleContactInfo,
     },
   }
 }`

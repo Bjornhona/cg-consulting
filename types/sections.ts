@@ -53,6 +53,7 @@ export interface SectionList {
 export interface SectionContact {
   _type: 'sectionContact'
   visibleFields?: string[]
+  visibleContactInfo?: string[]
 }
 
 export interface SectionBlogPosts {
