@@ -38,6 +38,20 @@ export const jobOffer = defineType({
         }),
     }),
     defineField({
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      initialValue: 'en',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Spanish', value: 'es' },
+        ],
+      },
+      description: 'Select the language for this job offer. Create one per active language.',
+      validation: (Rule) => Rule.required()
+    }),
+    defineField({
       name: 'location',
       title: 'Job Location (City/Remote)',
       type: 'string',

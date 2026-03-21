@@ -7,9 +7,11 @@ import { Metadata } from "next"
 import { getSettings } from "@/sanity/queries"
 import { SectionBlogPosts, SectionHero, SectionCTA } from "@/types/sections"
 import { PortableTextBlock } from "next-sanity"
+import { getLocale } from "next-intl/server"
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const settings = await getSettings()
+  const locale = await getLocale()
+  const settings = await getSettings(locale)
   return {
     title: `Blog | ${settings.siteTitle}`,
     description: 'Artículos sobre selección de talento, mercado laboral y liderazgo.',
@@ -17,7 +19,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const BlogPage = async () => {
-  const blogPosts = await getBlogPosts(12)
+  const locale = await getLocale()
+  const blogPosts = await getBlogPosts(12, locale)
 
   const heroData: SectionHero = {
     _type: 'sectionHero' as const,

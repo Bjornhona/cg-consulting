@@ -9,7 +9,21 @@ export const navigation = defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      description: 'For internal reference only (e.g. Main Navigation)',
+      description: 'For internal reference only (e.g. Main Navigation, Footer Navigation)',
+    }),
+    defineField({
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      initialValue: 'en',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Spanish', value: 'es' },
+        ],
+      },
+      description: 'Select the language for this navigation. Create one per active language.',
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'items',

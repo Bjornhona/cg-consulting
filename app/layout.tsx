@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Raleway,
-} from "next/font/google";
+import { Raleway } from "next/font/google";
 import "./globals.css";
 import { SettingsProvider } from "@/lib/SettingsProvider";
 import { ToastProvider } from "@/components/ui/toast/ToastContext";
@@ -89,7 +87,7 @@ export default async function RootLayout({
             measurementId={settings?.gaMeasurementId}
             analyticsMode={settings?.analyticsMode}
           />
-          <SettingsProvider settings={settings}>
+          <SettingsProvider settings={settings ?? null}>
             <ToastProvider>
               {children}
             </ToastProvider>

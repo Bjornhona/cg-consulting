@@ -8,7 +8,7 @@ export function SettingsProvider({
   settings,
   children,
 }: {
-  settings: Settings
+  settings: Settings | null
   children: React.ReactNode
 }) {
   return (
@@ -20,8 +20,5 @@ export function SettingsProvider({
 
 export function useSettings() {
   const context = useContext(SettingsContext)
-  if (!context) {
-    throw new Error('useSettings must be used within a SettingsProvider')
-  }
   return context
 }

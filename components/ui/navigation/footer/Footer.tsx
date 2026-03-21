@@ -7,18 +7,18 @@ import ContactInfo from "@/components/sections/contact/ContactInfo"
 import { useSettings } from "@/lib/SettingsProvider"
 import SocialMediaNav from "../SocialMediaNav"
 import { useCookieConsentContext } from "@/lib/CookieConsentContext"
-import { getLocale } from "next-intl/server"
+import { useLocale } from "next-intl"
 
 const Footer = ({ navigation }: { navigation: NavItem[]}) => {
   const { openBanner } = useCookieConsentContext();
-  const locale = getLocale();
+  const locale = useLocale();
   const settings = useSettings()
   const currentYear = new Date().getFullYear();
 
   const legalNavigation: NavItem[] = [
-    { href: `${locale}/legal-notice`, label: "Aviso Legal" },
-    { href: `${locale}/privacy-policy`, label: "Política de Privacidad" },
-    { href: `${locale}/cookies-policy`, label: "Política de Cookies" },
+    { href: `/${locale}/legal-notice`, label: "Aviso Legal" },
+    { href: `/${locale}/privacy-policy`, label: "Política de Privacidad" },
+    { href: `/${locale}/cookies-policy`, label: "Política de Cookies" },
     { href: "#", label: "Cookie Settings", onClick: (e?: React.MouseEvent) => {
       e?.preventDefault();
       openBanner();
@@ -32,7 +32,7 @@ const Footer = ({ navigation }: { navigation: NavItem[]}) => {
         <div className="space-y-4">
           <Logo type="footer" />
           <p className="text-sm text-gray-medium max-w-xs">
-            {settings.siteDescription}
+            {settings?.siteDescription}
           </p>
           <SocialMediaNav />
         </div>
@@ -61,7 +61,7 @@ const Footer = ({ navigation }: { navigation: NavItem[]}) => {
       </div>
 
       <div className="border-t border-gray-light/10 py-3 text-center text-xs text-gray-medium">
-        © {currentYear} {settings.siteTitle} |{" Created by "}
+        © {currentYear} {settings?.siteTitle ?? ""} |{" Created by "}
         <a
           href="https://graphicsbyasa.com/"
           target="_blank"

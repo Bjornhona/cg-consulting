@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import NavLink from "./NavLink";
 import type { NavItem } from "@/types/sanity";
-import { usePathname } from "next/navigation";
+import { usePathname } from "@/i18n/navigation";
 import clsx from "clsx";
 import { useState } from "react";
 import { useHasHover } from "@/lib/useHasHover";

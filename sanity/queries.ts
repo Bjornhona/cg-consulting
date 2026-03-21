@@ -99,7 +99,10 @@ export const footerNavigationQuery = groq`
 }`
 
 export const getFooterNavigation = async (lang: string) => {
-  const footerNavigation = await client.fetch(footerNavigationQuery, { lang })
+  let footerNavigation = await client.fetch(footerNavigationQuery, { lang })
+  if (!footerNavigation && lang !== "en") {
+    footerNavigation = await client.fetch(footerNavigationQuery, { lang: "en" })
+  }
   return footerNavigation
 }
 
@@ -117,6 +120,8 @@ export const settingsQuery = groq`
   instagramUrl,
   logo,
   iconLogo,
+  languages,
+  defaultLanguage,
   analyticsMode,
   gaMeasurementId,
   gtmId,

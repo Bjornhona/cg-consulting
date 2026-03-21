@@ -1,19 +1,21 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { urlFor } from "@/sanity/lib/image";
 import { useSettings } from "@/lib/SettingsProvider";
+import { useLocale } from "next-intl";
 
 export default function Logo({type}: {type: "header" | "footer"}) {
-  const settings = useSettings()
-  const alt = settings?.siteTitle ?? "Home"
-  const textFallback = settings?.companyName ?? "Tech Beach Studio"
-  const logo = type === "header" ? settings?.logo : settings?.iconLogo ?? settings?.logo
+  const locale = useLocale();
+  const settings = useSettings();
+  const alt = settings?.siteTitle ?? "Home";
+  const textFallback = settings?.companyName ?? "Tech Beach Studio";
+  const logo = type === "header" ? settings?.logo : settings?.iconLogo ?? settings?.logo;
 
   return (
-    <Link href="/home" aria-label={alt} className="block w-auto max-w-xs">
+    <Link href={`/${locale}`} aria-label={alt} className="block w-auto max-w-xs">
       <motion.div
         whileHover={{ opacity: 0.85 }}
         transition={{ duration: 0.2, ease: "easeOut" }}

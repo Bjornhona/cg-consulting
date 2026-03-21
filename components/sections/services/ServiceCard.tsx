@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { motion } from "framer-motion";
 import { Users, ClipboardCheck, GraduationCap, LucideIcon } from 'lucide-react'
 import { Service } from "@/types/sanity";
@@ -47,7 +47,7 @@ const ServiceCard = ({ service, index }: { service: Service, index: number }) =>
         <p className="mb-6">{service.description}</p>
 
         <span className="inline-flex items-center text-sm font-medium text-primary">
-          {t("common.seeService")} →
+          {t("seeService")} →
         </span>
       </Link>
     </motion.div>

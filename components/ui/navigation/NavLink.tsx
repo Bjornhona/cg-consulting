@@ -1,6 +1,5 @@
 'use client'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, Link } from "@/i18n/navigation";
 import { NavItem } from '@/types/sanity'
 import clsx from 'clsx'
 

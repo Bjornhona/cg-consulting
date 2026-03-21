@@ -2,9 +2,8 @@
 import { motion } from "framer-motion"
 import { PortableText } from "next-sanity"
 import { BlogPostProps } from "./types"
-import Link from "next/link"
+import { Link } from "@/i18n/navigation"
 import { EVENTS, trackEvent } from "@/lib/tracking"
-import { getLocale } from "next-intl/server"
 import { useTranslations } from "next-intl"
 
 const BlogPost = ({
@@ -13,12 +12,11 @@ const BlogPost = ({
   publishedAt,
   content
 }: BlogPostProps) => {
-  const locale = getLocale();
   const t = useTranslations("blog");
 
   const backToBlogLink = (
     <Link
-      href={`${locale}/blog`}
+      href={`/blog`}
       className="flex items-center gap-2 text-sm text-primary hover:text-primary-hover transition-colors"
       onClick={() => {
         trackEvent(EVENTS.BACK_CLICK, {

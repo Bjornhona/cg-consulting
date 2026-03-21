@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Input from "@/components/ui/input/Input";
 import Textarea from "@/components/ui/input/TextArea";
 import Button from "@/components/ui/button/Button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useMemo, useState } from "react";
 import { useToast } from "@/components/ui/toast/ToastContext";
 import RadioButtons from "@/components/ui/input/RadioButtons";

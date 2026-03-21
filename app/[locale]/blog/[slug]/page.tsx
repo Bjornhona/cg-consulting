@@ -1,4 +1,5 @@
 import { getBlogPostBySlug, getSettings } from "@/sanity/queries"
+import { getLocale } from "next-intl/server"
 import { Metadata } from "next"
 import BlogPost from "@/components/sections/blog/Post"
 import Hero from "@/components/sections/hero/Hero"
@@ -15,8 +16,11 @@ export async function generateMetadata(
   if (!slug) {
     notFound()
   }
-  const post = await getBlogPostBySlug(slug)
-  const settings = await getSettings()
+  const locale = await getLocale()
+  const [post, settings] = await Promise.all([
+    getBlogPostBySlug(slug, locale),
+    getSettings(locale),
+  ])
 
   if (!post) {
     return {
@@ -46,7 +50,8 @@ const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
   if (!slug) {
     return notFound()
   }
-  const post = await getBlogPostBySlug(slug)
+  const locale = await getLocale()
+  const post = await getBlogPostBySlug(slug, locale)
   if (!post) {
     return notFound()
   }

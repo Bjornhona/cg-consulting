@@ -5,16 +5,16 @@ import { useSettings } from '@/lib/SettingsProvider'
 export default function ContactInfo() {
   const settings = useSettings();
   const contactInfoList = [{
-    text: settings.contactPerson,
+    text: settings?.contactPerson,
     icon: User,
   }, {
-    text: settings.phone,
+    text: settings?.phone,
     icon: Phone,
   }, {
-    text: settings.email,
+    text: settings?.email,
     icon: Mail,
   }, {
-    text: settings.location,
+    text: settings?.location,
     icon: MapPin,
   }]
 

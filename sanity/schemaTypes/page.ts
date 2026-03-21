@@ -30,6 +30,7 @@ export const page = defineType({
         ]
       },
       description: "Select the language for this page. Make sure a version exists for each active language in Site Settings.",
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'seo',

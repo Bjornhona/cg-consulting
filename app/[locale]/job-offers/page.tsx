@@ -7,9 +7,11 @@ import CTA from "@/components/sections/CTA"
 import { Metadata } from "next"
 import { PortableTextBlock } from "next-sanity"
 import { SectionHero } from "@/types/sections"
+import { getLocale } from "next-intl/server"
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const settings = await getSettings()
+  const locale = await getLocale()
+  const settings = await getSettings(locale)
   return {
   title: `Ofertas de empleo | ${settings.siteTitle}`,
     description:
@@ -18,14 +20,15 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 const JobOffersPage = async () => {
-  const settings = await getSettings()
+  const locale = await getLocale()
+  const settings = await getSettings(locale)
   const heroData: SectionHero = {
     _type: 'sectionHero' as const,
     headline: 'Ofertas de trabajo',
     subheadline: [{_type: 'block', children: [{_type: 'span', text: `En ${settings.siteTitle} colaboramos con empresas que valoran el talento, la diversidad y el crecimiento profesional. Aquí encontrarás nuestras oportunidades laborales activas, seleccionadas cuidadosamente para asegurar un buen encaje tanto profesional como humano.`}]}] as PortableTextBlock[],
     staticImageSrc: jobOffersImage.src,
   }
-  const jobOffers: JobOfferType[] = await getJobOffers(6)
+  const jobOffers: JobOfferType[] = await getJobOffers(6, locale)
   const jobOffersData_ES = {
     _type: 'sectionJobOffers' as const,
     title: 'Posiciones abiertas',

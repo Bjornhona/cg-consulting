@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { useCookieConsentContext } from "@/lib/CookieConsentContext";
 
 type Props = {

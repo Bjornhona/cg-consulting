@@ -18,7 +18,7 @@ export async function generateMetadata(
   const { slug } = await params;
   const locale = await getLocale();
   const [settings, page] = await Promise.all([
-    getSettings(),
+    getSettings(locale),
     getPageBySlug(slug, locale),
   ])
 

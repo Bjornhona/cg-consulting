@@ -11,7 +11,7 @@ import { getLocale } from 'next-intl/server'
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const [settings, page] = await Promise.all([
-    getSettings(),
+    getSettings(locale),
     getPageBySlug('home', locale),
   ])
 

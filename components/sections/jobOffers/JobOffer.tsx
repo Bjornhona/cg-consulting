@@ -3,7 +3,7 @@
 import { JobOfferType } from "@/types/sanity";
 import { PortableText } from "next-sanity";
 import { MapPin, Briefcase, Calendar } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { EVENTS, trackEvent } from "@/lib/tracking";
 
 const JobOffer = ({

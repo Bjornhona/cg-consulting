@@ -1,5 +1,5 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { useSettings } from "@/lib/SettingsProvider";
 
 export default function LanguageSwitcher() {
@@ -33,39 +33,3 @@ export default function LanguageSwitcher() {
     </select>
   );
 }
-
-// export default function LanguageSwitcher() {
-//   const pathname = usePathname();
-//   const settings = useSettings();
-//   const availableLanguages = settings?.languages || ["en"];
-//   const languages = [
-//     ...availableLanguages.map((lang) => ({
-//       code: lang,
-//       label: lang.toUpperCase(),
-//     })),
-//   ];
-
-//   const switchLanguage = (locale: string) => {
-//     const segments = pathname.split("/");
-
-//     // Replace current locale
-//     segments[1] = locale;
-
-//     return segments.join("/");
-//   };
-
-//   return (
-//     <select
-//       onChange={(e) => {
-//         window.location.href = switchLanguage(e.target.value);
-//       }}
-//       defaultValue={pathname.split("/")[1]}
-//     >
-//       {languages.map((lang) => (
-//         <option key={lang.code} value={lang.code}>
-//           {lang.label}
-//         </option>
-//       ))}
-//     </select>
-//   );
-// }
