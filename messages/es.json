@@ -166,6 +166,9 @@
     "jobNotExists": "Esta oferta laboral no existe",
     "interestedInThisPosition": "¿Te interesa esta oportunidad?",
     "sendYourApplication": "Envíanos tu candidatura y nos pondremos en contacto contigo lo antes posible.",
-    "sendApplication": "Enviar candidatura"
+    "sendApplication": "Enviar candidatura",
+    "publishedAt": "Publicado el ",
+    "viewOffer": "Ver oferta",
+    "backToOffers": "Volver a todas las ofertas"
   }
 }

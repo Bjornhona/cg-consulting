@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, Briefcase, ArrowRight } from "lucide-react";
 import { JobOfferType } from "@/types/sanity";
 import { EVENTS, trackEvent } from "@/lib/tracking";
+import { useTranslations } from "next-intl";
 
 const JobOfferItem = ({
   title,
@@ -14,6 +15,7 @@ const JobOfferItem = ({
   slug,
   index,
 }: JobOfferType) => {
+  const t = useTranslations("jobOffers");
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -69,7 +71,7 @@ const JobOfferItem = ({
       {/* Published at */}
       {publishedAt && (
         <p className="mb-6 text-gray-medium leading-relaxed text-sm">
-          Publicado el {new Date(publishedAt).toLocaleDateString()}
+          {t("publishedAt")} {new Date(publishedAt).toLocaleDateString()}
         </p>
       )}
 
@@ -80,7 +82,7 @@ const JobOfferItem = ({
 
       {/* CTA */}
       <div className="mt-auto flex items-center gap-2 font-semibold text-primary">
-        Ver oferta
+        {t("viewOffer")}
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
       </div>
     </motion.article>

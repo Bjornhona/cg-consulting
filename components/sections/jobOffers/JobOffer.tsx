@@ -5,6 +5,7 @@ import { PortableText } from "next-sanity";
 import { MapPin, Briefcase, Calendar } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { EVENTS, trackEvent } from "@/lib/tracking";
+import { useTranslations } from "next-intl";
 
 const JobOffer = ({
   title,
@@ -13,6 +14,7 @@ const JobOffer = ({
   publishedAt,
   content,
 }: JobOfferType) => {
+  const t = useTranslations("jobOffers");
   const backToOffersLink = (
     <Link
       href="/job-offers"
@@ -24,7 +26,7 @@ const JobOffer = ({
         });
       }}
     >
-      ← Volver a todas las ofertas
+      ← {t("backToOffers")}
     </Link>
   );
   return (
