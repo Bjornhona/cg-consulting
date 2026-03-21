@@ -105,8 +105,8 @@ const CookiesPolicyContent = () => {
       <h3>7. Contacto</h3>
       <p>
         Si tienes alguna pregunta sobre esta Política de Cookies o cómo utilizamos las cookies, puedes contactarnos a través de:</p>
-      <p><strong>{settings.companyName}</strong></p>
-      <p><strong>Email:</strong> {settings.email}</p>
+      <p><strong>{settings?.companyName}</strong></p>
+      <p><strong>Email:</strong> {settings?.email}</p>
     </>
   );
 
