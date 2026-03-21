@@ -52,8 +52,7 @@ export interface SectionList {
 
 export interface SectionContact {
   _type: 'sectionContact'
-  title: string
-  description: string
+  title?: string
 }
 
 export interface SectionBlogPosts {

@@ -7,13 +7,10 @@ export const sectionContact = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Title (for Studio organization only)',
       type: 'string',
+      initialValue: 'Contact Section',
+      validation: Rule => Rule.required(),
     }),
-    defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-    })
   ],
 })
