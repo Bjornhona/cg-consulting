@@ -150,5 +150,22 @@
     "postNotFoundDescription": "Este artículo no existe",
     "specializedTalent": "¿Buscas talento especializado?",
     "contactUs": "Contacta con nosotros"
+  },
+  "jobOffers": {
+    "title": "Ofertas de trabajo",
+    "description": "Descubre oportunidades laborales seleccionadas por ",
+    "weConnect": "Conectamos talento con empresas a través de un enfoque humano y personalizado.",
+    "at": "En ",
+    "collaborate": "colaboramos con empresas que valoran el talento, la diversidad y el crecimiento profesional. Aquí encontrarás nuestras oportunidades laborales activas, seleccionadas cuidadosamente para asegurar un buen encaje tanto profesional como humano.",
+    "openPositions": "Posiciones abiertas",
+    "explorePositions": "Explora nuestras ofertas actuales y encuentra tu próxima oportunidad profesional.",
+    "joinOurTeam": "¿Quieres unirte a nuestro equipo?",
+    "opportunities": "Responde a nuestras oportunidades laborales actuales. Si no encuentras una oferta que encaje con tu perfil, no dudes en ponerte en contacto con nosotros. Siempre estamos interesados en conocer talento excepcional.",
+    "contact": "Contactar",
+    "jobNotFound": "Oferta laboral no encontrada",
+    "jobNotExists": "Esta oferta laboral no existe",
+    "interestedInThisPosition": "¿Te interesa esta oportunidad?",
+    "sendYourApplication": "Envíanos tu candidatura y nos pondremos en contacto contigo lo antes posible.",
+    "sendApplication": "Enviar candidatura"
   }
 }

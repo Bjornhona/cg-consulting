@@ -150,5 +150,22 @@
     "postNotFoundDescription": "This post does not exist",
     "specializedTalent": "Looking for specialized talent?",
     "contactUs": "Contact us"
+  },
+  "jobOffers": {
+    "title": "Job Opportunities",
+    "description": "Discover career opportunities selected by ",
+    "weConnect": "We connect talent with companies through a human and personalized approach.",
+    "at": "At ",
+    "collaborate": "we collaborate with companies that value talent, diversity, and professional growth. Here you will find our active job opportunities, carefully selected to ensure a strong professional and cultural fit.",
+    "openPositions": "Open Positions",
+    "explorePositions": "Explore our current openings and find your next career opportunity.",
+    "joinOurTeam": "Want to join our team?",
+    "opportunities": "Apply to our current job opportunities. If you don’t find a position that matches your profile, feel free to contact us. We are always interested in connecting with exceptional talent.",
+    "contact": "Contact",
+    "jobNotFound": "Job offer not found",
+    "jobNotExists": "This job offer does not exist",
+    "interestedInThisPosition": "Interested in this position?",
+    "sendYourApplication": "Send us your application and we will get back to you shortly.",
+    "sendApplication": "Apply now"
   }
 }

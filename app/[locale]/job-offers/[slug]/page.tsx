@@ -1,5 +1,5 @@
 import { getJobOfferBySlug, getSettings } from "@/sanity/queries";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { JobOfferType } from "@/types/sanity";
 import { Metadata } from "next";
 import JobOffer from "@/components/sections/jobOffers/JobOffer";
@@ -15,6 +15,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
+  const t = await getTranslations("jobOffers");
   const { slug } = await params;
   if (!slug) {
     notFound()
@@ -27,8 +28,8 @@ export async function generateMetadata({
 
   if (!jobOffer || !settings) {
     return {
-      title: "Oferta laboral no encontrada",
-      description: "Esta oferta laboral no existe",
+      title: t("jobNotFound"),
+      description: t("jobNotExists"),
     }
   }
 
@@ -39,6 +40,7 @@ export async function generateMetadata({
 }
 
 const JobOfferPage = async ({ params }: { params: { slug: string } }) => {
+  const t = await getTranslations("jobOffers");
   const { slug } = await params;
   const locale = await getLocale();
   if (!slug) {
@@ -48,36 +50,32 @@ const JobOfferPage = async ({ params }: { params: { slug: string } }) => {
   if (!jobOffer) {
     return notFound()
   }
+  
   const heroData: SectionHero = {
     _type: "sectionHero" as const,
-    headline: jobOffer?.title ?? "Oferta laboral no encontrada",
+    headline: jobOffer?.title ?? t("jobNotFound"),
     subheadline: [{_type: 'block', children: [{_type: 'span', text: jobOffer.excerpt}]}] as PortableTextBlock[],
     staticImageSrc: image.src,
   };
-  // const ctaData_EN = {
-  //   _type: "sectionCTA" as const,
-  //   headline: "Interested in this position?",
-  //   text: "Send us your application and we’ll get back to you shortly.",
-  //   primaryCta: { label: "Apply now", href: "/contact" },
-  // };
-  const ctaData_ES = {
+
+  const ctaData = {
     _type: "sectionCTA" as const,
-    headline: "¿Te interesa esta oportunidad?",
+    headline: t("interestedInThisPosition"),
     text: [{
       _type: "block",
       children: [{
         _type: "span",
-        text: "Envíanos tu candidatura y nos pondremos en contacto contigo lo antes posible."
+        text: t("sendYourApplication"),
       }]
     }],
-    primaryCta: { label: "Enviar candidatura", href: "/contact" },
+    primaryCta: { label: t("sendApplication"), href: "/contact" },
   };
   
   return (
     <>
       <Hero {...heroData} />
       <JobOffer {...jobOffer} />
-      <CTA {...ctaData_ES} />
+      <CTA {...ctaData} />
     </>
   );
 };

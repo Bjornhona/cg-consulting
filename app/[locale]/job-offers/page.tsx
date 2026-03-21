@@ -7,45 +7,47 @@ import CTA from "@/components/sections/CTA"
 import { Metadata } from "next"
 import { PortableTextBlock } from "next-sanity"
 import { SectionHero } from "@/types/sections"
-import { getLocale } from "next-intl/server"
+import { getLocale, getTranslations } from "next-intl/server"
 
 export const generateMetadata = async (): Promise<Metadata> => {
+  const t = await getTranslations("jobOffers");
   const locale = await getLocale()
   const settings = await getSettings(locale)
   return {
-  title: `Ofertas de empleo | ${settings.siteTitle}`,
+  title: `${t("title")} | ${settings.siteTitle}`,
     description:
-      `Descubre oportunidades laborales seleccionadas por ${settings.siteTitle}. Conectamos talento con empresas a través de un enfoque humano y personalizado.`,
+      `${t("description")} ${settings.siteTitle}. ${t("weConnect")}`,
   }
 }
 
 const JobOffersPage = async () => {
+  const t = await getTranslations("jobOffers");
   const locale = await getLocale()
   const settings = await getSettings(locale)
   const heroData: SectionHero = {
     _type: 'sectionHero' as const,
-    headline: 'Ofertas de trabajo',
-    subheadline: [{_type: 'block', children: [{_type: 'span', text: `En ${settings.siteTitle} colaboramos con empresas que valoran el talento, la diversidad y el crecimiento profesional. Aquí encontrarás nuestras oportunidades laborales activas, seleccionadas cuidadosamente para asegurar un buen encaje tanto profesional como humano.`}]}] as PortableTextBlock[],
+    headline: t("title"),
+    subheadline: [{_type: 'block', children: [{_type: 'span', text: `${t("at")} ${settings.siteTitle} ${t("collaborate")}`}]}] as PortableTextBlock[],
     staticImageSrc: jobOffersImage.src,
   }
   const jobOffers: JobOfferType[] = await getJobOffers(6, locale)
   const jobOffersData_ES = {
     _type: 'sectionJobOffers' as const,
-    title: 'Posiciones abiertas',
-    description: 'Explora nuestras ofertas actuales y encuentra tu próxima oportunidad profesional.',
+    title: t("openPositions"),
+    description: t("explorePositions"),
     jobOffers: jobOffers,
   }
   const ctaData_ES = {
     _type: 'sectionCTA' as const,
-    headline: '¿Quieres unirte a nuestro equipo?',
+    headline: t("joinOurTeam"),
     text: [{
       _type: "block",
       children: [{
         _type: "span",
-        text: "Responde a nuestras oportunidades laborales actuales. Si no encuentras una oferta que encaje con tu perfil, no dudes en ponerte en contacto con nosotros. Siempre estamos interesados en conocer talento excepcional."
+        text: t("opportunities"),
       }]
     }],
-    primaryCta: { label: 'Contactar', href: '/contact' },
+    primaryCta: { label: t("contact"), href: '/contact' },
   }
   
   return (
