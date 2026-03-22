@@ -5,6 +5,7 @@ import { urlFor } from '@/sanity/lib/image'
 import Button from '@/components/ui/button/Button'
 import { SectionHero } from '@/types/sections'
 import { PortableText } from 'next-sanity'
+import { useRouter } from '@/i18n/navigation'
 
 const HeroPrimary = ({
   headline,
@@ -13,6 +14,8 @@ const HeroPrimary = ({
   secondaryCta,
   image,
 }: SectionHero) => {
+  const router = useRouter();
+  
   return (
     <section className="relative overflow-hidden"
       // style={{ background: 'var(--bg-gradient-layered)' }}
@@ -43,7 +46,7 @@ const HeroPrimary = ({
                 <Button
                   variant="primary"
                   size="lg"
-                  onClick={() => window.location.href = primaryCta.href}
+                  onClick={() => router.push(primaryCta.href)}
                 >
                   {primaryCta.label}
                 </Button>
@@ -53,7 +56,7 @@ const HeroPrimary = ({
                 <Button
                   variant="secondary"
                   size="lg"
-                  onClick={() => window.location.href = secondaryCta.href}
+                  onClick={() => router.push(secondaryCta.href)}
                 >
                   {secondaryCta.label}
                 </Button>

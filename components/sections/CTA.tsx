@@ -4,6 +4,7 @@ import { SectionCTA } from '@/types/sections'
 import Button from '@/components/ui/button/Button'
 import { PortableText } from 'next-sanity'
 import { EVENTS, trackEvent } from '@/lib/tracking'
+import { useRouter } from '@/i18n/navigation'
 
 export default function CTA({
   headline,
@@ -12,9 +13,10 @@ export default function CTA({
   secondaryCta,
   darkBackground,
 }: SectionCTA) {
+  const router = useRouter()
   const onPrimaryCtaClick = () => {
     if (primaryCta) {
-      window.location.href = primaryCta.href;
+      router.push(primaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "cta_section",
         label: primaryCta.label,
@@ -23,7 +25,7 @@ export default function CTA({
   }
   const onSecondaryCtaClick = () => {
     if (secondaryCta) {
-      window.location.href = secondaryCta.href;
+      router.push(secondaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "cta_section",
         label: secondaryCta.label,

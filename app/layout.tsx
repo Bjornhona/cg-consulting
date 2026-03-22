@@ -32,20 +32,30 @@ export default async function RootLayout({
   const cookieConsent = (await cookies()).get("cookie_consent");
   const consent = cookieConsent?.value;
 
+  const analyticsMode =
+    settings?.analyticsMode === "none" ? undefined : settings?.analyticsMode;
+
+  const isGA4 =
+    settings?.analyticsMode === "ga4" &&
+    settings?.gaMeasurementId &&
+    consent === "accepted";
+
+  const isGTM =
+    settings?.analyticsMode === "gtm" &&
+    settings?.gtmId &&
+    consent === "accepted";
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        {settings?.analyticsMode !== "none" &&
-          settings?.analyticsMode === "ga4" &&
-          settings?.gaMeasurementId &&
-          consent === "accepted" && (
-            <>
-              <Script
-                src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaMeasurementId}`}
-                strategy="afterInteractive"
-              />
-              <Script id="ga4-init" strategy="afterInteractive">
-                {`
+        {isGA4 && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaMeasurementId}`}
+              strategy="lazyOnload"
+            />
+            <Script id="ga4-init" strategy="lazyOnload">
+              {`
                 window.dataLayer = window.dataLayer || [];
                 window.gtag = function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -54,19 +64,16 @@ export default async function RootLayout({
                   send_page_view: false
                 });
               `}
-              </Script>
-            </>
-          )}
-        {settings?.analyticsMode !== "none" &&
-          settings?.analyticsMode === "gtm" &&
-          settings?.gtmId &&
-          consent === "accepted" && (
-            <>
-              <Script
-                id="gtm-script"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `
+            </Script>
+          </>
+        )}
+        {isGTM && (
+          <>
+            <Script
+              id="gtm-script"
+              strategy="lazyOnload"
+              dangerouslySetInnerHTML={{
+                __html: `
             (function(w,d,s,l,i){w[l]=w[l]||[];
             w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
             var f=d.getElementsByTagName(s)[0],
@@ -76,21 +83,29 @@ export default async function RootLayout({
             f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','${settings.gtmId}');
           `,
-                }}
-              />
-            </>
-          )}
+              }}
+            />
+          </>
+        )}
       </head>
       <body className={`${raleway.className}`}>
         <CookieConsentProvider>
+          {isGTM && (
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${settings.gtmId}`}
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+              />
+            </noscript>
+          )}
           <Analytics
-            measurementId={settings?.gaMeasurementId}
-            analyticsMode={settings?.analyticsMode}
+            measurementId={isGA4 ? settings?.gaMeasurementId : undefined}
+            analyticsMode={analyticsMode}
           />
           <SettingsProvider settings={settings ?? null}>
-            <ToastProvider>
-              {children}
-            </ToastProvider>
+            <ToastProvider>{children}</ToastProvider>
           </SettingsProvider>
         </CookieConsentProvider>
       </body>

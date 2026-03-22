@@ -12,17 +12,14 @@ const iconMap = {
   workshops: GraduationCap,
 };
 
-const ServiceCard = ({ service, index }: { service: Service, index: number }) => {
+const ServiceCard = ({ service }: { service: Service }) => {
   const t = useTranslations('common');
   const Icon: LucideIcon = iconMap[service.icon] || ClipboardCheck;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
       whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="group"
     >
       <Link

@@ -6,6 +6,7 @@ import Button from '@/components/ui/button/Button'
 import { PortableText } from 'next-sanity'
 import { SectionHero } from '@/types/sections'
 import { EVENTS, trackEvent } from '@/lib/tracking'
+import { useRouter } from '@/i18n/navigation'
 
 const HeroPrimary = ({
   headline,
@@ -14,9 +15,11 @@ const HeroPrimary = ({
   secondaryCta,
   image,
 }: SectionHero) => {
+  const router = useRouter();
+  
   const onPrimaryCtaClick = () => {
     if (primaryCta) {
-      window.location.href = primaryCta.href;
+      router.push(primaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "homepage_hero",
         label: primaryCta.label,
@@ -25,7 +28,7 @@ const HeroPrimary = ({
   }
   const onSecondaryCtaClick = () => {
     if (secondaryCta) {
-      window.location.href = secondaryCta.href;
+      router.push(secondaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "homepage_hero",
         label: secondaryCta.label,

@@ -4,11 +4,9 @@ import { JobOfferType } from "@/types/sanity";
 import { PortableText } from "next-sanity";
 import { MapPin, Briefcase, Calendar } from "lucide-react";
 import { Link } from "@/i18n/navigation";
-import { EVENTS, trackEvent } from "@/lib/tracking";
 import { useTranslations } from "next-intl";
 
 const JobOffer = ({
-  title,
   location,
   contractType,
   publishedAt,
@@ -19,12 +17,6 @@ const JobOffer = ({
     <Link
       href="/job-offers"
       className="flex items-center gap-2 text-sm text-primary hover:text-primary-hover transition-colors"
-      onClick={() => {
-        trackEvent(EVENTS.BACK_CLICK, {
-          location: "job_offer",
-          label: title,
-        });
-      }}
     >
       ← {t("backToOffers")}
     </Link>

@@ -1,22 +1,34 @@
-export const trackEvent = (event: string, data: Record<string, unknown> = {}) => {
+export const trackEvent = (
+  event: string,
+  data: Record<string, unknown> = {},
+  mode?: "ga4" | "gtm"
+) => {
   if (typeof window === "undefined") return;
 
-  // GTM (dataLayer)
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event,
-    ...data,
-  });
+  // Run async to avoid blocking UI
+  const run = () => {
+    if (mode === "gtm") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event,
+        ...data,
+      });
+    }
 
-  // GA4 direct (optional fallback)
-  if (typeof window.gtag === "function") {
-    window.gtag("event", event, data);
+    if (mode === "ga4" && typeof window.gtag === "function") {
+      window.gtag("event", event, data);
+    }
+  };
+
+  if ("requestIdleCallback" in window) {
+    (window as Window).requestIdleCallback(run);
+  } else {
+    setTimeout(run, 0);
   }
 };
 
 export const EVENTS = {
   CTA_CLICK: "cta_click",
   NAVIGATION_CLICK: "navigation_click",
-  BACK_CLICK: "back_click",
   FORM_SUBMIT: "form_submit",
 };

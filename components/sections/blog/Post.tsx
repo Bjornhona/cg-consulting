@@ -3,7 +3,6 @@ import { motion } from "framer-motion"
 import { PortableText } from "next-sanity"
 import { BlogPostProps } from "./types"
 import { Link } from "@/i18n/navigation"
-import { EVENTS, trackEvent } from "@/lib/tracking"
 import { useTranslations } from "next-intl"
 
 const BlogPost = ({
@@ -18,12 +17,6 @@ const BlogPost = ({
     <Link
       href={`/blog`}
       className="flex items-center gap-2 text-sm text-primary hover:text-primary-hover transition-colors"
-      onClick={() => {
-        trackEvent(EVENTS.BACK_CLICK, {
-          location: "blog_post",
-          label: title,
-        });
-      }}
     >
       ← {t("backToBlog")}
     </Link>
