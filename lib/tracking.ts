@@ -16,6 +16,7 @@ export const trackEvent = (event: string, data: Record<string, unknown> = {}) =>
 
 export const EVENTS = {
   CTA_CLICK: "cta_click",
+  NAVIGATION_CLICK: "navigation_click",
   BACK_CLICK: "back_click",
   FORM_SUBMIT: "form_submit",
 };

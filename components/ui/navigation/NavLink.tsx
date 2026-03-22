@@ -1,5 +1,6 @@
 'use client'
 import { usePathname, Link } from "@/i18n/navigation";
+import { EVENTS, trackEvent } from "@/lib/tracking";
 import { NavItem } from '@/types/sanity'
 import clsx from 'clsx'
 
@@ -24,10 +25,20 @@ export default function NavLink({
     (variant === 'footer' && item.isPrimary) && 'hidden'
   )
 
+  const handleLinkClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    trackEvent(EVENTS.NAVIGATION_CLICK, {
+      location: variant === 'footer' ? "footer_navigation" : "header_navigation",
+      label: item.label,
+    });
+  }
+
   return (
     <Link
       href={item.href}
-      onClick={onClick}
+      onClick={handleLinkClick}
       className={linkStyles}
     >
       {item.label}
