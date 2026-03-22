@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { urlFor } from '@/sanity/lib/image'
+// import Image from 'next/image'
+// import { urlFor } from '@/sanity/lib/image'
 import Button from '@/components/ui/button/Button'
 import { SectionHero } from '@/types/sections'
 import { PortableText } from 'next-sanity'
@@ -12,10 +12,10 @@ const HeroPrimary = ({
   subheadline,
   primaryCta,
   secondaryCta,
-  image,
+  // image,
 }: SectionHero) => {
   const router = useRouter();
-  
+
   return (
     <section className="relative overflow-hidden"
       // style={{ background: 'var(--bg-gradient-layered)' }}
