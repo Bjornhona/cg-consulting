@@ -24,7 +24,7 @@ export default function HeroSecondary({
           {image && (
             <Image
               src={urlFor(image!).quality(85).url()}
-              alt=""
+              alt="Secondary hero image"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority
@@ -34,7 +34,7 @@ export default function HeroSecondary({
           {!image && staticImageSrc && (
             <Image
               src={staticImageSrc}
-              alt=""
+              alt="Secondary hero image"
               fill
               priority
               className="object-cover"

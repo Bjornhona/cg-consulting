@@ -82,6 +82,7 @@ export default function MobileNav({ navigation }: { navigation: NavItem[] }) {
                             {item.children.map((child, idx) => (
                               <NavLink
                                 key={idx}
+                                variant="mobile"
                                 item={child}
                                 onClick={() => setOpen(false)}
                               />
@@ -91,7 +92,7 @@ export default function MobileNav({ navigation }: { navigation: NavItem[] }) {
                       </AnimatePresence>
                     </div>
                   ) : (
-                    <NavLink item={item} onClick={() => setOpen(false)} />
+                    <NavLink item={item} onClick={() => setOpen(false)} variant="mobile" />
                   )}
                 </li>
               ))}
