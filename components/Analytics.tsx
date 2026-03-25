@@ -21,6 +21,10 @@ export default function Analytics({ measurementId, analyticsMode }: Props) {
       pathname +
       (searchParams?.toString() ? `?${searchParams.toString()}` : "");
 
+    let lastUrl = "";
+    if (url === lastUrl) return;
+    lastUrl = url;
+
     const track = () => {
       if (
         analyticsMode === "ga4" &&

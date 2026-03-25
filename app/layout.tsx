@@ -35,15 +35,16 @@ export default async function RootLayout({
   const analyticsMode =
     settings?.analyticsMode === "none" ? undefined : settings?.analyticsMode;
 
-  const isGA4 =
+  let isGA4 =
     settings?.analyticsMode === "ga4" &&
     settings?.gaMeasurementId &&
     consent === "accepted";
 
-  const isGTM =
-    settings?.analyticsMode === "gtm" &&
-    settings?.gtmId &&
-    consent === "accepted";
+  const isGTM = settings?.analyticsMode === "gtm" && settings?.gtmId;
+
+  if (isGTM) {
+    isGA4 = false;
+  }
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -69,20 +70,31 @@ export default async function RootLayout({
         )}
         {isGTM && (
           <>
+            <Script id="consent-default" strategy="beforeInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function gtag(){window.dataLayer.push(arguments);}
+                
+                gtag('consent', 'default', {
+                  ad_storage: 'denied',
+                  analytics_storage: 'denied'
+                });
+              `}
+            </Script>
             <Script
               id="gtm-script"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: `
-            (function(w,d,s,l,i){w[l]=w[l]||[];
-            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-            var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-            j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;
-            f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','${settings.gtmId}');
-          `,
+                  (function(w,d,s,l,i){w[l]=w[l]||[];
+                  w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+                  var f=d.getElementsByTagName(s)[0],
+                  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+                  j.async=true;j.src=
+                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                  f.parentNode.insertBefore(j,f);
+                  })(window,document,'script','dataLayer','${settings.gtmId}');
+                `,
               }}
             />
           </>

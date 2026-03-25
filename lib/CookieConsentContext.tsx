@@ -1,5 +1,11 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import Cookies from "js-cookie";
 
 export type ConsentState = "accepted" | "rejected" | "unset";
@@ -12,7 +18,9 @@ interface CookieConsentContextValue {
   openBanner: () => void;
 }
 
-const CookieConsentContext = createContext<CookieConsentContextValue | undefined>(undefined);
+const CookieConsentContext = createContext<
+  CookieConsentContextValue | undefined
+>(undefined);
 
 export function CookieConsentProvider({ children }: { children: ReactNode }) {
   const [consent, setConsent] = useState<ConsentState>(() => {
@@ -21,6 +29,22 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
   });
 
   const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    if (consent === "accepted") {
+      window.dataLayer = window.dataLayer || [];
+
+      const ric =
+        window.requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1));
+
+      ric(() => {
+        window.gtag?.("consent", "update", {
+          ad_storage: "granted",
+          analytics_storage: "granted",
+        });
+      });
+    }
+  }, [consent]);
 
   function acceptCookies() {
     Cookies.set("cookie_consent", "accepted", { expires: 365 });
@@ -49,6 +73,9 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
 
 export function useCookieConsentContext() {
   const context = useContext(CookieConsentContext);
-  if (!context) throw new Error("useCookieConsentContext must be used within a CookieConsentProvider");
+  if (!context)
+    throw new Error(
+      "useCookieConsentContext must be used within a CookieConsentProvider",
+    );
   return context;
 }
