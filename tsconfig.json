@@ -29,8 +29,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts",
-    "sanity.config.ts"
+    "**/*.mts"
   ],
   "exclude": ["node_modules"]
 }
