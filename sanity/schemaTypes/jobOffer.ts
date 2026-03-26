@@ -64,7 +64,6 @@ export const jobOffer = defineType({
       title: 'Type of Contract',
       type: 'string',
       options: {
-        // list: ['Tiempo completo', 'Tiempo parcial', 'Freelance']
         list: [{title: 'Full-time', value: 'fullTime'}, {title: 'Part-time', value: 'partTime'}, {title: 'Freelance', value: 'freelance'}]
       },
       validation: Rule => Rule.required()
