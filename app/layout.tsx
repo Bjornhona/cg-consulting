@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Raleway, Inter } from "next/font/google";
-import "./globals.css";
 import { SettingsProvider } from "@/lib/SettingsProvider";
 import { ToastProvider } from "@/components/ui/toast/ToastContext";
 import Script from "next/script";
@@ -10,6 +9,7 @@ import Analytics from "@/components/Analytics";
 import { getLocale } from "next-intl/server";
 import { getSettings } from "@/sanity/queries";
 import { cn } from "@/lib/utils";
+import "./globals.css"
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 

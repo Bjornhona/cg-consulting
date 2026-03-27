@@ -15,7 +15,7 @@ const SocialMediaNav = () => {
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]"
+              className="text-nav-text hover:text-nav-text-hover"
             >
               <FaLinkedin className="h-5 w-5" />
             </a>
@@ -25,7 +25,7 @@ const SocialMediaNav = () => {
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]"
+              className="text-nav-text hover:text-nav-text-hover"
             >
               <FaInstagram className="h-5 w-5" />
             </a>

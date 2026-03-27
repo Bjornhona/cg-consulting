@@ -19,9 +19,8 @@ export default function NavLink({
     'inline-flex w-max min-w-0 items-center whitespace-normal transition-colors',
     item.isPrimary && variant !== 'footer' && variant !== 'mobile'
       ? 'action-primary'
-      : 'text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]',
-    isActive && !item.isPrimary && 'text-[color:var(--nav-text-hover)]',
-    variant === 'footer' && 'text-gray-medium hover:text-white',
+      : 'text-nav-text hover:text-nav-text-hover',
+    isActive && !item.isPrimary && variant !== 'footer' && 'text-nav-text-hover',
     (variant === 'footer' && item.isPrimary) && 'hidden'
   )
 

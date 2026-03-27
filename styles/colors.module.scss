@@ -1,17 +1,35 @@
 :root {
   /* Brand */
-  --primary: #52b5e7;
-  --primary-hover: #a3d4f7;
-  --secondary: #8d288f;
-  --secondary-hover: #b55fb2;
+  --primary-preview: #52b5e7;
+  --primary: 200 76% 61%;
+
+  --primary-hover-preview: #a3d4f7;
+  --primary-hover: 205 84% 80%;
+
+  --secondary-preview: #8d288f;
+  --secondary: 299 56% 36%;
+
+  --secondary-hover-preview: #b55fb2;
+  --secondary-hover: 302 37% 54%;
 
   /* Neutrals */
-  --gray-black: #222221;
-  --gray-dark: #333437;
-  --gray-medium: #737373;
-  --gray-light: #e0e0e0;
-  --gray-soft: #f7f7f8;
-  --background: #ffffff;
+  --gray-black-preview: #222221;
+  --gray-black: 60 1% 13%;
+
+  --gray-dark-preview: #333437;
+  --gray-dark: 225 4% 21%;
+
+  --gray-medium-preview: #737373;
+  --gray-medium: 0 0% 45%;
+
+  --gray-light-preview: #e0e0e0;
+  --gray-light: 0 0% 88%;
+
+  --gray-soft-preview: #f7f7f8;
+  --gray-soft: 240 7% 97%;
+
+  --background-preview: #ffffff;
+  --background: 0 0% 100%;
 
   /* UI semantics — LIGHT */
   --bg-soft: var(--gray-soft);
@@ -25,38 +43,41 @@
 
   --btn-primary-bg: var(--secondary);
   --btn-primary-hover: var(--secondary-hover);
-  --btn-primary-text: #ffffff;
+  --btn-primary-text: var(--background);
+
+  --border: var(--gray-light);
+  --ring: var(--gray-light);
 
   --bg-gradient-soft: linear-gradient(
     135deg,
-    rgba(82, 181, 231, 0.12) 0%,
-    rgba(141, 40, 143, 0.08) 100%
+    hsl(var(--primary) / 0.12) 0%,
+    hsl(var(--secondary) / 0.08) 100%
   );
 
   --bg-gradient-radial: radial-gradient(
     circle at top left,
-    rgba(82, 181, 231, 0.14),
+    hsl(var(--primary) / 0.14),
     transparent 60%
   );
 
   --bg-gradient-layered:
     radial-gradient(
       circle at top left,
-      rgba(82, 181, 231, 0.22),
+      hsl(var(--primary) / 0.22),
       transparent 60%
     ),
     linear-gradient(
       135deg,
-      rgba(82, 181, 231, 0.12),
-      rgba(141, 40, 143, 0.12)
+      hsl(var(--primary) / 0.12),
+      hsl(var(--secondary) / 0.12)
     );
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --surface-bg: var(--gray-black);
-  --surface-text: #ffffff;
+  --surface-text: var(--background);
   --surface-text-medium: var(--gray-light);
 
-  --nav-text: var(--gray-light);
-  --nav-text-hover: #ffffff;
+  --nav-text: var(--gray-medium);
+  --nav-text-hover: var(--background);
 }

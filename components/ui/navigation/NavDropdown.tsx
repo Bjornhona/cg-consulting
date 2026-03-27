@@ -13,8 +13,8 @@ const NavDropdown = ({ item }: { item: NavItem }) => {
   const linkStyles = clsx(
     "flex items-center gap-1",
     "transition-colors",
-    "text-[color:var(--nav-text)] hover:text-[color:var(--nav-text-hover)]",
-    isActive && "text-[color:var(--nav-text-hover)]"
+    "text-nav-text hover:text-nav-text-hover",
+    isActive && "text-nav-text-hover"
   );
   const hasHover = useHasHover();
   const [open, setOpen] = useState(false);

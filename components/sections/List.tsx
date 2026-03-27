@@ -1,13 +1,12 @@
 'use client'
-
 import { SectionList } from "@/types/sections"
 import { ListItem } from "@/types/sanity"
 import { motion } from "framer-motion"
 
 const List = ({ title, description, listItems }: SectionList) => {
   return (
-    <section style={{ background: 'var(--bg-gradient-soft)' }}>
-      <div className="mx-auto max-w-5xl px-6 py-20">
+    <section className="bg-bg-gradient-soft" style={{ background: 'var(--bg-gradient-soft)' }}>
+      <div className="mx-auto max-w-6xl px-6 py-20">
 
         {/* Header */}
         {(title || description) && (

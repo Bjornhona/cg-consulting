@@ -9,11 +9,11 @@ const baseStyles =
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] hover:bg-[var(--btn-primary-hover)] shadow-md',
+    'bg-btn-primary-bg text-btn-primary-text hover:bg-btn-primary-hover shadow-md',
   secondary:
-    'bg-white text-[var(--btn-primary-bg)] border border-[var(--btn-primary-bg)] hover:text-[var(--btn-primary-hover)] hover:border-[var(--btn-primary-hover)] shadow-sm',
+    'bg-background text-btn-primary-bg border border-btn-primary-bg hover:text-btn-primary-hover hover:border-btn-primary-hover shadow-sm',
   ghost:
-    'bg-transparent text-[var(--nav-text)] hover:text-[var(--nav-text-hover)]',
+    'bg-transparent text-nav-text hover:text-nav-text-hover',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {

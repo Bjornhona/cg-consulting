@@ -27,7 +27,7 @@ export default function ContactInfo({ visibleContactInfo = DEFAULT_VISIBLE_CONTA
     }))
 
   return (
-    <div className="space-y-4 text-[color:var(--nav-text)]">
+    <div className="space-y-4 text-surface-text-medium">
       <h3>{settings?.companyName}</h3>
 
       {contactInfoList.map((item, index) => (
