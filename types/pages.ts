@@ -23,3 +23,7 @@ export interface Page {
     | SectionContact
   )[];
 }
+
+export type PageProps = {
+  params: Promise<{ slug: string, locale: string }>
+}

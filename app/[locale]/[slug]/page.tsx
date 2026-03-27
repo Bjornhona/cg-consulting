@@ -3,20 +3,17 @@ import PageRenderer from '@/components/PageRenderer'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo'
-import { getLocale } from 'next-intl/server'
-
-type Props = {
-  params: { slug: string }
-}
+import type { PageProps } from '@/types/pages'
+// import { getLocale } from 'next-intl/server'
 
 /* ------------------------------------------------------------
    SEO / Metadata
 ------------------------------------------------------------- */
 export async function generateMetadata(
-  { params }: Props
+  { params }: PageProps
 ): Promise<Metadata> {
-  const { slug } = await params;
-  const locale = await getLocale();
+  const { slug, locale } = await params;
+  // const locale = await getLocale();
   const [settings, page] = await Promise.all([
     getSettings(locale),
     getPageBySlug(slug, locale),
@@ -30,9 +27,9 @@ export async function generateMetadata(
 /* ------------------------------------------------------------
    Page
 ------------------------------------------------------------- */
-export default async function DynamicPage({ params }: Props) {
-  const { slug } = await params;
-  const locale = await getLocale();
+export default async function DynamicPage({ params }: PageProps) {
+  const { slug, locale } = await params;
+  // const locale = await getLocale();
   const page = await getPageBySlug(slug, locale)
 
   if (!page) return notFound()

@@ -1,5 +1,5 @@
 import { getJobOfferBySlug, getSettings } from "@/sanity/queries";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { JobOfferType } from "@/types/sanity";
 import { Metadata } from "next";
 import JobOffer from "@/components/sections/jobOffers/JobOffer";
@@ -9,18 +9,16 @@ import image from "@/components/sections/jobOffers/job-offer-item.jpg";
 import { SectionHero } from "@/types/sections";
 import { PortableTextBlock } from "next-sanity";
 import { notFound } from "next/navigation";
+import type { PageProps } from "@/types/pages";
 
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const t = await getTranslations("jobOffers");
-  const { slug } = await params;
+  const { slug, locale } = await params;
   if (!slug) {
     notFound()
   }
-  const locale = await getLocale();
   const [jobOffer, settings] = await Promise.all([
     getJobOfferBySlug(slug, locale),
     getSettings(locale),
@@ -39,10 +37,9 @@ export async function generateMetadata({
   };
 }
 
-const JobOfferPage = async ({ params }: { params: { slug: string } }) => {
+const JobOfferPage = async ({ params }: PageProps) => {
   const t = await getTranslations("jobOffers");
-  const { slug } = await params;
-  const locale = await getLocale();
+  const { slug, locale } = await params;
   if (!slug) {
     notFound()
   }

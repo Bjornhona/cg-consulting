@@ -1,5 +1,5 @@
 import { getBlogPostBySlug, getSettings } from "@/sanity/queries"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getTranslations } from "next-intl/server"
 import { Metadata } from "next"
 import BlogPost from "@/components/sections/blog/Post"
 import Hero from "@/components/sections/hero/Hero"
@@ -8,16 +8,16 @@ import CTA from "@/components/sections/CTA"
 import { SectionCTA, SectionHero } from "@/types/sections"
 import cloudImage from '@/components/sections/blog/cabecera_1.jpg'
 import { notFound } from "next/navigation"
+import type { PageProps } from "@/types/pages"
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params }: PageProps
 ): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params;
   if (!slug) {
     notFound()
   }
   const t = await getTranslations("blog");
-  const locale = await getLocale()
   const [post, settings] = await Promise.all([
     getBlogPostBySlug(slug, locale),
     getSettings(locale),
@@ -46,13 +46,12 @@ export async function generateMetadata(
   }
 }
 
-const BlogPostPage = async ({ params }: { params: { slug: string } }) => {
+const BlogPostPage = async ({ params }: PageProps) => {
   const t = await getTranslations("blog");
-  const { slug } = await params
+  const { slug, locale } = await params;
   if (!slug) {
     return notFound()
   }
-  const locale = await getLocale();
   const post = await getBlogPostBySlug(slug, locale);
   if (!post) {
     return notFound()
