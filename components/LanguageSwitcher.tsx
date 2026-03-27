@@ -17,7 +17,8 @@ export default function LanguageSwitcher() {
   };
   const languageOptions = availableLanguages.map((lang) => ({
     code: lang,
-    label: lang.toUpperCase(),
+    // label: lang.toUpperCase(),
+    icon: lang === "en" ? "🇬🇧" : "🇪🇸",
   }));
 
   return (
@@ -29,7 +30,8 @@ export default function LanguageSwitcher() {
     >
       {languageOptions.map((lang) => (
         <option key={lang.code} value={lang.code}>
-          {lang.label}
+          {/* {lang.label} */}
+          {lang.icon}
         </option>
       ))}
     </select>

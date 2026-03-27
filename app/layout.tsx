@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Raleway } from "next/font/google";
+import { Raleway, Inter } from "next/font/google";
 import "./globals.css";
 import { SettingsProvider } from "@/lib/SettingsProvider";
 import { ToastProvider } from "@/components/ui/toast/ToastContext";
@@ -9,6 +9,9 @@ import { CookieConsentProvider } from "@/lib/CookieConsentContext";
 import Analytics from "@/components/Analytics";
 import { getLocale } from "next-intl/server";
 import { getSettings } from "@/sanity/queries";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
@@ -47,7 +50,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning className={cn("font-sans", inter.variable)}>
       <head>
         {isGA4 && (
           <>

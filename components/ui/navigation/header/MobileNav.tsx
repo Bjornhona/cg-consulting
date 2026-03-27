@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import NavLink from "../NavLink";
 import type { NavItem } from "@/types/sanity";
 import HamburgerToggle from "./HamburgerToggle";
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 export default function MobileNav({ navigation }: { navigation: NavItem[] }) {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,8 @@ export default function MobileNav({ navigation }: { navigation: NavItem[] }) {
   };
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden flex items-center gap-4">
+      <LanguageSwitcher />
       <HamburgerToggle isOpen={open} toggle={toggleMenu} ref={buttonRef} />
 
       <AnimatePresence>
@@ -52,7 +54,7 @@ export default function MobileNav({ navigation }: { navigation: NavItem[] }) {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute left-0 top-full w-full bg-white shadow-md z-50"
+            className="absolute left-0 top-full w-full bg-white shadow-md z-50 pb-5"
           >
             <ul className="flex flex-col gap-6 p-6">
               {navigation.map((item, index) => (
