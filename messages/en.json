@@ -5,6 +5,10 @@
     "readMore": "Read more",
     "seeService": "See service"
   },
+  "languages": {
+    "english": "English",
+    "spanish": "Spanish"
+  },
   "contact": {
     "errorSendingMessage": "Failed to send the message. Please try again.",
     "successSendingMessage": "Message sent successfully. We will contact you soon.",
