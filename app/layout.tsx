@@ -43,7 +43,7 @@ export default async function RootLayout({
     settings?.gaMeasurementId &&
     consent === "accepted";
 
-  const isGTM = settings?.analyticsMode === "gtm" && settings?.gtmId;
+  const isGTM = settings?.analyticsMode === "gtm";
 
   if (isGTM) {
     isGA4 = false;
@@ -56,9 +56,9 @@ export default async function RootLayout({
           <>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${settings.gaMeasurementId}`}
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
-            <Script id="ga4-init" strategy="lazyOnload">
+            <Script id="ga4-init" strategy="afterInteractive">
               {`
                 window.dataLayer = window.dataLayer || [];
                 window.gtag = function gtag(){dataLayer.push(arguments);}

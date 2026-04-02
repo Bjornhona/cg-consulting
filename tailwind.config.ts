@@ -29,10 +29,10 @@ module.exports = {
         "border": "hsl(var(--border) / <alpha-value>)",
         "ring": "hsl(var(--ring) / <alpha-value>)",
       },
-      // fontFamily: {
-      //   sans: ["var(--font-sans)"],
-      //   heading: ["var(--font-heading)"],
-      // },
+      fontFamily: {
+        sans: ["var(--font-sans)"],
+        heading: ["var(--font-heading)"],
+      },
       // fontSize: {
       //   base: "var(--text-base)",
       //   xxs: "var(--text-xxs)",
