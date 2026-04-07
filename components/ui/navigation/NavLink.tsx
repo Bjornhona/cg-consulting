@@ -25,13 +25,11 @@ export default function NavLink({
   )
 
   const handleLinkClick = () => {
-    if (onClick) {
-      onClick();
-    }
     trackEvent(EVENTS.NAVIGATION_CLICK, {
       location: variant === 'footer' ? "footer_navigation" : "header_navigation",
       label: item.label,
     });
+    if (onClick) onClick();
   }
 
   return (

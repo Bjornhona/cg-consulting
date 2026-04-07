@@ -16,20 +16,20 @@ export default function CTA({
   const router = useRouter()
   const onPrimaryCtaClick = () => {
     if (primaryCta) {
-      router.push(primaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "cta_section",
         label: primaryCta.label,
       });
+      router.push(primaryCta.href);
     }
   }
   const onSecondaryCtaClick = () => {
     if (secondaryCta) {
-      router.push(secondaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "cta_section",
         label: secondaryCta.label,
       });
+      router.push(secondaryCta.href);
     }
   }
 

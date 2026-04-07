@@ -31,4 +31,5 @@ export const EVENTS = {
   CTA_CLICK: "cta_click",
   NAVIGATION_CLICK: "navigation_click",
   FORM_SUBMIT: "form_submit",
+  VIRTUAL_PAGEVIEW: "virtual_pageview",
 };

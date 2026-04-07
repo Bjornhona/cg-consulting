@@ -16,7 +16,7 @@ const DEFAULT_VISIBLE_FIELDS = [
   "phone",
   "purpose",
   "company",
-  "message"
+  "message",
 ];
 
 type Props = {
@@ -91,28 +91,31 @@ export default function ContactForm({
         throw new Error(message);
       }
 
-      showToast("success", t("successSendingMessage"));
+      if (res.ok) {
+        trackEvent(EVENTS.FORM_SUBMIT, {
+          form: "contact_form",
+        });
 
-      // Reset form state
-      setForm({
-        name: "",
-        email: "",
-        company: "",
-        message: "",
-        privacyAccepted: false,
-        website: "",
-        phone: "",
-        purpose: "",
-      });
+        showToast("success", t("successSendingMessage"));
+
+        // Reset form state
+        setForm({
+          name: "",
+          email: "",
+          company: "",
+          message: "",
+          privacyAccepted: false,
+          website: "",
+          phone: "",
+          purpose: "",
+        });
+      }
     } catch (err) {
       const message = err instanceof Error ? err.message : t("networkError");
 
       showToast("error", message);
     } finally {
       setLoading(false);
-      trackEvent(EVENTS.FORM_SUBMIT, {
-        form: "contact_form",
-      });
     }
   };
 

@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useCookieConsentContext } from "@/lib/CookieConsentContext";
+import { EVENTS } from "@/lib/tracking";
 
 type Props = {
   measurementId?: string;
@@ -61,7 +62,7 @@ export default function Analytics({ measurementId, analyticsMode, debug }: Props
     if (analyticsMode === "gtm") {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: "virtual_pageview",
+        event: EVENTS.VIRTUAL_PAGEVIEW,
         page_path: url,
       });
     }

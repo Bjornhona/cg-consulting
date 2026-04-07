@@ -19,20 +19,20 @@ const HeroPrimary = ({
   
   const onPrimaryCtaClick = () => {
     if (primaryCta) {
-      router.push(primaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "homepage_hero",
         label: primaryCta.label,
       });
+      router.push(primaryCta.href);
     }
   }
   const onSecondaryCtaClick = () => {
     if (secondaryCta) {
-      router.push(secondaryCta.href);
       trackEvent(EVENTS.CTA_CLICK, {
         location: "homepage_hero",
         label: secondaryCta.label,
       });
+      router.push(secondaryCta.href);
     }
   }
 

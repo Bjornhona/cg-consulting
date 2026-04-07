@@ -91,29 +91,83 @@ NEXT_PUBLIC_SANITY_DATASET=production
 SANITY_API_TOKEN=xxxx
 ⚠️ Environment variables are not committed to the repository.
 
-🧑‍💻 Development
+---
+
+## 📊 Analytics Setup (GA4 / GTM)
+
+Analytics is configured from **Sanity Site Settings** and loaded conditionally in the app.
+
+### 1) Choose tracking mode in Sanity
+
+In **Site Settings**, set `analyticsMode` to one of:
+- `none`
+- `ga4`
+- `gtm` (recommended)
+
+### 2) Add the corresponding ID
+
+- If mode is `ga4`, set `gaMeasurementId` (format: `G-XXXXXXXXXX`)
+- If mode is `gtm`, set `gtmId` (format: `GTM-XXXXXXXXXX`)
+
+### 3) Recommended production setup
+
+Use **GTM** and configure GA4 from GTM:
+- Create a **GA4 Configuration tag**
+- Set your Measurement ID
+- Trigger on **All Pages**
+- Publish container changes
+
+### 4) Required GTM Variables
+
+Create these 4 Data Layer Variables:
+
+- label
+- location
+- form
+- page_path
+
+### 5) Verify it works
+
+- Mode `none`: no analytics script should load
+- Mode `ga4`: verify GA requests in DevTools + GA4 Realtime
+- Mode `gtm`: verify with [Tag Assistant](https://tagassistant.google.com/) and GTM Preview
+
+### 5) Consent/compliance
+
+Ensure analytics only fires after consent if required in your legal region.
+
+---
+
+## 🧑‍💻 Development
+
 Install dependencies and run the development server:
 
-bash
-Copy code
+```bash
 npm install
 npm run dev
 # or
 yarn install
 yarn dev
+```
+
 Then open:
 
-arduino
-Copy code
+```txt
 http://localhost:3000
-📌 Notes
-This repository represents a delivered client project
+```
 
-The codebase is intentionally stable and not used as an evolving template
+---
 
-A separate internal starter/template is used for future client work
+## 📌 Notes
 
-👩‍💻 Author
-Built by Asa Eriksson
-Frontend Developer & Designer
-Specialized in Next.js, UI systems, and conversion-focused websites
+- This repository represents a delivered client project.
+- The codebase is intentionally stable and not used as an evolving template.
+- A separate internal starter/template is used for future client work.
+
+---
+
+## 👩‍💻 Author
+
+Built by Asa Eriksson  
+Frontend Developer & Designer  
+Specialized in Next.js, UI systems, and conversion-focused websites.
