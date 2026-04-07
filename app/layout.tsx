@@ -9,9 +9,9 @@ import Analytics from "@/components/Analytics";
 import { getLocale } from "next-intl/server";
 import { getSettings } from "@/sanity/queries";
 import { cn } from "@/lib/utils";
-import "./globals.css"
+import "./globals.css";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const raleway = Raleway({
   weight: ["400", "500", "600", "700"],
@@ -38,19 +38,22 @@ export default async function RootLayout({
   const analyticsMode =
     settings?.analyticsMode === "none" ? undefined : settings?.analyticsMode;
 
-  let isGA4 =
+  const isGTM = settings?.analyticsMode === "gtm" && settings?.gtmId;
+
+  const isGA4 =
     settings?.analyticsMode === "ga4" &&
     settings?.gaMeasurementId &&
-    consent === "accepted";
+    consent === "accepted" &&
+    !isGTM;
 
-  const isGTM = settings?.analyticsMode === "gtm";
-
-  if (isGTM) {
-    isGA4 = false;
-  }
+  const isDev = process.env.NODE_ENV === "development";
 
   return (
-    <html lang={locale} suppressHydrationWarning className={cn("font-sans", inter.variable)}>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      className={cn("font-sans", inter.variable)}
+    >
       <head>
         {isGA4 && (
           <>
@@ -93,8 +96,7 @@ export default async function RootLayout({
                   w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
                   var f=d.getElementsByTagName(s)[0],
                   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-                  j.async=true;j.src=
-                  'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                  j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
                   f.parentNode.insertBefore(j,f);
                   })(window,document,'script','dataLayer','${settings.gtmId}');
                 `,
@@ -118,6 +120,7 @@ export default async function RootLayout({
           <Analytics
             measurementId={isGA4 ? settings?.gaMeasurementId : undefined}
             analyticsMode={analyticsMode}
+            debug={isDev}
           />
           <SettingsProvider settings={settings ?? null}>
             <ToastProvider>{children}</ToastProvider>

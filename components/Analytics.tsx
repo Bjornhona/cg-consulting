@@ -1,18 +1,42 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useCookieConsentContext } from "@/lib/CookieConsentContext";
 
 type Props = {
   measurementId?: string;
   analyticsMode?: "ga4" | "gtm";
+  debug?: boolean;
 };
 
-export default function Analytics({ measurementId, analyticsMode }: Props) {
+export default function Analytics({ measurementId, analyticsMode, debug }: Props) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { consent } = useCookieConsentContext();
+  const lastUrlRef = useRef("");
 
+  // ✅ Handle consent properly (GTM + GA4)
+  useEffect(() => {
+    if (consent !== "accepted") return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "consent_update",
+      analytics_storage: "granted",
+      ad_storage: "granted",
+    });
+
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        analytics_storage: "granted",
+        ad_storage: "granted",
+      });
+
+      window.gtag("set", "debug_mode", { value: debug });
+    }
+  }, [consent, debug]);
+
+  // ✅ Track page views (SPA navigation)
   useEffect(() => {
     if (consent !== "accepted") return;
     if (!analyticsMode) return;
@@ -21,34 +45,25 @@ export default function Analytics({ measurementId, analyticsMode }: Props) {
       pathname +
       (searchParams?.toString() ? `?${searchParams.toString()}` : "");
 
-    let lastUrl = "";
-    if (url === lastUrl) return;
-    lastUrl = url;
+    if (url === lastUrlRef.current) return;
+    lastUrlRef.current = url;
 
-    const track = () => {
-      if (
-        analyticsMode === "ga4" &&
-        measurementId &&
-        typeof window.gtag === "function"
-      ) {
-        window.gtag("config", measurementId, {
-          page_path: url,
-        });
-      }
+    if (
+      analyticsMode === "ga4" &&
+      measurementId &&
+      typeof window.gtag === "function"
+    ) {
+      window.gtag("config", measurementId, {
+        page_path: url,
+      });
+    }
 
-      if (analyticsMode === "gtm") {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "virtual_pageview",
-          page_path: url,
-        });
-      }
-    };
-
-    if ("requestIdleCallback" in window) {
-      (window as Window).requestIdleCallback(track);
-    } else {
-      setTimeout(track, 0);
+    if (analyticsMode === "gtm") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "virtual_pageview",
+        page_path: url,
+      });
     }
   }, [pathname, searchParams, consent, measurementId, analyticsMode]);
 
