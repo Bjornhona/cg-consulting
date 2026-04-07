@@ -30,6 +30,7 @@ export default function NavLink({
       label: item.label,
     });
     if (onClick) onClick();
+    
   }
 
   return (

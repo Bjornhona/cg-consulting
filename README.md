@@ -97,6 +97,23 @@ SANITY_API_TOKEN=xxxx
 
 Analytics is configured from **Sanity Site Settings** and loaded conditionally in the app.
 
+This template supports:
+
+- Google Tag Manager (recommended)
+- Google Analytics 4 (direct)
+
+To enable analytics:
+
+1. Enter your GTM or GA4 ID in Sanity Studio
+2. Accept cookies on the site
+3. Events will be tracked automatically
+
+Tracked events:
+- Page views
+- CTA clicks
+- Navigation clicks
+- Form submissions
+
 ### 1) Choose tracking mode in Sanity
 
 In **Site Settings**, set `analyticsMode` to one of:
@@ -132,7 +149,7 @@ Create these 4 Data Layer Variables:
 - Mode `ga4`: verify GA requests in DevTools + GA4 Realtime
 - Mode `gtm`: verify with [Tag Assistant](https://tagassistant.google.com/) and GTM Preview
 
-### 5) Consent/compliance
+### 6) Consent/compliance
 
 Ensure analytics only fires after consent if required in your legal region.
 

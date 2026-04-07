@@ -36,7 +36,9 @@ export default async function RootLayout({
   const consent = cookieConsent?.value;
 
   const analyticsMode =
-    settings?.analyticsMode === "none" ? undefined : settings?.analyticsMode;
+    settings?.analyticsMode === "none"
+      ? "none"
+      : settings?.analyticsMode || "none";
 
   const isGTM = settings?.analyticsMode === "gtm" && settings?.gtmId;
 
@@ -55,6 +57,11 @@ export default async function RootLayout({
       className={cn("font-sans", inter.variable)}
     >
       <head>
+        <Script id="analytics-mode" strategy="beforeInteractive">
+          {`
+            window.__analyticsMode = "${analyticsMode}";
+          `}
+        </Script>
         {isGA4 && (
           <>
             <Script
