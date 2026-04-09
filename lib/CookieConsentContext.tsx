@@ -31,6 +31,8 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
+    window.__cookieConsent = consent;
+
     if (consent === "accepted") {
       window.dataLayer = window.dataLayer || [];
 
@@ -49,6 +51,20 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
           ad_storage: "granted",
           analytics_storage: "granted",
         });
+      });
+    }
+
+    if (consent === "rejected") {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "consent_update",
+        ad_storage: "denied",
+        analytics_storage: "denied",
+      });
+    
+      window.gtag?.("consent", "update", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
       });
     }
   }, [consent]);

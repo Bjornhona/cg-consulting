@@ -2,7 +2,8 @@ export const trackEvent = (
   event: string,
   data: Record<string, unknown> = {}
 ) => {
-  if (typeof window === "undefined") return;
+  const consent = (window as Window).__cookieConsent  || "unset";
+  if (consent !== "accepted") return;
 
   const mode = (window as Window).__analyticsMode || "gtm";
   if (mode === "none") return;

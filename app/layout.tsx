@@ -40,7 +40,11 @@ export default async function RootLayout({
       ? "none"
       : settings?.analyticsMode || "none";
 
-  const isGTM = settings?.analyticsMode === "gtm" && settings?.gtmId;
+  // const isGTM = settings?.analyticsMode === "gtm" && settings?.gtmId;
+  const isGTM =
+  settings?.analyticsMode === "gtm" &&
+  settings?.gtmId &&
+  consent === "accepted";
 
   const isGA4 =
     settings?.analyticsMode === "ga4" &&

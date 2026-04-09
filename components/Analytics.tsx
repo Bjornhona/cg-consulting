@@ -20,12 +20,12 @@ export default function Analytics({ measurementId, analyticsMode, debug }: Props
   useEffect(() => {
     if (consent !== "accepted") return;
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "consent_update",
-      analytics_storage: "granted",
-      ad_storage: "granted",
-    });
+    // window.dataLayer = window.dataLayer || [];
+    // window.dataLayer.push({
+    //   event: "consent_update",
+    //   analytics_storage: "granted",
+    //   ad_storage: "granted",
+    // });
 
     if (typeof window.gtag === "function") {
       window.gtag("consent", "update", {
