@@ -19,23 +19,7 @@ export default function Analytics({ measurementId, analyticsMode, debug }: Props
   // ✅ Handle consent properly (GTM + GA4)
   useEffect(() => {
     if (consent !== "accepted") return;
-
-    // window.dataLayer = window.dataLayer || [];
-    // window.dataLayer.push({
-    //   event: "consent_update",
-    //   analytics_storage: "granted",
-    //   ad_storage: "granted",
-    // });
-
-    if (typeof window.gtag === "function") {
-      window.gtag("consent", "update", {
-        analytics_storage: "granted",
-        ad_storage: "granted",
-      });
-
-      window.gtag("set", "debug_mode", { value: debug });
-    }
-  }, [consent, debug]);
+  }, [consent]);
 
   // ✅ Track page views (SPA navigation)
   useEffect(() => {
@@ -56,6 +40,7 @@ export default function Analytics({ measurementId, analyticsMode, debug }: Props
     ) {
       window.gtag("config", measurementId, {
         page_path: url,
+        debug_mode: debug === true,
       });
     }
 
@@ -66,7 +51,7 @@ export default function Analytics({ measurementId, analyticsMode, debug }: Props
         page_path: url,
       });
     }
-  }, [pathname, searchParams, consent, measurementId, analyticsMode]);
+  }, [pathname, searchParams, consent, measurementId, analyticsMode, debug]);
 
   return null;
 }

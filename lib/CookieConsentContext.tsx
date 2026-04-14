@@ -36,21 +36,16 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
     if (consent === "accepted") {
       window.dataLayer = window.dataLayer || [];
 
-      const ric =
-        window.requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1));
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "consent_update",
+        ad_storage: "granted",
+        analytics_storage: "granted",
+      });
 
-      ric(() => {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "consent_update",
-          ad_storage: "granted",
-          analytics_storage: "granted",
-        });
-
-        window.gtag?.("consent", "update", {
-          ad_storage: "granted",
-          analytics_storage: "granted",
-        });
+      window.gtag?.("consent", "update", {
+        ad_storage: "granted",
+        analytics_storage: "granted",
       });
     }
 
