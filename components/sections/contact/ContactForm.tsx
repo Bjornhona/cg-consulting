@@ -53,6 +53,14 @@ export default function ContactForm({
       [name]:
         type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }));
+
+    const isTrackableField = ["purpose"].includes(name);
+    if (isTrackableField) {
+      trackEvent(EVENTS.FORM_FIELD_SELECT, {
+        field_name: name,
+        field_value: value,
+      });
+    };
   };
 
   const isPhoneValid = useMemo(() => {

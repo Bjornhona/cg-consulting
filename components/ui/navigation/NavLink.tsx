@@ -29,8 +29,7 @@ export default function NavLink({
       location: variant === 'footer' ? "footer_navigation" : "header_navigation",
       label: item.label,
     });
-    if (onClick) onClick();
-    
+    if (onClick) onClick();  
   }
 
   return (

@@ -33,6 +33,7 @@ export const trackEvent = (
 export const EVENTS = {
   CTA_CLICK: "cta_click",
   NAVIGATION_CLICK: "navigation_click",
+  FORM_FIELD_SELECT: "form_field_select",
   FORM_SUBMIT: "form_submit",
   VIRTUAL_PAGEVIEW: "virtual_pageview",
 };
