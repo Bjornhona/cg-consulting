@@ -3,7 +3,7 @@
 Client project built with **Next.js** and deployed on **Vercel**.  
 A high-conversion website for an HR consultancy, focused on employer branding, job offers, and lead generation.
 
-Live site: https://cg-consulting.es
+Live site: [https://cg-consulting.es](https://cg-consulting.es)
 
 ---
 
@@ -111,8 +111,8 @@ This section is written for **anyone** setting up or auditing tracking: develope
 2. **Configuration lives in Sanity**, not in environment variables. Open **Sanity Studio → Site Settings → Analytics setup** and choose **None**, **Google Analytics (GA4)**, or **Google Tag Manager (Recommended)**. Fill in the matching ID field.
 3. **Choose one mode in production:** either **GA4 direct** or **GTM**. Do not rely on having both IDs active in Sanity at once; the UI is designed for a single mode.
 4. **Single-page app (SPA) navigation:** after the first load, Next.js changes routes without a full reload. The app sends **explicit page-view-style updates** so GA4/GTM still see each URL.
-   - **GA4 direct:** `gtag.js` is initialised with `send_page_view: false`; `components/Analytics.tsx` calls `gtag("config", measurementId, { page_path })` when the route changes.
-   - **GTM:** the same component pushes `{ event: "virtual_pageview", page_path: "..." }` to `dataLayer` on each route change. **You must create a GTM tag/trigger for this event** or GA4 will miss most pages (see below).
+  - **GA4 direct:** `gtag.js` is initialised with `send_page_view: false`; `components/Analytics.tsx` calls `gtag("config", measurementId, { page_path })` when the route changes.
+  - **GTM:** the same component pushes `{ event: "virtual_pageview", page_path: "..." }` to `dataLayer` on each route change. **You must create a GTM tag/trigger for this event** or GA4 will miss most pages (see below).
 5. **Custom events** (CTA clicks, nav, form submit) go through `lib/tracking.ts`: **GTM** → `dataLayer.push({ event, ...data })`; **GA4** → `gtag("event", event, data)`.
 6. **Consent Mode (GTM path):** before the container loads, defaults deny `analytics_storage` and `ad_storage`; after the user accepts or rejects, the app updates consent and pushes `consent_update` to the data layer (`lib/CookieConsentContext.tsx`).
 
@@ -137,9 +137,9 @@ This section is written for **anyone** setting up or auditing tracking: develope
 1. Deploy or run the site and open **Sanity Studio** (e.g. `https://your-domain.com/studio`).
 2. Open the **Site Settings** singleton/document.
 3. Set **Analytics setup**:
-   - **None** — no tracking scripts.
-   - **Google Analytics (GA4)** — paste the **GA4 Measurement ID** into **GA4 Measurement ID**.
-   - **Google Tag Manager (Recommended)** — paste the **GTM Container ID** into **Google Tag Manager ID**.
+  - **None** — no tracking scripts.
+  - **Google Analytics (GA4)** — paste the **GA4 Measurement ID** into **GA4 Measurement ID**.
+  - **Google Tag Manager (Recommended)** — paste the **GTM Container ID** into **Google Tag Manager ID**.
 4. **Publish** (or save, depending on your workflow) so the live site fetches the new settings.
 
 ---
@@ -151,12 +151,12 @@ Use this when you want the smallest setup and are happy to manage tags only in c
 1. Complete **Step 1** (GA4 stream) and **Step 2** with **GA4** selected in Sanity.
 2. On the live site, open a **private/incognito** window, **accept** the cookie banner.
 3. Verify:
-   - Browser **DevTools → Network**: requests to Google appear **after** consent.
-   - **GA4 → Reports → Realtime**: your visit appears.
+  - Browser **DevTools → Network**: requests to Google appear **after** consent.
+  - **GA4 → Reports → Realtime**: your visit appears.
 4. Click internal links: each navigation should still produce measurement traffic (SPA page paths via `Analytics.tsx`).
 5. Optional: while testing locally or with debug enabled, use **GA4 → Admin → DebugView**.
 
-**Custom events in GA4:** `cta_click`, `navigation_click`, `form_submit` are sent with `gtag("event", …)` after consent. Inspect parameter names in **GA4 → Admin → Custom definitions** if you register them.
+**Custom events in GA4:** `cta_click`, `navigation_click`, form_field_select,`form_submit` are sent with `gtag("event", …)` after consent. Inspect parameter names in **GA4 → Admin → Custom definitions** if you register them.
 
 ---
 
@@ -186,40 +186,43 @@ The site pushes to `dataLayer`:
 
 In GTM:
 
-1. **Triggers → New → Custom Event** → Event name: **`virtual_pageview`**.
+1. **Triggers → New → Custom Event** → Event name: `**virtual_pageview`**.
 2. **Tags → New → Google Analytics: GA4 Event** (or your GA4 event tag type):
-   - Link to your GA4 **Measurement ID** / configuration tag.
-   - **Event name:** e.g. `page_view` (or your naming convention).
-   - **Event parameters:** add **`page_path`** or map Data Layer `page_path` to GA4’s **`page_location`** / **`page_path`** (match what you want in reports).
-3. Attach this tag to the **`virtual_pageview`** trigger.
+  - Link to your GA4 **Measurement ID** / configuration tag.
+  - **Event name:** e.g. `page_view` (or your naming convention).
+  - **Event parameters:** add `**page_path`** or map Data Layer `page_path` to GA4’s `**page_location**` / `**page_path**` (match what you want in reports).
+3. Attach this tag to the `**virtual_pageview**` trigger.
 4. Publish.
 
 #### B3 — Custom events: mirror what the site pushes
 
 After consent, the data layer uses these **event names** (exact strings):
 
-| Event name | When | Keys on the same object (Data Layer) |
-|------------|------|--------------------------------------|
-| `cta_click` | CTA / card clicks | `location`, `label` |
-| `navigation_click` | Header / footer nav | `location`, `label` |
-| `form_submit` | Successful contact form submit | `form` |
-| `virtual_pageview` | Client-side route change | `page_path` |
-| `consent_update` | User accepts or rejects cookies | `analytics_storage`, `ad_storage` |
+
+| Event name         | When                            | Keys on the same object (Data Layer) |
+| ------------------ | ------------------------------- | ------------------------------------ |
+| `cta_click`        | CTA / card clicks               | `location`, `label`                  |
+| `navigation_click` | Header / footer nav             | `location`, `label`                  |
+| `form_field_select` | Form select radio option       | `field_name`, `field_value`          |
+| `form_submit`      | Successful contact form submit  | `form`                               |
+| `virtual_pageview` | Client-side route change        | `page_path`                          |
+| `consent_update`   | User accepts or rejects cookies | `analytics_storage`, `ad_storage`    |
+
 
 For each event you want in GA4:
 
 1. **Trigger:** Custom Event with that **exact** name.
 2. **Tag:** GA4 Event; map **Data Layer variables** to GA4 event parameters.
 
-**Create Data Layer variables** in GTM (Variables → New → Data Layer Variable) for: `location`, `label`, `form`, `page_path` (variable **name** = key the site sends).
+**Create Data Layer variables** in GTM (Variables → New → Data Layer Variable) for: `location`, `label`, `form`, `field_name`, `field_value`, `page_path` (variable **name** = key the site sends).
 
 #### B4 — Test GTM
 
 1. **GTM → Preview** → connect to your production or staging URL.
 2. Accept cookies on the site.
-3. Confirm your **GA4 / Google** tag fires, then navigate: **`virtual_pageview`** should appear on each route.
-4. Click navigation and CTAs; confirm **`navigation_click`** and **`cta_click`**.
-5. Submit the contact form; confirm **`form_submit`**.
+3. Confirm your **GA4 / Google** tag fires, then navigate: `**virtual_pageview`** should appear on each route.
+4. Click navigation and CTAs; confirm `**navigation_click**` and `**cta_click**`.
+5. Submit the contact form; confirm `**form_submit**`.
 6. Use [Tag Assistant](https://tagassistant.google.com/) and GA4 **Realtime** / **DebugView** as needed.
 
 #### B5 — Consent Mode in GTM
@@ -232,21 +235,23 @@ The site sets default denied consent and updates after the banner. Align your GT
 
 Source: `lib/tracking.ts` (`EVENTS`) and components that call `trackEvent`.
 
-- **`cta_click`:** `location` (e.g. `homepage_hero`, `cta_section`, `service_card`, `job_offer_card`, `blog_card`, `contact_form`), `label` (button text or title).
-- **`navigation_click`:** `location` is `header_navigation` or `footer_navigation`; `label` is the link text.
-- **`form_submit`:** `form` is e.g. `contact_form`.
+- `**cta_click`:** `location` (e.g. `homepage_hero`, `cta_section`, `service_card`, `job_offer_card`, `blog_card`, `contact_form`), `label` (button text or title).
+- `**navigation_click`:** `location` is `header_navigation` or `footer_navigation`; `label` is the link text.
+- `**form_submit`:** `form` is e.g. `contact_form`.
 
 ---
 
 ### Troubleshooting
 
-| Problem | What to check |
-|--------|----------------|
-| No scripts load | Sanity mode/ID; user must **accept** cookies; hard refresh after changing Sanity. |
-| GA4: only one page | Direct GA4: ensure `Analytics.tsx` runs (consent `accepted`). GTM: add **`virtual_pageview` → GA4** (Step 3B2). |
-| GTM Preview shows nothing | Wrong Container ID; ad blocker; cookies not accepted. |
+
+| Problem                   | What to check                                                                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| No scripts load           | Sanity mode/ID; user must **accept** cookies; hard refresh after changing Sanity.                                     |
+| GA4: only one page        | Direct GA4: ensure `Analytics.tsx` runs (consent `accepted`). GTM: add `**virtual_pageview` → GA4** (Step 3B2).       |
+| GTM Preview shows nothing | Wrong Container ID; ad blocker; cookies not accepted.                                                                 |
 | Events in GTM but not GA4 | GA4 tags unpublished; wrong Measurement ID; trigger event name must match **exactly** (`cta_click`, not `CTA Click`). |
-| `window.__analyticsMode` | Set in layout from Sanity; must be `ga4` or `gtm` for custom events to send. |
+| `window.__analyticsMode`  | Set in layout from Sanity; must be `ga4` or `gtm` for custom events to send.                                          |
+
 
 ---
 
