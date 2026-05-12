@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { SectionServices } from "@/types/sections";
 import ServiceCard from "./ServiceCard";
+import PortableTextComponent from "@/components/PortableTextComponent";
 
 const container = {
   hidden: { opacity: 0 },
@@ -33,12 +34,12 @@ const Services = ({ title, description, services }: SectionServices) => {
         <motion.h2 className="mb-4" variants={item}>
           {title}
         </motion.h2>
-        <motion.p
+        <motion.div
           className="max-w-2xl mx-auto mb-12"
           variants={item}
         >
-          {description}
-        </motion.p>
+          <PortableTextComponent text={description} />
+        </motion.div>
 
         <motion.div
           className="grid gap-8 md:grid-cols-3"

@@ -2,6 +2,7 @@
 import { SectionList } from "@/types/sections"
 import { ListItem } from "@/types/sanity"
 import { motion } from "framer-motion"
+import PortableTextComponent from "../PortableTextComponent"
 
 const List = ({ title, description, listItems }: SectionList) => {
   return (
@@ -17,9 +18,9 @@ const List = ({ title, description, listItems }: SectionList) => {
               </h2>
             )}
             {description && (
-              <p className="text-gray-medium max-w-2xl mx-auto">
-                {description}
-              </p>
+              <span className="text-gray-medium max-w-2xl mx-auto">
+                <PortableTextComponent text={description} />
+              </span>
             )}
           </div>
         )}

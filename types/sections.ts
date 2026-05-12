@@ -21,14 +21,14 @@ interface SectionBase {
 export interface SectionServices extends SectionBase {
   _type: 'sectionServices'
   title: string
-  description: string
+  description: PortableTextBlock[]
   services: Service[]
 }
 
 export interface SectionTestimonials extends SectionBase {
   _type: 'sectionTestimonials'
   title: string
-  description: string
+  description: PortableTextBlock[]
   testimonials: Testimonial[]
 }
 
@@ -44,14 +44,14 @@ export interface SectionCTA extends SectionBase {
 export interface SectionCards extends SectionBase {
   _type: 'sectionCards'
   title: string
-  description: string
+  description: PortableTextBlock[]
   cards: Card[]
 }
 
 export interface SectionList extends SectionBase {
   _type: 'sectionList'
   title: string
-  description: string
+  description: PortableTextBlock[]
   listItems: ListItem[]
 }
 
