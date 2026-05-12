@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { SectionTestimonials } from '@/types/sections'
 import { Quote } from 'lucide-react'
+import PortableTextComponent from "@/components/PortableTextComponent"
 
 export default function Testimonials({
   title,
@@ -21,9 +22,9 @@ export default function Testimonials({
             </h2>
           )}
           {description && (
-            <p className="text-gray-medium max-w-2xl mx-auto">
-              {description}
-            </p>
+            <span className="text-gray-medium max-w-2xl mx-auto">
+              <PortableTextComponent text={description} />
+            </span>
           )}
         </div>
 

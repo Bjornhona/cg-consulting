@@ -1,5 +1,6 @@
 import { SectionCards } from "@/types/sections"
 import Card from "@/components/ui/Card"
+import PortableTextComponent from "@/components/PortableTextComponent"
 
 const Cards = ({ title, description, cards }: SectionCards) => {
   return (
@@ -13,9 +14,9 @@ const Cards = ({ title, description, cards }: SectionCards) => {
           </h2>
 
           {description && (
-            <p className="text-gray-medium">
-              {description}
-            </p>
+            <span className="text-gray-medium">
+              <PortableTextComponent text={description} />
+            </span>
           )}
         </div>
 
