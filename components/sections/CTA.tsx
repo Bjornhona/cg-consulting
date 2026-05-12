@@ -2,9 +2,9 @@
 import { motion } from 'framer-motion'
 import { SectionCTA } from '@/types/sections'
 import Button from '@/components/ui/button/Button'
-import { PortableText } from 'next-sanity'
 import { EVENTS, trackEvent } from '@/lib/tracking'
 import { useRouter } from '@/i18n/navigation'
+import PortableTextComponent from '@/components/PortableTextComponent'
 
 export default function CTA({
   headline,
@@ -55,7 +55,7 @@ export default function CTA({
             transition={{ delay: 0.1, duration: 0.4 }}
             className="max-w-2xl mx-auto mb-10"
           >
-            <PortableText value={text} />
+            <PortableTextComponent text={text} />
           </motion.div>
         )}
 
