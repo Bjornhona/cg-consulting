@@ -5,7 +5,7 @@ import Hero from "@/components/sections/hero/Hero"
 import jobOffersImage from "@/components/sections/jobOffers/job-offers-image.jpg"
 import CTA from "@/components/sections/CTA"
 import { Metadata } from "next"
-import { PortableTextBlock } from "next-sanity"
+// import { PortableTextBlock } from "next-sanity"
 import { SectionHero } from "@/types/sections"
 import { getLocale, getTranslations } from "next-intl/server"
 
@@ -23,11 +23,11 @@ export const generateMetadata = async (): Promise<Metadata> => {
 const JobOffersPage = async () => {
   const t = await getTranslations("jobOffers");
   const locale = await getLocale()
-  const settings = await getSettings(locale)
+  // const settings = await getSettings(locale)
   const heroData: SectionHero = {
     _type: 'sectionHero' as const,
     headline: t("title"),
-    subheadline: [{_type: 'block', children: [{_type: 'span', text: `${t("at")} ${settings.siteTitle} ${t("collaborate")}`}]}] as PortableTextBlock[],
+    // subheadline: [{_type: 'block', children: [{_type: 'span', text: `${t("at")} ${settings.siteTitle} ${t("collaborate")}`}]}] as PortableTextBlock[],
     staticImageSrc: jobOffersImage.src,
   }
   const jobOffers: JobOfferType[] = await getJobOffers(6, locale)
