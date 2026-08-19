@@ -1,4 +1,5 @@
 import { defineType, defineField } from "sanity";
+import { countLabel, excerpt } from "../lib/previewExcerpt";
 
 export const sectionServices = defineType({
   name: "sectionServices",
@@ -34,8 +35,26 @@ export const sectionServices = defineType({
               options: { list: ["selection", "evaluation", "workshops"] },
             },
           ],
+          preview: {
+            select: { title: "title", description: "description" },
+            prepare({ title, description }) {
+              return {
+                title: title || "Untitled service",
+                subtitle: excerpt(description),
+              };
+            },
+          },
         },
       ],
     }),
   ],
+  preview: {
+    select: { title: "title", services: "services" },
+    prepare({ title, services }) {
+      return {
+        title: title || "Untitled services section",
+        subtitle: `Services section · ${countLabel(services, "service")}`,
+      };
+    },
+  },
 });

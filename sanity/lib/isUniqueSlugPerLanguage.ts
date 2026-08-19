@@ -1,12 +1,11 @@
-import { getPublishedId } from "sanity";
+import { getPublishedId, type SlugIsUniqueValidator } from "sanity";
 import { apiVersion } from "../env";
 
 /**
  * Custom isUnique for slug fields in multilingual documents.
  * Allows the same slug to be used across different languages (e.g. "my-post" in both en and es).
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function isUniqueSlugPerLanguage(slug: any, context: any): Promise<boolean> {
+export const isUniqueSlugPerLanguage: SlugIsUniqueValidator = async (slug, context) => {
   const slugValue = typeof slug === "string" ? slug : (slug as { current?: string })?.current;
   const document = context.document as { _id?: string; _type?: string; language?: string } | undefined;
   const lang = document?.language;
@@ -29,4 +28,4 @@ export async function isUniqueSlugPerLanguage(slug: any, context: any): Promise<
   );
 
   return count === 0;
-}
+};

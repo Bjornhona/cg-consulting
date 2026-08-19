@@ -16,7 +16,7 @@ export const page = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title', isUnique: isUniqueSlugPerLanguage as import("sanity").SlugIsUniqueValidator },
+      options: { source: 'title', isUnique: isUniqueSlugPerLanguage },
       validation: Rule => Rule.required()
     }),
     defineField({

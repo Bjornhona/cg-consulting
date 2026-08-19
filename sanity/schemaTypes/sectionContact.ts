@@ -21,9 +21,16 @@ export const sectionContact = defineType({
   title: 'Contact Section',
   type: 'object',
   preview: {
-    select: { title: 'title' },
-    prepare({ title }) {
-      return { title: title || 'Contact Section' }
+    select: { visibleFields: 'visibleFields' },
+    prepare({ visibleFields }) {
+      const labels = (Array.isArray(visibleFields) ? visibleFields : [])
+        .map((value) => CONTACT_FIELD_OPTIONS.find((option) => option.value === value)?.title)
+        .filter(Boolean)
+
+      return {
+        title: 'Contact form',
+        subtitle: `Contact section · ${labels.length ? labels.join(', ') : 'no fields selected'}`,
+      }
     },
   },
   fields: [

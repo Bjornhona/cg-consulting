@@ -41,5 +41,15 @@ export const sectionHero = defineType({
       type: 'image',
       options: { hotspot: true }
     })
-  ]
+  ],
+  preview: {
+    select: { headline: 'headline', media: 'image' },
+    prepare({ headline, media }) {
+      return {
+        title: headline || 'Untitled hero',
+        subtitle: 'Hero section',
+        media,
+      }
+    },
+  },
 })

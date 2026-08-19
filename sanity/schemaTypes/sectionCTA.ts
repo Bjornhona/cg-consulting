@@ -40,5 +40,14 @@ export const sectionCTA = defineType({
       type: 'boolean',
       initialValue: false
     })
-  ]
+  ],
+  preview: {
+    select: { headline: 'headline' },
+    prepare({ headline }) {
+      return {
+        title: headline || 'Untitled CTA',
+        subtitle: 'CTA section',
+      }
+    },
+  },
 })

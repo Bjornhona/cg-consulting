@@ -19,7 +19,7 @@ export const jobOffer = defineType({
       options: {
         source: 'title',
         maxLength: 96,
-        isUnique: isUniqueSlugPerLanguage as import("sanity").SlugIsUniqueValidator,
+        isUnique: isUniqueSlugPerLanguage,
         slugify: (input) =>
           input
             .toLowerCase()
