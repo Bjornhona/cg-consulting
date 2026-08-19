@@ -56,5 +56,14 @@ export const page = defineType({
         { type: 'sectionContact' },
       ]
     })
-  ]
+  ],
+  preview: {
+    select: { title: 'title', language: 'language', slug: 'slug.current' },
+    prepare({ title, language, slug }) {
+      return {
+        title,
+        subtitle: `${language?.toUpperCase() ?? '—'} · /${slug ?? ''}`,
+      }
+    },
+  },
 })
