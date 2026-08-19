@@ -1,4 +1,5 @@
 import { ImageProps } from "next/image"
+import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import { Service, Testimonial, Card, ListItem, JobOfferType, BlogPostType } from "./sanity"
 import { PortableTextBlock } from "next-sanity"
 
@@ -53,6 +54,15 @@ export interface SectionList extends SectionBase {
   title: string
   description: PortableTextBlock[]
   listItems: ListItem[]
+}
+
+export interface SectionTextImage extends SectionBase {
+  _type: 'sectionTextImage'
+  heading?: string
+  body?: PortableTextBlock[]
+  image?: SanityImageSource
+  alt?: string
+  imagePosition?: 'left' | 'right'
 }
 
 export interface SectionContact extends SectionBase {

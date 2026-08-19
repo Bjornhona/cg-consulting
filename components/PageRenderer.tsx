@@ -9,11 +9,13 @@ import {
   SectionCards,
   SectionList,
   SectionContact,
+  SectionTextImage,
 } from "@/types/sections";
 import Cards from "@/components/sections/Cards";
 import { Page } from "@/types/pages";
 import List from "@/components/sections/List";
 import Contact from "@/components/sections/contact/Contact";
+import TextImage from "@/components/sections/TextImage";
 
 export default function PageRenderer({ page }: { page: Page }) {
   const isHome = page.slug.current === "home";
@@ -30,7 +32,8 @@ export default function PageRenderer({ page }: { page: Page }) {
             | SectionCTA
             | SectionCards
             | SectionList
-            | SectionContact,
+            | SectionContact
+            | SectionTextImage,
           index
         ) => {
           const key = section._key ?? `section-${index}`;
@@ -52,6 +55,9 @@ export default function PageRenderer({ page }: { page: Page }) {
 
             case "sectionContact":
               return <Contact key={key} {...section} />;
+
+            case "sectionTextImage":
+              return <TextImage key={key} {...section} />;
 
             default:
               return null;

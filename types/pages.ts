@@ -6,6 +6,7 @@ import {
   SectionCards,
   SectionContact,
   SectionList,
+  SectionTextImage,
 } from "./sections";
 import { Seo } from "./sanity";
 
@@ -21,6 +22,7 @@ export interface Page {
     | SectionCards
     | SectionList
     | SectionContact
+    | SectionTextImage
   )[];
 }
 

@@ -58,6 +58,13 @@ export const pageQuery = groq`
       visibleFields,
       visibleContactInfo,
     },
+    _type == "sectionTextImage" => {
+      heading,
+      body,
+      image,
+      alt,
+      imagePosition
+    },
   }
 }`
 

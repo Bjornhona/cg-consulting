@@ -54,6 +54,7 @@ export const page = defineType({
         { type: 'sectionCards' },
         { type: 'sectionList' },
         { type: 'sectionContact' },
+        { type: 'sectionTextImage' },
       ]
     })
   ],
